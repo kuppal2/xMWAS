@@ -52,13 +52,8 @@ function(df=NA,net_node_colors=c("orange", "green","blue"),rownames_vec=NA,colna
         names(nAttrs$fillcolor)<-nodes(sg)
         nAttrs$shape<-nodes_shape_vec
         names(nAttrs$shape)<-nodes(sg)
-<<<<<<< HEAD
-        # nAttrs$size<-nodes_size_vec
-        #names(nAttrs$size)<-nodes(sg)
-=======
         nAttrs$size<-nodes_size_vec
         names(nAttrs$size)<-nodes(sg)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
         
 	 clustnumtemp<-clustnum+1
 	filename=""

@@ -9,34 +9,20 @@ function(graph,colors,membership=NA,fname=NA,vertex.size=5,seednum=100){
     
    
     colnames(clust_membership)<-c("Node","Cluster")
-<<<<<<< HEAD
-    sg<-graph
-    l = layout.fruchterman.reingold(sg, weights = (1 -abs(E(sg)$weight)))
-=======
     
     
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     #pdf(fname)
     
     png(fname,width=8,height=8,res=600,type="cairo",units="in")
     
     
-<<<<<<< HEAD
-    #V(sg)$label.cex<-0.25
-    
-=======
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     # clips as a circle
     add_shape("triangle",plot=mytriangle) #, clip=shapes("circle")$clip,plot=mytriangle)
     # no clipping, edges will be below the vertices anyway
     add_shape("star", clip=shape_noclip,plot=mystar, parameters=list(vertex.norays=5))
     #try(plot(wc,sg,layout=layout_with_fr,vertex.size=vertex.size),silent=TRUE)
     set.seed(seednum)
-<<<<<<< HEAD
-    try(plot(sg,vertex.color=clust_membership$Cluster,layout=l,vertex.size=vertex.size),silent=TRUE)
-=======
     try(plot(sg,vertex.color=clust_membership$Cluster,layout=layout_with_fr,vertex.size=vertex.size),silent=TRUE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     dev.off()
   
 }

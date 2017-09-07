@@ -48,13 +48,8 @@ function(df,nodes,colors,fname=NA,vertex.size=5,seednum=100,net_edge_colors=c("b
     names(nAttrs$fillcolor)<-nodes_vec #(sg)
     nAttrs$shape<-nodes_shape_vec
     names(nAttrs$shape)<-nodes_vec #(sg)
-<<<<<<< HEAD
-    #nAttrs$size<-nodes_size_vec
-    #names(nAttrs$size)<-nodes_vec #(sg)
-=======
     nAttrs$size<-nodes_size_vec
     names(nAttrs$size)<-nodes_vec #(sg)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     
     
         edge_colors<-rep("blue",length(E(sg)$weight))
@@ -91,10 +86,6 @@ function(df,nodes,colors,fname=NA,vertex.size=5,seednum=100,net_edge_colors=c("b
     
     # pdf(fname)
     
-<<<<<<< HEAD
-    l = layout.fruchterman.reingold(sg, weights = (1 -abs(E(sg)$weight)))
-=======
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
       png(fname,width=8,height=8,res=600,type="cairo",units="in")
     
     # clips as a circle
@@ -105,16 +96,9 @@ function(df,nodes,colors,fname=NA,vertex.size=5,seednum=100,net_edge_colors=c("b
     set.seed(seednum)
     #  try(plot(sg,vertex.color=clust_membership$Cluster,layout=layout_with_fr,vertex.size=vertex.size),silent=TRUE)
     
-<<<<<<< HEAD
-    sg$layout <- l #ayout_with_fr
-    plot.igraph(sg,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors,layout=l)
-    mtext("Red: +ve correlation; Blue: -ve correlation",side=1)
-    try(mtext(fname,line=3,cex=0.6,col="brown",side=1,adj=0),silent=TRUE)
-=======
     sg$layout <- layout_with_fr
     plot.igraph(sg,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors)
     mtext("Red: +ve correlation; Blue: -ve correlation",side=1)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
     dev.off()
     #write.table(clust_membership,file="cluster_membership.txt",sep="\t",row.names=FALSE)

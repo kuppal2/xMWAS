@@ -1,15 +1,8 @@
 get_pairwise_cor <-
-<<<<<<< HEAD
-function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle", "circle"),seednum=100,tempXname="X",tempYname="Y"){
-
-
-filename<-paste(Xname,Yname,sep="_x_")
-=======
 function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle", "circle"),seednum=100){
 
 
 filename<-paste(Xname,Yname,sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 print(paste("Performing ",filename," integrative analysis",sep=""))
 
@@ -22,11 +15,7 @@ min_cor_thresh=0.9
 
 cor_thresh_check=rev(cor_thresh_check)
 
-<<<<<<< HEAD
-
-=======
 print(numsampX)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 for(c in cor_thresh_check){
     
@@ -131,13 +120,8 @@ if(numsampX!=numsampY){
 metabname_1<-rownames(Xome_data) #paste(Xome_data[,1],sep="_")
 microbname_1<-rownames(Yome_data) #Yome_data[,1]
 
-<<<<<<< HEAD
-metabname<-paste(tempXname,seq(1,dim(Xome_data)[1]),sep="")
-microbname<-paste(tempYname,seq(1,dim(Yome_data)[1]),sep="")
-=======
 metabname<-paste(Xname,seq(1,dim(Xome_data)[1]),sep="")
 microbname<-paste(Yname,seq(1,dim(Yome_data)[1]),sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 id_mapping_mat1<-cbind(metabname_1,metabname)
 id_mapping_mat2<-cbind(microbname_1,microbname)
@@ -171,19 +155,9 @@ X<-t(X)
 Y<-t(Y)
 
 
-<<<<<<< HEAD
-if(FALSE){
-save(id_mapping_mat1,file="id_mapping_mat1.Rda")
-save(id_mapping_mat2,file="id_mapping_mat2.Rda")
-save(id_mapping_mat,file="id_mapping_mat.Rda")
-save(X,file="X.Rda")
-save(Y,file="Y.Rda")
-}
-=======
 
 
 
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 #numcomps<-pls.regression.cv(Xtrain=X,Ytrain=Y,ncomp=numcomps,alpha=2/3)
 
@@ -239,11 +213,7 @@ if(is(n1,"try-error")){
 }
 
 dev.off()
-<<<<<<< HEAD
-#save(n1,file="res1.Rda")
-=======
 #save(list=ls(),file="res1.Rda")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 unlink("network_all.png")
 
 x<-n1$M
@@ -269,11 +239,7 @@ rnames_ind2<-metabname_1[rnames_ind]
 
 rownames(x)<-as.character(rnames_ind2)
 
-<<<<<<< HEAD
-fname1<-paste(Xname,"_x_",Yname,"_all_association_matrix.txt",sep="")
-=======
 fname1<-paste(Xname,Yname,"all_association_matrix.txt",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 write.table(x,file=fname1,sep="\t")
 
 
@@ -343,11 +309,7 @@ if(corthresh>max(x)){
 #	tiff(fname, width=5000,height=5000, res=600)
 #}else{
 
-<<<<<<< HEAD
-	fname<-paste(filename,"_association_network_threshold",corthresh,".png",sep="")
-=======
 	fname<-paste(filename,"association_networkthreshold",corthresh,".png",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     #pdf(fname)
     png(fname,width=8,height=8,res=600,type="cairo",units="in")
     
@@ -359,30 +321,18 @@ par_rows=1
 par(mfrow=c(par_rows,1))
 
 net_result<-try(network(mat=as.matrix(highcorsimMat), threshold=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-<<<<<<< HEAD
-        color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
-=======
         color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7),silent=TRUE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
         
          if(is(net_result,"try-error")){
              
              
              net_result<-try(network(mat=as.matrix(highcorsimMat), cutoff=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-<<<<<<< HEAD
-             color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
-=======
              color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7),silent=TRUE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     
                  if(is(net_result,"try-error")){
                   
                   net_result<-try(network(mat=as.matrix(highcorsimMat), threshold=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-<<<<<<< HEAD
-                  color.edge = net_edge_colors,lty.edge = c("solid", "solid"), lwd.edge = c(1, 1),show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
-=======
                   color.edge = net_edge_colors,lty.edge = c("solid", "solid"), lwd.edge = c(1, 1),show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7),silent=TRUE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
                   
                   if(is(net_result,"try-error")){
                         stop("Network analysis could not be performed. Please check mixOmics version (<=6.1.3) required.")
@@ -393,20 +343,6 @@ net_result<-try(network(mat=as.matrix(highcorsimMat), threshold=corthresh,row.na
                  }
              
          }
-<<<<<<< HEAD
-         
-         mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",line=1,side=1,cex=0.8,adj=0)
-         
-         mtext_community<-paste("(Nodes) Rectangle: ",Xname,"; Circle: ",Yname,sep="")
-         
-         mtext(mtext_community,side=1,cex=0.8,line=2,adj=0)
-         
-
-         try(mtext(fname,line=3,cex=0.6,col="brown",side=1,adj=0),silent=TRUE)
-         
-         
-=======
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 
 dev.off()
@@ -429,11 +365,7 @@ xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
 
 #net_result$M<-cor2pcor(net_result$M)
 
-<<<<<<< HEAD
-fname<-paste(filename,"_association_matrix_threshold",corthresh,".txt",sep="")
-=======
 fname<-paste(filename,"association_matrix_corthresh",corthresh,".txt",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 write.table(xtemp1,file=fname,sep="\t")
 
 xtemp<-abs(x[which(maxcor>=corthresh),which(maxcor1>=corthresh)])
@@ -458,11 +390,7 @@ colnames(x)<-as.character(simmat_colnames)
 
 xtemp1<-cbind(xtemp,NumConnections)
 
-<<<<<<< HEAD
-fname<-paste(filename,"Boolean_association_matrix_threshold",corthresh,".txt",sep="")
-=======
 fname<-paste(filename,"Boolean_association_matrix_corthresh",corthresh,".txt",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 write.table(xtemp1,file=fname,sep="\t")
 
 

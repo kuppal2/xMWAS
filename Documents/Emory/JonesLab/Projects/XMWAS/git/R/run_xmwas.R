@@ -315,16 +315,6 @@ setwd(outloctemp)
 
 
 s1<-"1:	 X labels correspond to xome_fname data, Y labels correspond to yome_fname data, Z labels correspond to zome_fname data, W labels correspond to wome_fname data"
-<<<<<<< HEAD
-s2<-"2:  Pairwise integrative analysis results are under pairwise_results. The files corresponding to each pairwise comparison (X<->Y, X<->Z, Y<-Z,..) are: XYassociation_matrix_threshold0.9.txt (correlation matrix with mapping between node labels and original variable names), XYassociation_networkthresholdX.pmg that includes the pairwise network plots, XYBoolean_association_matrix_thresholdX.txt (same as correlation matrix but correlations meeting the threshold are represented 1, and 0 otherwise)"
-s3<-"3:  Multidata_Network_thresholdx.png: includes Multidata network plot using all significantly associated variables."
-#s5<-"5:  Multidata_Network_corthreshx100: includes Multidata network plot using top 100 significantly associated variables from each layer (Y,Z, and W)"
-s4<-"4:  Multidata_Network_thresholdx_communities.png: includes Multidata network plot with the communities identified using the multilevel community detection algorithm. Members of each community are assigned colors based on community/module/cluster membership (1: orange; 2: light blue; 3: dark green, and so on)."
-
-s5<-"5:  Multidata_Network_thresholdxcytoscape.gml: GML file for all significantly associated variables that can be uploaded to Cytoscape"
-
-#s7<-"7:  Multidata_Network_corthreshxcytoscape.gml: GML file for top 100 significantly associated variables from each layer (Y,Z, and W) that can be uploaded to Cytoscape"
-=======
 s2<-"2:  Pairwise integrative analysis results are under pairwise_results. The files corresponding to each pairwise comparison (X<->Y, X<->Z, Y<-Z,..) are: XYassociation_matrix_corthresh0.9.txt (correlation matrix with mapping between node labels and original variable names), XYassociation_networkthresholdX.pmg that includes the pairwise network plots, XYBoolean_association_matrix_corthreshX.txt (same as correlation matrix but correlations meeting the threshold are represented 1, and 0 otherwise)"
 s3<-"3:  Multiome_Network_corthreshx.png: includes multiome network plot using all significantly associated variables."
 #s5<-"5:  Multiome_Network_corthreshx100: includes multiome network plot using top 100 significantly associated variables from each layer (Y,Z, and W)"
@@ -333,7 +323,6 @@ s4<-"4:  Multiome_Network_corthreshx_communities.png: includes multiome network 
 s5<-"5:  MultiOme_Network_corthreshxcytoscape.gml: GML file for all significantly associated variables that can be uploaded to Cytoscape"
 
 #s7<-"7:  MultiOme_Network_corthreshxcytoscape.gml: GML file for top 100 significantly associated variables from each layer (Y,Z, and W) that can be uploaded to Cytoscape"
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 s6<-"6: The cluster_membership_centrality_mapped.txt file includes community detection results using the multilevel community detection algorithm and the centrality measures."
 s7<-"7: The matrix_centrality.txt file includes the centrality measures across different conditions for nodes that meet the association criteria and included in the association networks."
 s8<-"8:  If the classlabels are provided, network analysis is performed for samples from each class. The results ar written in individual subfolders."
@@ -342,11 +331,7 @@ sm<-as.data.frame(sm)
 colnames(sm)<-"Description of files"
 write.table(sm,file="README.txt",sep="\t",row.names=FALSE)
 
-<<<<<<< HEAD
-graphclustering=TRUE
-=======
 
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 
 #return(res)

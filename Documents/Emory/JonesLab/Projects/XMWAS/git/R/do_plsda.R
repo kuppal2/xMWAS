@@ -71,22 +71,14 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                 
                 print("design")
                 print(design)
-<<<<<<< HEAD
                 linn.pls <- try(mixOmics::multilevel(X=X, design=design,ncomp = opt_comp,
-=======
-                linn.pls <- try(multilevel(X=X, design=design,ncomp = opt_comp,
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
                 keepX = keep_x_vec, Y=Y,keepY=keep_y_vec,method = 'spls',mode=analysismode),silent=TRUE)
                 
                 if(is(linn.pls,"try-error")){
                     
                     save(Y,file="Y.Rda")
                     save(design,file="design.Rda")
-<<<<<<< HEAD
                     linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode,multilevel=design)
-=======
-                    linn.pls <- spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode,multilevel=design)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
                     
                 }
                 
@@ -94,21 +86,13 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                 save(linn.pls,file="linn_pls.Rda")
 
             }else{
-<<<<<<< HEAD
                 linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode)
-=======
-                linn.pls <- spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
             }
      
         
     }else{
         
-<<<<<<< HEAD
                 linn.pls <- mixOmics::pls(X, Y,ncomp=opt_comp,mode=analysismode)
-=======
-                linn.pls <- pls(X, Y,ncomp=opt_comp,mode=analysismode)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     }
     
     #save(linn.pls,file="pls_res.Rda")

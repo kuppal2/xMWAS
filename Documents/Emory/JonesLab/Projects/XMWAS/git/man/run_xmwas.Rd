@@ -18,17 +18,10 @@ rawPthresh = 0.05, numcomps = 10, net_edge_colors = c("blue", "red"),
 net_node_colors = c("orange", "green", "blue", "purple"), Xname = "X",
 Yname = "Y", Zname = "Z", Wname = "W", 
 net_node_shape = c("circle", "rectangle", "triangle", "star"), 
-<<<<<<< HEAD
 maxnodesperclass = 1000, seednum = 100, label.cex = 0.3, 
 vertex.size = 6, graphclustering = FALSE, interactive = TRUE,
 max_connections = 1e+05, centrality_method = "betweenness",
 use.X.reference = FALSE, removeRda = TRUE, compare.classes=TRUE, ...)
-=======
-maxnodesperclass = 100, seednum = 100, label.cex = 0.3, 
-vertex.size = 6, graphclustering = FALSE, interactive = TRUE,
-max_connections = 1e+05, centrality_method = "betweenness",
-use.X.reference = FALSE, removeRda = TRUE, ...)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 }
 \arguments{
 \item{xome_fname}{
@@ -88,14 +81,10 @@ or data(classlabels_repeatmeasures) for repeat measures
 }
   \item{xmwasmethod}{
 Method for data integration. 
-<<<<<<< HEAD
 eg: 
 "pls": partial least squares regression
 "spls": sparse partial least squares regression
 "o1pls": orthogonal partial least squares regression
-=======
-eg: "pls" or "spls" or "o1pls"
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 }
   \item{plsmode}{
 "canonical" for bi-directional relationships;
@@ -103,7 +92,6 @@ eg: "pls" or "spls" or "o1pls"
 }
   \item{max_xvar}{
 Maximum number of X variables to select based on
-<<<<<<< HEAD
 relative standard deviation (RSD). e.g. 10000
 }
   \item{max_yvar}{
@@ -120,30 +108,11 @@ relative standard deviation (RSD). e.g. 10000
 }
   \item{rsd.filt.thresh}{
 Relative standard deviation (sd/mean) threshold
-=======
-relative standard deviation (RSD)
-}
-  \item{max_yvar}{
-Maximum number of Y variables to select based on
-relative standard deviation (RSD)
-}
-  \item{max_zvar}{
-Maximum number of Z variables to select based on
-relative standard deviation (RSD)
-}
-  \item{max_wvar}{
-Maximum number of W variables to select based on
-relative standard deviation (RSD)
-}
-  \item{rsd.filt.thresh}{
-Relative standard deviation threshold
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 }
   \item{corthresh}{
 Correlation threshold. eg: 0.7
 }
   \item{keepX}{
-<<<<<<< HEAD
 Maximum number of X variables to select in sPLS.
 Note: keepX, keepY, keepZ, and keepW are only
 used when xmwasmethod is set to "spls"
@@ -162,18 +131,6 @@ used when xmwasmethod is set to "spls"
 Maximum number of W variables to select in sPLS.
 Note: keepX, keepY, keepZ, and keepW are only
 used when xmwasmethod is set to "spls"
-=======
-Maximum number of X variables to select in sPLS
-}
-  \item{keepY}{
-Maximum number of Y variables to select in sPLS
-}
-  \item{keepZ}{
-Maximum number of Z variables to select in sPLS
-}
-  \item{keepW}{
-Maximum number of W variables to select in sPLS
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 }
   \item{pairedanalysis}{
 Are their repeated measurements? TRUE or FALSE
@@ -234,10 +191,6 @@ Generate an interactive network using the TK plot.
 Maximum number of associations to include in the 
 network.
 }
-<<<<<<< HEAD
-=======
-centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
  \item{centrality_method}{
 Method for centrality measures. 
 eg: "eigenvector" for eigenvector centrality
@@ -252,13 +205,10 @@ and X<->W pairwise analysis will be performed.
 TRUE or FALSE; set to TRUE if you want to remove the
 intermediate files.
 }
-<<<<<<< HEAD
 \item{compare.classes}{
 TRUE or FALSE; set to TRUE if you want to compare
 individual classes as provided in class labels file.
 }
-=======
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 }
 \author{
 Karan Uppal

@@ -224,11 +224,7 @@ check_file<-try(load("g1.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
 
-<<<<<<< HEAD
-g1<-get_pairwise_cor(Xome_data,Yome_data,max_xvar=max_xvar,max_yvar=max_yvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,2)],outloc=outloc_pairwise,Xname=Xname,Yname=Yname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Y")
-=======
 g1<-get_pairwise_cor(Xome_data,Yome_data,max_xvar=max_xvar,max_yvar=max_yvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,2)],outloc=outloc_pairwise,Xname=Xname,Yname=Yname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
 
 save(g1,file="g1.Rda")
 }else{
@@ -243,11 +239,7 @@ save(g1,file="g1.Rda")
 
 suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
     if(is(check_file,"try-error")){
-<<<<<<< HEAD
-        g2<-get_pairwise_cor(Xome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,3)],outloc=outloc_pairwise,Xname=Xname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Z")
-=======
         g2<-get_pairwise_cor(Xome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,3)],outloc=outloc_pairwise,Xname=Xname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     
         save(g2,file="g2.Rda")
     }else{
@@ -263,11 +255,7 @@ suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
         check_file<-try(load("g3.Rda"),silent=TRUE)
         )
         if(is(check_file,"try-error")){
-<<<<<<< HEAD
-            g3<-get_pairwise_cor(Yome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,3)],outloc=outloc_pairwise,Xname=Yname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="Z")
-=======
             g3<-get_pairwise_cor(Yome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,3)],outloc=outloc_pairwise,Xname=Yname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
             save(g3,file="g3.Rda")
     
         }else{
@@ -289,11 +277,7 @@ suppressWarnings(
         )
         
         if(is(check_file,"try-error")){
-<<<<<<< HEAD
-         g4<-get_pairwise_cor(Xome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,4)],outloc=outloc_pairwise,Xname=Xname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="W")
-=======
          g4<-get_pairwise_cor(Xome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,4)],outloc=outloc_pairwise,Xname=Xname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
          save(g4,file="g4.Rda")
         }else{
             
@@ -309,11 +293,7 @@ if(use.X.reference==FALSE){
 check_file<-try(load("g5.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
-<<<<<<< HEAD
-    g5<-get_pairwise_cor(Yome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,4)],outloc=outloc_pairwise,Xname=Yname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="W")
-=======
     g5<-get_pairwise_cor(Yome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,4)],outloc=outloc_pairwise,Xname=Yname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     save(g5,file="g5.Rda")
 }else{
     
@@ -327,11 +307,7 @@ suppressWarnings(
 check_file<-try(load("g6.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
-<<<<<<< HEAD
-    g6<-get_pairwise_cor(Zome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(3,4)],outloc=outloc_pairwise,Xname=Zname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Z",tempYname="W")
-=======
     g6<-get_pairwise_cor(Zome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(3,4)],outloc=outloc_pairwise,Xname=Zname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
     save(g6,file="g6.Rda")
 }else{
     
@@ -441,41 +417,22 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        
        
        if(FALSE){
-<<<<<<< HEAD
-       fname<-paste("Multidata_Network_corthresh",corthresh,"top",maxnodesperclass,".png",sep="")
-       
-       pdf(fname)
-       plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("Multidata_Network_corthresh",corthresh,sep=""),maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=FALSE)
-=======
        fname<-paste("Multiome_Network_corthresh",corthresh,"top",maxnodesperclass,".png",sep="")
        
        pdf(fname)
        plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("MultiOme_Network_corthresh",corthresh,sep=""),maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=FALSE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
        
        dev.off()
        
        }
 
-<<<<<<< HEAD
-        print("vertex size")
-        print(vertex.size)
-        
-       if(is(check_file,"try-error")){
-       fname<-paste("Multidata_Network_threshold",corthresh,".png",sep="")
-=======
        if(is(check_file,"try-error")){
        fname<-paste("Multiome_Network_corthresh",corthresh,".png",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
        
        png(fname,width=8,height=8,res=600,type="cairo",units="in")
        
        #pdf(fname)
-<<<<<<< HEAD
-       res1<-plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("Multidata_Network_corthresh",corthresh,sep=""),maxnodesperclass=NA,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=interactive,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname)
-=======
        res1<-plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("MultiOme_Network_corthresh",corthresh,sep=""),maxnodesperclass=NA,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=interactive)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
        dev.off()
        
        save(res1,file="res1.Rda")
@@ -494,11 +451,6 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        clust_id_mapping_mat<-colnames("Name","Centrality")
        }
        
-<<<<<<< HEAD
-       graphclustering=TRUE
-       
-=======
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
        if(graphclustering=="highlyconnSG"){
            get_sub_clusters(df=df_matrix,net_node_colors=net_node_colors,rownames_vec=rownames_vec,colnames_vec=colnames_vec,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,sat=1,cormatrix=NA,seednum=seednum,corthresh=corthresh)
        }else{
@@ -515,11 +467,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                clust_membership<-ldply(clust_membership,rbind)
                clust_membership<-as.data.frame(clust_membership)
                
-<<<<<<< HEAD
-               fname<-paste("Multidata_Network_threshold",corthresh,"_communities.png",sep="")
-=======
                fname<-paste("MultiOme_Network_corthresh",corthresh,"_communities.png",sep="")
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
                
                
                save(wc,file="wc.Rda")
@@ -538,7 +486,6 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                add_shape("star", clip=shape_noclip,plot=mystar, parameters=list(vertex.norays=5))
                #try(plot(wc,sg,layout=layout_with_fr,vertex.size=vertex.size),silent=TRUE)
                
-<<<<<<< HEAD
                l = layout.fruchterman.reingold(sg, weights = (1 -abs(E(sg)$weight)))
                
                set.seed(seednum)
@@ -546,42 +493,11 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                set.seed(seednum)
                
                set.seed(seednum)
-               
-               
-               V(sg)$label.cex<-label.cex
-               try(plot.igraph(sg,vertex.color=membership(wc),layout=l,vertex.size=vertex.size),silent=TRUE)
-               
-               mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",side=1,line=0,cex=0.8,adj=0)
-               
-               mtext_community<-paste("(Nodes) Rectangle: ",Xname,"; Circle: ",Yname,sep="")
-               if(is.na(Zname)==FALSE){
-                   mtext_community<-paste(mtext_community,"; Triangle: ",Zname,sep="")
-                   
-               }
-               if(is.na(Wname)==FALSE){
-                   mtext_community<-paste(mtext_community,"; Star: ",Wname,sep="")
-                   
-               }
-               
-               mtext(mtext_community,side=1,cex=0.8,line=1,adj=0)
-               mtext("Each community (cluster) is represented by a different color",side=1,line=2,cex=0.8,adj=0)
-               
-               
-               try(mtext(fname,line=3,cex=0.6,col="brown",side=1,adj=0),silent=TRUE)
-               dev.off()
-              
-=======
-               set.seed(seednum)
-               sg$layout <- layout_with_fr
-               set.seed(seednum)
-               
-               set.seed(seednum)
-               try(plot(sg,vertex.color=membership(wc),layout=layout_with_fr,vertex.size=vertex.size),silent=TRUE)
+               try(plot(sg,vertex.color=membership(wc),layout=l,vertex.size=vertex.size),silent=TRUE)
                
                mtext("Red: +ve correlation; Blue: -ve correlation",side=1)
                dev.off()
                #write.table(clust_membership,file="cluster_membership.txt",sep="\t",row.names=FALSE)
->>>>>>> 914e46ff95455864de7d7c93a24d47275a12fc3e
                
                if(centrality_method=="eigenvector"){
                eigenvector_centrality<-eigen_centrality(sg,directed=FALSE,weights=E(sg)$weight)
