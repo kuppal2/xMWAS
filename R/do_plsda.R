@@ -69,22 +69,35 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     {
             if(repeatmeasures==TRUE){
                 
+<<<<<<< HEAD
                 #print("design")
                 #print(design)
                 
+=======
+
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
                 linn.pls <- try(mixOmics::multilevel(X=X, design=design,ncomp = opt_comp,
                 keepX = keep_x_vec, Y=Y,keepY=keep_y_vec,method = 'spls',mode=analysismode),silent=TRUE)
                 
                 if(is(linn.pls,"try-error")){
                     
+<<<<<<< HEAD
                     #save(Y,file="Y.Rda")
                     #save(design,file="design.Rda")
+=======
+                   
+                   
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
                     linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode,multilevel=design)
                     
                 }
                 
                
+<<<<<<< HEAD
                #save(linn.pls,file="linn_pls.Rda")
+=======
+               
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
 
             }else{
                 linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode)

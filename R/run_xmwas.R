@@ -1,5 +1,9 @@
 run_xmwas <-
+<<<<<<< HEAD
 function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=0.3,corthresh=0.4,keepX=100,keepY=100,keepZ=100,keepW=100,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","purple"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,graphclustering=FALSE,interactive=TRUE,max_connections=10000,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,...){
+=======
+function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=10000,max_yvar=10000,max_zvar=10000,max_wvar=10000,rsd.filt.thresh=1,corthresh=0.4,keepX=100,keepY=100,keepZ=100,keepW=100,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","purple"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),maxnodesperclass=100,seednum=100,label.cex=0.3,vertex.size=6,graphclustering=FALSE,interactive=TRUE,max_connections=100000,centrality_method="betweenness",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,...){
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
     
     classname=NA
     suppressWarnings(dir.create(outloc))
@@ -8,7 +12,11 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     
     sink(file="InputParameters.txt")
     
+<<<<<<< HEAD
     print("######xMWAS v0.41 Parameters##########")
+=======
+    print("######xMWAS v0.2 Parameters##########")
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
     print(paste("max_xvar: ",max_xvar,sep=""))
@@ -16,7 +24,10 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     print(paste("max_zvar: ",max_zvar,sep=""))
     print(paste("max_wvar: ",max_wvar,sep=""))
     print(paste("rsd.filt.thresh: ",rsd.filt.thresh,sep=""))
+<<<<<<< HEAD
     print(paste("all.missing.thresh: ",all.missing.thresh,sep=""))
+=======
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
     print(paste("corthresh: ",corthresh,sep=""))
     print(paste("keepX: ",keepX,sep=""))
     print(paste("keepY: ",keepY,sep=""))
@@ -47,7 +58,11 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     
     sink(file=log_fname)
      
+<<<<<<< HEAD
     
+=======
+    all.missing.thresh=0.1
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
     
     if(is.na(xome_fname)==FALSE){
         Xome_data<-read.table(xome_fname,sep="\t",header=TRUE)
@@ -233,9 +248,13 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
 
     classlabels<-as.data.frame(classlabels)
     
+<<<<<<< HEAD
     print("Class levels:")
     print(class_levels)
 
+=======
+   
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
     
     }else{
         
@@ -249,9 +268,16 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         classlabels_temp<-classlabels[,-c(2)] #[,c(class_check)]
         classlabels_temp<-as.data.frame(classlabels_temp)
         
+<<<<<<< HEAD
         #print(head(classlabels_temp))
         design<-classlabels[,-c(1)]
 
+=======
+       
+        design<-classlabels[,-c(1)]
+        
+      
+>>>>>>> fb62679be2b513df3fd6da6bfbbbdca750be494c
         
         suppressWarnings(
         res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=TRUE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design)
