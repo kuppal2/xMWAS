@@ -457,5 +457,4 @@ write.table(matrix_centrality,file="matrix_centrality.txt",sep="\t")
  print("Processing complete!")
  
 return(list("xmwas.res"=res,"centrality_matrix"=matrix_centrality))
-    
 }
