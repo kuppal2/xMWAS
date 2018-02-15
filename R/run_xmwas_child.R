@@ -734,4 +734,4 @@ unlink("pairwise_results/*.Rda",force=TRUE,recursive=TRUE)
 }
 
 return(list("graph"=sg,"network_analysis"=clust_id_mapping_mat,"Xome_data"=Xome_data,"Yome_data"=Yome_data,"Zome_data"=Zome_data,"Wome_data"=Wome_data,"classname"=classname))
-}s
+}
