@@ -10,6 +10,7 @@ Association networks can be visualized in R or using Cytoscape.
 run_xmwas(xome_fname = NA, yome_fname = NA, zome_fname = NA, 
 wome_fname = NA, outloc = NA, class_fname = NA, Xome_data = NA, 
 Yome_data = NA, Zome_data = NA, Wome_data = NA, classlabels = NA,
+<<<<<<< HEAD
 xmwasmethod = "spls", plsmode = "canonical", max_xvar = 5000,
 max_yvar = 5000, max_zvar = 5000, max_wvar = 5000,
 rsd.filt.thresh = 1, corthresh = 0.4, keepX = 1000, keepY = 1000,
@@ -20,6 +21,19 @@ Yname = "Y", Zname = "Z", Wname = "W",
 net_node_shape = c("circle", "rectangle", "triangle", "star"), seednum = 100, label.cex = 0.3,
 vertex.size = 6, graphclustering = TRUE, interactive = FALSE,
 max_connections = 1e+05, centrality_method = "eigenvector",
+=======
+xmwasmethod = "spls", plsmode = "canonical", max_xvar = 10000,
+max_yvar = 10000, max_zvar = 10000, max_wvar = 10000, 
+rsd.filt.thresh = 1, corthresh = 0.4, keepX = 100, keepY = 100,
+keepZ = 100, keepW = 100, pairedanalysis = FALSE, optselect = TRUE,
+rawPthresh = 0.05, numcomps = 10, net_edge_colors = c("blue", "red"), 
+net_node_colors = c("orange", "green", "blue", "purple"), Xname = "X",
+Yname = "Y", Zname = "Z", Wname = "W", 
+net_node_shape = c("circle", "rectangle", "triangle", "star"), 
+maxnodesperclass = 1000, seednum = 100, label.cex = 0.3, 
+vertex.size = 6, graphclustering = FALSE, interactive = TRUE,
+max_connections = 1e+05, centrality_method = "betweenness",
+>>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65
 use.X.reference = FALSE, removeRda = TRUE, compare.classes=TRUE, ...)
 }
 \arguments{
@@ -165,6 +179,12 @@ Name for W dataset. eg: "EnvironmentalExposures"
   \item{net_node_shape}{
 Shapes for nodes.
 }
+<<<<<<< HEAD
+=======
+  \item{maxnodesperclass}{
+Maximum number of nodes per dataset. eg: 100
+}
+>>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65
   \item{seednum}{
 Seed for random number generator used for
 plotting the network.
@@ -209,4 +229,8 @@ individual classes as provided in class labels file.
 \author{
 Karan Uppal
 kuppal2@emory.edu
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65

@@ -1,11 +1,20 @@
 Package: xMWAS
 Type: Package
 Title: xMWAS: R package for data-integration and differential network analysis
+<<<<<<< HEAD
 Version: 0.5
 Date: 2018-02-15
+=======
+Version: 0.44
+Date: 2017-09-18
+>>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65
 Author: Karan Uppal
 Maintainer: Karan Uppal <kuppal2@emory.edu>
 Description: xMWAS allows integration of omics data using multivariate methods such as PLS. The package performs community detection and network analysis to allow visualization of positive or negative associations between different datasets generated using samples from the same individuals. 
 License: GPL2.0
 LazyLoad: no
+<<<<<<< HEAD
 Depends: mixOmics, WGCNA, snow, igraph, graph, RBGL, plyr, plsgenomics
+=======
+Depends: mixOmics, WGCNA, snow, igraph, graph, RBGL, plyr, plsgenomics
+>>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65
