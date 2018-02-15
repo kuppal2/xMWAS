@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 mytriangle <-
 function(coords, v=NULL, params) {
   vertex.color <- params("vertex", "color")
@@ -14,20 +13,4 @@ function(coords, v=NULL, params) {
           stars=cbind(vertex.size, vertex.size, vertex.size),
           add=TRUE, inches=FALSE)
 }
-=======
-mytriangle <-
-function(coords, v=NULL, params) {
-  vertex.color <- params("vertex", "color")
-  if (length(vertex.color) != 1 && !is.null(v)) {
-    vertex.color <- vertex.color[v]
-  }
-  vertex.size <- 1/200 * params("vertex", "size")
-  if (length(vertex.size) != 1 && !is.null(v)) {
-    vertex.size <- vertex.size[v]
-  }
 
-  symbols(x=coords[,1], y=coords[,2], bg=vertex.color,
-          stars=cbind(vertex.size, vertex.size, vertex.size),
-          add=TRUE, inches=FALSE)
-}
->>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65

@@ -1,19 +1,16 @@
-<<<<<<< HEAD
 do_plsda <-
 function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analysismode="regression",pairedanalysis=FALSE,optselect=FALSE,design=NA)
 {
     repeatmeasures=pairedanalysis
     
-    #X<-t(X)
     
-    #Y<-as.numeric(Y)
     
     X<-as.data.frame(X)
     Y<-as.data.frame(Y)
-    #print(Y)
+  
     classlabels<-Y
     
-    #opt_comp<-3
+
   
   if(is.na(keepX)==TRUE){
       
@@ -82,8 +79,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     {
             if(repeatmeasures==TRUE){
                 
-                # print("design")
-                #print(design)
+            
                 linn.pls <- try(mixOmics::multilevel(X=X, design=design,ncomp = opt_comp,
                 keepX = keep_x_vec, Y=Y,keepY=keep_y_vec,method = 'spls',mode=analysismode),silent=TRUE)
                 
@@ -192,22 +188,20 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     {
             if(repeatmeasures==TRUE){
                 
-                #print("design")
-                #print(design)
+              
                 
                 linn.pls <- try(mixOmics::multilevel(X=X, design=design,ncomp = opt_comp,
                 keepX = keep_x_vec, Y=Y,keepY=keep_y_vec,method = 'spls',mode=analysismode),silent=TRUE)
                 
                 if(is(linn.pls,"try-error")){
                     
-                    #save(Y,file="Y.Rda")
-                    #save(design,file="design.Rda")
+                   
                     linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode,multilevel=design)
                     
                 }
                 
                
-               #save(linn.pls,file="linn_pls.Rda")
+             
 
             }else{
                 linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode)
@@ -219,8 +213,8 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                 linn.pls <- mixOmics::pls(X, Y,ncomp=opt_comp,mode=analysismode)
     }
     
-    #save(linn.pls,file="pls_res.Rda")
+    
     return(list("model"=linn.pls,"opt_comp"=opt_comp))
     
 }
->>>>>>> d85ff5fd429b8ce2c4d44411a09b32765ce92b65
+
