@@ -108,6 +108,15 @@ relative standard deviation (RSD). e.g. 10000
   \item{rsd.filt.thresh}{
 Relative standard deviation (sd/mean) threshold
 }
+ \item{all.missing.thresh}{
+Remove variables (rows) that do not meet the 
+minimum threshold for presence of 
+non-missing values. e.g. 0.8
+}
+ \item{missing.val}{
+How are the missing values represented in the
+input data files? Default: 0
+}
   \item{corthresh}{
 Correlation threshold. eg: 0.7
 }
@@ -165,9 +174,6 @@ Name for W dataset. eg: "EnvironmentalExposures"
   \item{net_node_shape}{
 Shapes for nodes.
 }
-  \item{maxnodesperclass}{
-Maximum number of nodes per dataset. eg: 100
-}
   \item{seednum}{
 Seed for random number generator used for
 plotting the network.
@@ -178,22 +184,44 @@ Size of the labels. eg: 0.8
   \item{vertex.size}{
 Size of the nodes.
 }
-  \item{graphclustering}{
-Should community clustering be performed? eg: TRUE or 
-FALSE. Multilevel clustering method is used for
-community detection.
-}
-  \item{interactive}{
-Generate an interactive network using the TK plot.
-}
   \item{max_connections}{
 Maximum number of associations to include in the 
 network.
 }
  \item{centrality_method}{
 Method for centrality measures. 
-eg: "eigenvector" for eigenvector centrality
-or "betweenness" for betweenness centrality
+Options: 
+1) "eigenvector" for eigenvector centrality,
+which is based on the number and quality of connections
+	- centrality scores range from 0 to 1,
+	where 1 means high centrality and 0 means 
+	low or no centrality. Nodes/vertices with
+	high centrality scores are connected to many other
+	nodes, which are in turn connected to many 
+	other nodes. Please see igraph::eigen_centrality
+	function for more details.
+	
+2) "betweenness" for betweenness centrality,
+which is based on the number of shortest paths going
+through a node/vertex
+	- centrality scores are normalized and scaled to
+	0 to 1 range, where 1 means high betweenness
+	 centrality and 0 means low or no 
+	 betweenness centrality. 
+	Please see igraph::betweenness function 
+	for more details.
+	
+3) "degree.count" based on the number of connections of 
+a node. 
+	-centrality scores are normalized and scaled to
+	0 to 1 range. High centrality means more connections.
+	Please see igraph::degree function for more
+	details.
+	
+4) "degree.weight" is based on the sum of absolute
+ 	weights of connections of a node.
+	-centrality scores are normalized and scaled to 0
+	to 1 range. High centrality means stronger connections.
 }
  \item{use.X.reference}{
 TRUE or FALSE if you want to use Xome_data
