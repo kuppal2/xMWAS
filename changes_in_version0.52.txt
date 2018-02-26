@@ -1,4 +1,4 @@
-#Changes in v0.52
+#Changes in version 0.52
 
 1) fixed legend labels for 4-way analysis
 2) changed all.missing.thresh to a user-defined option (previously it was set to 0.1)
