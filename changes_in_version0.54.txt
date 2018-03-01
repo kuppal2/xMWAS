@@ -1,7 +1,7 @@
 #Changes in version 0.54
 
 1) The package now works when only one variable is provided in Y, Z, or W matrices
-2) Fixed legend labels describing which node shapes represent what datasets for 4-way analysis
+2) Fixed the legend labels for 4-way analysis in network graphs
 3) Changed all.missing.thresh to a user-defined option. Missing value filtering is performed after RSD filtering in pairwise analyses.
 4) Fixed max_var settings for 3-way and 4-way analysis in X by Z pairwise comparison. No changes to 2-way analysis.
 5) Removed redundant calls to network to generate network at corthresh=0 and then at the defined threshold
