@@ -10,3 +10,4 @@
 8) Fixed the "row.name" length error for the repeated measures analysis
 9) Removed the restriction for only using the nodes selected in all samples analysis for class-wise comparisons. Some nodes are only signficantly associated in sub-class analysis.
 10) Changed the default settings for max_connections to NA; can be changed to any numeric value (e.g. 100000)
+11) The package now also report network statistics such as graph clustering coefficient (how well nodes cluster globally) and modularity measure (how well the communities are defined)
