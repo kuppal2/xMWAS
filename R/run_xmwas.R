@@ -1,5 +1,5 @@
 run_xmwas <-
-function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=0.1,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,...){
+function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=NA,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,...){
     
     
     #defaults
@@ -13,7 +13,7 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     
     sink(file="InputParameters.txt")
     
-    print("######xMWAS v0.53 Parameters##########")
+    print("######xMWAS v0.54 Parameters##########")
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
     print(paste("max_xvar: ",max_xvar,sep=""))

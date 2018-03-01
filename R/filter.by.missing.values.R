@@ -39,7 +39,8 @@ function(data_m,missing.val=0,all.missing.thresh=0.5){
         print(paste("Dimension of data matrix after using overall ",100*all.missing.thresh, "% signal criteria for filtering:"),sep="")
         print(dim(data_m))
     }else{
-        stop(paste("None of the metabolites have signal in ",all.missing.thresh*100, "% of samples",sep=""))
+        #stop(paste("None of the  have signal in ",all.missing.thresh*100, "% of samples",sep=""))
+        data_m<-{}
     }
     return(data_m)
 }

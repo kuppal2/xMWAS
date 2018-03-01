@@ -1,5 +1,5 @@
-\name{xMWAS_0.53-package}
-\alias{xMWAS_0.53-package}
+\name{xMWAS_0.54-package}
+\alias{xMWAS_0.54-package}
 \alias{xMWAS}
 \docType{package}
 \title{xMWAS}
@@ -11,7 +11,7 @@ The run_xmwas() function performs the integrative, community detection, and netw
 \tabular{ll}{
 Package: \tab xMWAS\cr
 Type: \tab Package\cr
-Version: \tab 0.53\cr
+Version: \tab 0.54\cr
 Date: \tab 2018-03-01\cr
 License: \tab gpl2.0\cr
 LazyLoad: \tab yes\cr
