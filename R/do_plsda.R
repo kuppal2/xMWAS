@@ -3,6 +3,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
 {
     repeatmeasures=pairedanalysis
     
+<<<<<<< HEAD
 
     X<-as.data.frame(X)
     Y<-as.data.frame(Y)
@@ -10,6 +11,18 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     classlabels<-Y
     
    
+=======
+    #X<-t(X)
+    
+    #Y<-as.numeric(Y)
+    
+    X<-as.data.frame(X)
+    Y<-as.data.frame(Y)
+    #print(Y)
+    classlabels<-Y
+    
+    #opt_comp<-3
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
   
   if(is.na(keepX)==TRUE){
       
@@ -24,11 +37,19 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
   keepX<-min(keepX,ncol(X))
   keepY<-min(keepY,ncol(Y))
   
+<<<<<<< HEAD
+=======
+  # s1<-apply(linn.pls$input.X,1,scale)
+  
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
   
     if(dim(X)[2]>1){
         if(optselect==TRUE){
            
+<<<<<<< HEAD
            #find optimal number of components
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                     set.seed(123)
                     opt_comp<-pls.regression.cv(Xtrain=X, Ytrain=Y,  ncomp=c(1:numcomp), nruncv=10, alpha=2/3)
                 
@@ -41,10 +62,24 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                  keep_y_vec<-rep(keepY,opt_comp)
             
         }else{
+<<<<<<< HEAD
             
             #use user-defined number of components
             opt_comp<-numcomp
             
+=======
+            opt_comp<-numcomp
+            
+            # if(ncol(Y)<=2){
+            #    opt_comp<-1
+            #}else{
+                
+                #   if(ncol(X)<=2){
+                    opt_comp<-1
+                    #}
+                    # }
+            
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
             keep_x_vec<-rep(keepX,opt_comp)
             keep_y_vec<-rep(keepY,opt_comp)
         }
@@ -70,30 +105,52 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     
     if(opt_comp>ncol(Y) | opt_comp>ncol(X)){
         
+<<<<<<< HEAD
         opt_comp<-min(opt_comp,ncol(X),ncol(Y))
+=======
+        opt_comp<-2
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
     }
     if(sparseselect==TRUE)
     {
             if(repeatmeasures==TRUE){
                 
+<<<<<<< HEAD
                 #perform multilevel spls analysis
+=======
+                # print("design")
+                #print(design)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                 linn.pls <- try(mixOmics::multilevel(X=X, design=design,ncomp = opt_comp,
                 keepX = keep_x_vec, Y=Y,keepY=keep_y_vec,method = 'spls',mode=analysismode),silent=TRUE)
                 
                 if(is(linn.pls,"try-error")){
                     
+<<<<<<< HEAD
                     print("Design matrix")
                     print(design)
                     save(design,file="design.Rda")
                     
                  
+=======
+                    # save(Y,file="Y.Rda")
+                    save(design,file="design.Rda")
+                    
+                 
+                 
+                    
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                     linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode,multilevel=design)
                     
                 }
                 
                
+<<<<<<< HEAD
               
+=======
+                save(linn.pls,file="linn_pls.Rda")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
             }else{
                 linn.pls <- mixOmics::spls(X, Y,ncomp=opt_comp,keepX=keep_x_vec,keepY=keep_y_vec,mode=analysismode)
@@ -105,7 +162,14 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                 linn.pls <- mixOmics::pls(X, Y,ncomp=opt_comp,mode=analysismode)
     }
     
+<<<<<<< HEAD
 
+=======
+    #save(linn.pls,file="pls_res.Rda")
+    
+    vip_res<-vip(linn.pls)
+    save(vip_res,file="vip_res.Rda")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     return(list("model"=linn.pls,"opt_comp"=opt_comp))
     
 }

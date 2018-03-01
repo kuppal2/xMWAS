@@ -1,5 +1,9 @@
 get_pairwise_cor <-
+<<<<<<< HEAD
 function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle", "circle"),seednum=100,tempXname="X",tempYname="Y",all.missing.thresh=0.1,missing.val=0){
+=======
+function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle", "circle"),seednum=100,tempXname="X",tempYname="Y"){
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 
 filename<-paste(Xname,Yname,sep="_x_")
@@ -58,6 +62,7 @@ abs_feat_rsds<-abs_feat_rsds[order(abs_feat_rsds,decreasing=TRUE)[1:max_xvar]]
 	
 good_metabs<-which(abs_feat_rsds>rsd.filt.thresh)
 
+<<<<<<< HEAD
 
 Xome_data<-Xome_data[good_metabs,]
 
@@ -74,6 +79,10 @@ if(nrow(Xome_data)<1){
     stop(paste("None of the ",Xname," variables meet the all.missing.thresh threshold in the pairwise analysis.",sep=""))
 }
 
+=======
+Xome_data<-Xome_data[good_metabs,]
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 cl<-makeSOCKcluster(num_nodes)
 
@@ -97,6 +106,7 @@ good_metabs<-which(abs_feat_rsds>rsd.filt.thresh)
 					
 Yome_data<-Yome_data[good_metabs,]
 
+<<<<<<< HEAD
 
 if(nrow(Yome_data)<1){
     
@@ -111,6 +121,19 @@ if(nrow(Yome_data)<1){
     stop(paste("None of the ",Yname," variables meet the all.missing.thresh threshold in the pairwise analysis.",sep=""))
 }
 
+=======
+if(nrow(Xome_data)<1){
+    
+    stop("None of the X variables meet the rsd threshold in the pairwise analysis.")
+}
+
+if(nrow(Yome_data)<1){
+    
+    stop("None of the Y variables meet the rsd threshold in the pairwise analysis.")
+}
+
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 setwd(outloc)
 
 X=Xome_data
@@ -193,8 +216,13 @@ save(Y,file="Y.Rda")
 
 colnames(X)<-metabname
 colnames(Y)<-microbname
+<<<<<<< HEAD
 save(X,file="X1.Rda")
 save(Y,file="Y2.Rda")
+=======
+#save(X,file="X1.Rda")
+#save(Y,file="Y2.Rda")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 #save(keepX,file="keepX2.Rda")
 #save(keepY,file="keepY2.Rda")
 
@@ -221,7 +249,11 @@ linn.pls<-do_plsda(X=X,Y=Y,oscmode="spls",numcomp=numcomps,keepX=keepX,keepY=kee
 }
 
 
+<<<<<<< HEAD
 #save(linn.pls,file="linn.pls.Rda")
+=======
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 numcomps<-linn.pls$opt_comp
 linn.pls<-linn.pls$model
 
@@ -232,8 +264,13 @@ print(print_message)
 
 set.seed(seednum)
 
+<<<<<<< HEAD
 #print(corthresh)
 #print(numsampX)
+=======
+print(corthresh)
+print(numsampX)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 p1=corPvalueStudent(cor=corthresh,n=numsampX)
 
@@ -293,6 +330,7 @@ dev.off()
 
 x<-net_result$M
 
+<<<<<<< HEAD
 nrow_sim_mat<-dim(x)[1]
 ncol_sim_mat<-dim(x)[2]
 
@@ -323,6 +361,8 @@ if(nrow_sim_mat<2){
 }
 
 
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 #write.table(x,file="Int_allassociationscoresA.txt",sep="\t")
 
 
@@ -411,6 +451,7 @@ colnames(x)<-as.character(microbname_1_simmat)
 #cytoscape_fname<-paste(filename,"all_mzclusternetworkthreshold",corthresh,"_",numcomps,"pcs_cytoscape.gml",sep="")
 #write.graph(net_result$gR, file =cytoscape_fname, format = "gml")
 
+<<<<<<< HEAD
 x<-round(x,4)
 
 xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE]
@@ -418,6 +459,12 @@ xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE]
 xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
 
 xtemp1<-rbind(c("xName",simmat_colnames[which(maxcor1>=corthresh)]),xtemp)
+=======
+xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh)]
+
+xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
+            xtemp1<-rbind(c("xName",simmat_colnames[which(maxcor1>=corthresh)]),xtemp)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 
 #net_result$M<-cor2pcor(net_result$M)
@@ -425,6 +472,7 @@ xtemp1<-rbind(c("xName",simmat_colnames[which(maxcor1>=corthresh)]),xtemp)
 fname<-paste(filename,"_association_matrix_threshold",corthresh,".txt",sep="")
 write.table(xtemp1,file=fname,sep="\t")
 
+<<<<<<< HEAD
 xtemp<-abs(x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE])
 
 xtemp[which(xtemp>=corthresh)]<-1
@@ -434,6 +482,14 @@ xtemp[which(xtemp<corthresh)]<-0
 if(length(which(maxcor>=corthresh))>1){
     
    
+=======
+xtemp<-abs(x[which(maxcor>=corthresh),which(maxcor1>=corthresh)])
+
+xtemp[which(xtemp>=corthresh)]<-1
+xtemp[which(xtemp<corthresh)]<-0
+
+if(length(which(maxcor>=corthresh))>1){
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 NumConnections<-apply(xtemp,1,sum)
 }else{
 	NumConnections<-sum(xtemp)
@@ -458,6 +514,7 @@ write.table(xtemp1,file=fname,sep="\t")
 #fname<-paste(filename,"association_matrix_corthresh",corthresh,"rowcollabels.txt",sep="")
 #write.table(xtempA,file=fname,sep="\t")
 
+<<<<<<< HEAD
 nrow_mat<-nrow(net_result$M[which(maxcor>=corthresh),])
 
 
@@ -481,6 +538,13 @@ edge_matrix<-apply(net_result$M[which(maxcor>=corthresh),],1,function(x){which(a
 
 }
 
+=======
+if(nrow(net_result$M[which(maxcor>=corthresh),])<0){
+	break
+}
+edge_matrix<-apply(net_result$M[which(maxcor>=corthresh),],1,function(x){which(abs(x)>corthresh)})
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 #edge_matrix<-apply(netsub,1,function(x){which(abs(x)>corthresh)})
 
 #save(net_result,file="net_result.Rda")
@@ -491,8 +555,11 @@ mat_cnames<-colnames(net_result$M)
 
 #print(is.matrix(edge_matrix))
 
+<<<<<<< HEAD
 if(ncol_sim_mat>1){
     
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 if(is.matrix(edge_matrix)==FALSE){
 col_A<-names(edge_matrix)
 
@@ -532,6 +599,7 @@ for(r in 1:length(col_A)){
     
 }
 
+<<<<<<< HEAD
 }else{
     
     col_A<-rownames(net_result$M)[edge_matrix]
@@ -552,6 +620,8 @@ for(r in 1:length(col_A)){
     }
     
 }
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 
 if(nrow(edge_matrix_1)<1){

@@ -12,6 +12,7 @@ run_xmwas(xome_fname = NA, yome_fname = NA, zome_fname = NA, wome_fname = NA,
  class_fname = NA, Xome_data = NA, Yome_data = NA, Zome_data = NA, Wome_data = NA, 
  classlabels = NA, xmwasmethod = "spls", plsmode = "canonical", max_xvar = 5000,
   max_yvar = 5000, max_zvar = 5000, max_wvar = 5000, rsd.filt.thresh = 1,
+<<<<<<< HEAD
    all.missing.thresh = 0.1, missing.val = 0, corthresh = 0.4, keepX = 1000,
     keepY = 1000, keepZ = 1000, keepW = 1000, pairedanalysis = FALSE,
      optselect = TRUE, rawPthresh = 0.05, numcomps = 10,
@@ -21,6 +22,17 @@ run_xmwas(xome_fname = NA, yome_fname = NA, zome_fname = NA, wome_fname = NA,
         label.cex = 0.3, vertex.size = 6, max_connections = NA, 
         centrality_method = "eigenvector", use.X.reference = FALSE,
          removeRda = TRUE, compare.classes = TRUE, class.comparison.allvar = TRUE, ...)
+=======
+   all.missing.thresh = 0.5, missing.val = 0, corthresh = 0.4, keepX = 1000,
+    keepY = 1000, keepZ = 1000, keepW = 1000, pairedanalysis = FALSE,
+     optselect = TRUE, rawPthresh = 0.05, numcomps = 10,
+      net_edge_colors = c("blue", "red"), net_node_colors = c("orange", "green", "blue", "pink"),
+       Xname = "X", Yname = "Y", Zname = "Z", Wname = "W", 
+       net_node_shape = c("circle", "rectangle", "triangle", "star"), seednum = 100,
+        label.cex = 0.3, vertex.size = 6, max_connections = 1e+05, 
+        centrality_method = "eigenvector", use.X.reference = FALSE,
+         removeRda = TRUE, compare.classes = TRUE, ...)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 }
 \arguments{
 \item{xome_fname}{
@@ -186,6 +198,7 @@ Size of the nodes.
 }
   \item{max_connections}{
 Maximum number of associations to include in the 
+<<<<<<< HEAD
 network. The connections between nodes 
 are ranked based on the strength of association (+ve and -ve).
 Only the top "max_connections" connections are shown and used for
@@ -195,6 +208,12 @@ e.g. 1e5, 1e6, or NA
 }
  \item{centrality_method}{
 Method for centrality analysis. 
+=======
+network.
+}
+ \item{centrality_method}{
+Method for centrality measures. 
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 Options: 
 1) "eigenvector" for eigenvector centrality,
 which is based on the number and quality of connections
@@ -226,6 +245,7 @@ a node.
 4) "degree.weight" is based on the sum of absolute
  	weights of connections of a node.
 	-centrality scores are normalized and scaled to 0
+<<<<<<< HEAD
 	to 1 range. High centrality means stronger connections.
 	
 5) "closeness" based on the reciprocal of the sum of the 
@@ -233,6 +253,9 @@ a node.
 	-centrality scores are normalized. High centrality
 	means the node is closer to all other nodes.
 
+=======
+	to 1 range. High centrality means stronger connections.
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 }
  \item{use.X.reference}{
 TRUE or FALSE if you want to use Xome_data
@@ -246,12 +269,16 @@ intermediate files.
 \item{compare.classes}{
 TRUE or FALSE; set to TRUE if you want to compare
 individual classes as provided in class labels file.
+<<<<<<< HEAD
 }
 \item{class.comparison.allvar}{
 TRUE or FALSE; set to TRUE if all nodes shown
 	
 }
 
+=======
+}
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 }
 \author{
 Karan Uppal

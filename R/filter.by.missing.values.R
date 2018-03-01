@@ -1,7 +1,11 @@
 filter.by.missing.values <-
 function(data_m,missing.val=0,all.missing.thresh=0.5){
     
+<<<<<<< HEAD
     
+=======
+    #Remove features if signal is not detected in at least x% of all samples
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     ##################################################################################
     metab_zeros={}
     data_clean<-{}
@@ -35,7 +39,11 @@ function(data_m,missing.val=0,all.missing.thresh=0.5){
     if(length(total_good_metabs)>0){
         data_m<-data_m[total_good_metabs,]
        
+<<<<<<< HEAD
        
+=======
+        #print(paste("Dimension of data matrix after overall ",all.missing.thresh,"% signal threshold filtering",sep=""))
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         print(paste("Dimension of data matrix after using overall ",100*all.missing.thresh, "% signal criteria for filtering:"),sep="")
         print(dim(data_m))
     }else{

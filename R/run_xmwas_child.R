@@ -1,9 +1,14 @@
 run_xmwas_child <-
+<<<<<<< HEAD
 function(Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,outloc=NA,classlabels=NA,class_fname=NA,xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,xmwasmethod="pls",plsmode="regression",max_xvar=10000,max_yvar=10000,max_zvar=10000,max_wvar=10000,rsd.filt.thresh=1,corthresh=0.4,keepX=100,keepY=100,keepZ=100,keepW=100,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,seednum=100,label.cex=0.3,vertex.size=6,graphclustering=FALSE,interactive=TRUE,max_connections=1000,classname=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,design=NA,community.node.color.palette="categorical",missing.val=0){
+=======
+function(Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,outloc=NA,classlabels=NA,class_fname=NA,xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,xmwasmethod="pls",plsmode="regression",max_xvar=10000,max_yvar=10000,max_zvar=10000,max_wvar=10000,rsd.filt.thresh=1,corthresh=0.4,keepX=100,keepY=100,keepZ=100,keepW=100,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,seednum=100,label.cex=0.3,vertex.size=6,graphclustering=FALSE,interactive=TRUE,max_connections=1000,classname=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,design=NA,community.node.color.palette="categorical"){
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 suppressWarnings(dir.create(outloc))
 setwd(outloc)
 
+<<<<<<< HEAD
 if(is.na(classname)==TRUE){
     print(paste("Analyzing all samples",sep=""))
     #print(classname)
@@ -16,10 +21,13 @@ if(is.na(classname)==TRUE){
 }
 
 
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 if(is.na(xome_fname)==FALSE){
     Xome_data<-read.table(xome_fname,sep="\t",header=TRUE)
 }
 
+<<<<<<< HEAD
     rnames<-rownames(Xome_data)
     if(length(which(duplicated(rnames)==TRUE))>0){
   
@@ -59,10 +67,43 @@ if(is.na(xome_fname)==FALSE){
         Yome_data<-Yome_data[-which(duplicated(rnames)==TRUE),,drop=FALSE]
         rnames<-rnames[-which(duplicated(rnames)==TRUE)]
         
+=======
+    rnames<-rownames(Xome_data) #Xome_data[,c(1)]
+    if(length(which(duplicated(rnames)==TRUE))>0){
+  
+	Xome_data<-Xome_data[-which(duplicated(rnames)==TRUE),] 
+	rnames<-rnames[-which(duplicated(rnames)==TRUE)]
+   }
+    rownames(Xome_data)<-rnames #Xome_data[,c(1)]
+    #Xome_data<-Xome_data[,-c(1)]
+    Xome_data<-as.data.frame(Xome_data)
+    if(nrow(Xome_data)>1){
+    Xome_data<-apply(Xome_data,2,as.numeric)
+    rownames(Xome_data)<-rnames
+	}else{
+		Xome_data<-as.numeric(Xome_data)
+		Xome_data<-as.data.frame(Xome_data)
+	}
+    	rownames(Xome_data)<-rnames
+	 
+num_replicates<-1
+
+if(is.na(yome_fname)==FALSE){
+Yome_data<-read.table(yome_fname,sep="\t",header=TRUE)
+}
+
+#print(dim(Yome_data))
+	rnames<-rownames(Yome_data) #Yome_data[,c(1)]
+    if(length(which(duplicated(rnames)==TRUE))>0){
+   
+	Yome_data<-Yome_data[-which(duplicated(rnames)==TRUE),] 
+        rnames<-rnames[-which(duplicated(rnames)==TRUE)]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
      }
 
 
     rownames(Yome_data)<-rnames
+<<<<<<< HEAD
 
 Yome_data<-as.data.frame(Yome_data)
 if(nrow(Yome_data)>1){
@@ -72,12 +113,24 @@ if(nrow(Yome_data)>1){
 
 
     
+=======
+#Yome_data<-Yome_data[,-c(1)]
+Yome_data<-as.data.frame(Yome_data)
+if(nrow(Yome_data)>1){
+    Yome_data<-apply(Yome_data,2,as.numeric)
+        }else{
+                Yome_data<-as.numeric(Yome_data)
+                Yome_data<-as.data.frame(Yome_data)
+        }
+	rownames(Yome_data)<-rnames
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 if(is.na(zome_fname)==FALSE){
     
     Zome_data<-read.table(zome_fname,sep="\t",header=TRUE)
 }
 suppressWarnings(
    if(is.na(Zome_data)==FALSE){ 
+<<<<<<< HEAD
     rnames<-rownames(Zome_data)
     if(length(which(duplicated(rnames)==TRUE))>0){
    	Zome_data<-Zome_data[-which(duplicated(rnames)==TRUE),,drop=FALSE]
@@ -85,14 +138,32 @@ suppressWarnings(
    }
     rownames(Zome_data)<-rnames
     
+=======
+    rnames<-rownames(Zome_data) #Zome_data[,c(1)]
+    if(length(which(duplicated(rnames)==TRUE))>0){
+   	Zome_data<-Zome_data[-which(duplicated(rnames)==TRUE),] 
+        rnames<-rnames[-which(duplicated(rnames)==TRUE)]
+   }
+    rownames(Zome_data)<-rnames
+    #Zome_data<-Zome_data[,-c(1)]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     Zome_data<-as.data.frame(Zome_data)
 		
 	if(nrow(Zome_data)>1){
    		 Zome_data<-apply(Zome_data,2,as.numeric)
+<<<<<<< HEAD
         }
 	rownames(Zome_data)<-rnames
  
    
+=======
+        }else{
+                Zome_data<-as.numeric(Zome_data)
+                Zome_data<-as.data.frame(Zome_data)
+        }
+	rownames(Zome_data)<-rnames
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     })
 
 if(is.na(wome_fname)==FALSE){
@@ -102,6 +173,7 @@ if(is.na(wome_fname)==FALSE){
 
 suppressWarnings(
 	if(is.na(Wome_data)==FALSE){    
+<<<<<<< HEAD
     rnames<-rownames(Wome_data)
     if(length(which(duplicated(rnames)==TRUE))>0){
    
@@ -110,15 +182,34 @@ suppressWarnings(
      }
     rownames(Wome_data)<-rnames
     
+=======
+    rnames<-rownames(Wome_data) #Wome_data[,c(1)]
+    if(length(which(duplicated(rnames)==TRUE))>0){
+   
+	Wome_data<-Wome_data[-which(duplicated(rnames)==TRUE),] 
+        rnames<-rnames[-which(duplicated(rnames)==TRUE)]
+     }
+    rownames(Wome_data)<-rnames
+    #rownames(Wome_data)<-Wome_data[,c(1)]
+    #Wome_data<-Wome_data[,-c(1)]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     Wome_data<-as.data.frame(Wome_data)
 		
 	if(nrow(Wome_data)>1){
     		Wome_data<-apply(Wome_data,2,as.numeric)
+<<<<<<< HEAD
         }
 	rownames(Wome_data)<-rnames
  
     
     
+=======
+        }else{
+                Wome_data<-as.numeric(Wome_data)
+                Wome_data<-as.data.frame(Wome_data)
+        }	
+	rownames(Wome_data)<-rnames
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     })
 
 suppressWarnings(
@@ -167,7 +258,17 @@ classlabels<-classlabels[,-c(1)]
 print("###################")
 print("###################")
 
+<<<<<<< HEAD
 
+=======
+if(is.na(classname)==TRUE){
+    print(paste("Analyzing all samples",sep=""))
+    #print(classname)
+}else{
+    print(paste("Analyzing class: ",classname,sep=""))
+    
+}
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 
 
@@ -179,10 +280,16 @@ if(pairedanalysis==TRUE){
     classlabels<-design
 
 }
+<<<<<<< HEAD
+=======
+print("run_xmwas_child")
+print(head(classlabels))
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 suppressWarnings(
 if(is.na(classname)==FALSE && is.na(classlabels)==FALSE){
     
+<<<<<<< HEAD
     rnames_x<-rownames(Xome_data)
     Xome_data<-Xome_data[,which(classlabels_vec==classname),drop=FALSE]
     rownames(Xome_data)<-rnames_x
@@ -190,22 +297,58 @@ if(is.na(classname)==FALSE && is.na(classlabels)==FALSE){
     Yome_data<-Yome_data[,which(classlabels_vec==classname),drop=FALSE]
     
     classlabels<-classlabels[which(classlabels_vec==classname),,drop=FALSE]
+=======
+    Xome_data<-Xome_data[,which(classlabels_vec==classname)]
+    Yome_data<-Yome_data[,which(classlabels_vec==classname)]
+    
+    classlabels<-classlabels[which(classlabels_vec==classname),]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
     
     suppressWarnings(
     if(is.na(Zome_data)==FALSE){
+<<<<<<< HEAD
     Zome_data<-Zome_data[,which(classlabels_vec==classname),drop=FALSE]
+=======
+    Zome_data<-Zome_data[,which(classlabels_vec==classname)]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     })
     
     suppressWarnings(
     if(is.na(Wome_data)==FALSE){
+<<<<<<< HEAD
     Wome_data<-Wome_data[,which(classlabels_vec==classname),drop=FALSE]
+=======
+    Wome_data<-Wome_data[,which(classlabels_vec==classname)]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     })
 })
 
 
 
+<<<<<<< HEAD
 
+=======
+if(num_replicates>1){
+avg_data5<-data_preprocess(feature_table_file=xome_fname,class_labels_file=classdesign,parentoutput_dir=outloc,
+num_replicates=num_replicates,feat.filt.thresh=NA,summarize.replicates=TRUE,summary.method="median",
+all.missing.thresh=all.missing.thresh,group.missing.thresh=NA,log2transform=TRUE,medcenter=FALSE,znormtransform=FALSE,
+quantile_norm=FALSE,lowess_norm=FALSE,madscaling=FALSE,missing.val=0,samplermindex=NA, 
+rep.max.missing.thresh=0.5,summary.na.replacement="zeros")
+
+Xome_data<-avg_data5$data_matrix_afternorm_scaling
+Yome_data<-Yome_data[,c(1,seq(2,ncol(Yome_data),num_replicates))]
+write.table(Yome_data,file="../Stage1/Ymatrix_averaged.txt",sep="\t")
+    if(is.na(zome_fname)==FALSE){
+        Zome_data<-Zome_data[,c(1,seq(2,ncol(Zome_data),num_replicates))]
+        write.table(Zome_data,file="../Stage1/Zmatrix_averaged.txt",sep="\t")
+    }
+    if(is.na(wome_fname)==FALSE){
+        Wome_data<-Wome_data[,c(1,seq(2,ncol(Wome_data),num_replicates))]
+        write.table(Wome_data,file="../Stage1/Wmatrix_averaged.txt",sep="\t")
+    }
+}
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 colors_sel_vec<-net_node_colors
 
 
@@ -219,8 +362,12 @@ check_file<-try(load("g1.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
 
+<<<<<<< HEAD
 #XxY
 g1<-get_pairwise_cor(Xome_data,Yome_data,max_xvar=max_xvar,max_yvar=max_yvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,2)],outloc=outloc_pairwise,Xname=Xname,Yname=Yname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Y",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+g1<-get_pairwise_cor(Xome_data,Yome_data,max_xvar=max_xvar,max_yvar=max_yvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,2)],outloc=outloc_pairwise,Xname=Xname,Yname=Yname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Y")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 save(g1,file="g1.Rda")
 }else{
@@ -235,9 +382,13 @@ save(g1,file="g1.Rda")
 
 suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
     if(is(check_file,"try-error")){
+<<<<<<< HEAD
         
         #XxZ
         g2<-get_pairwise_cor(Xome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,3)],outloc=outloc_pairwise,Xname=Xname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Z",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+        g2<-get_pairwise_cor(Xome_data,Zome_data,max_xvar=max_xvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,3)],outloc=outloc_pairwise,Xname=Xname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="Z")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
         save(g2,file="g2.Rda")
     }else{
@@ -253,9 +404,13 @@ suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
         check_file<-try(load("g3.Rda"),silent=TRUE)
         )
         if(is(check_file,"try-error")){
+<<<<<<< HEAD
             
             #YxZ
             g3<-get_pairwise_cor(Yome_data,Zome_data,max_xvar=max_yvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepY,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,3)],outloc=outloc_pairwise,Xname=Yname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="Z",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+            g3<-get_pairwise_cor(Yome_data,Zome_data,max_xvar=max_yvar,max_yvar=max_zvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepY,keepY=keepZ,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,3)],outloc=outloc_pairwise,Xname=Yname,Yname=Zname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="Z")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
             save(g3,file="g3.Rda")
     
         }else{
@@ -277,9 +432,13 @@ suppressWarnings(
         )
         
         if(is(check_file,"try-error")){
+<<<<<<< HEAD
   
     #XxW
   g4<-get_pairwise_cor(Xome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,4)],outloc=outloc_pairwise,Xname=Xname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="W",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+         g4<-get_pairwise_cor(Xome_data,Wome_data,max_xvar=max_xvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(1,4)],outloc=outloc_pairwise,Xname=Xname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="X",tempYname="W")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
          save(g4,file="g4.Rda")
         }else{
             
@@ -295,9 +454,13 @@ if(use.X.reference==FALSE){
 check_file<-try(load("g5.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
+<<<<<<< HEAD
 
 #YxW
 g5<-get_pairwise_cor(Yome_data,Wome_data,max_xvar=max_yvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepY,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,4)],outloc=outloc_pairwise,Xname=Yname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="W",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+    g5<-get_pairwise_cor(Yome_data,Wome_data,max_xvar=max_yvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepY,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(2,4)],outloc=outloc_pairwise,Xname=Yname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Y",tempYname="W")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     save(g5,file="g5.Rda")
 }else{
     
@@ -311,8 +474,12 @@ suppressWarnings(
 check_file<-try(load("g6.Rda"),silent=TRUE)
 )
 if(is(check_file,"try-error")){
+<<<<<<< HEAD
     #ZxW
 g6<-get_pairwise_cor(Zome_data,Wome_data,max_xvar=max_zvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepZ,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(3,4)],outloc=outloc_pairwise,Xname=Zname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Z",tempYname="W",all.missing.thresh=all.missing.thresh,missing.val=missing.val)
+=======
+    g6<-get_pairwise_cor(Zome_data,Wome_data,max_xvar=max_zvar,max_yvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepZ,keepY=keepW,pairedanalysis=pairedanalysis,optselect=optselect,classlabels=classlabels,rawPthresh=rawPthresh,plsmode=plsmode,xmwasmethod=xmwasmethod,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors[c(3,4)],outloc=outloc_pairwise,Xname=Zname,Yname=Wname,net_node_shape=net_node_shape[c(1,2)],seednum=seednum,tempXname="Z",tempYname="W")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     save(g6,file="g6.Rda")
 }else{
     
@@ -338,13 +505,21 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
         if(use.X.reference==TRUE){
             
             df_matrix<-rbind(g1$graphobject,g2$graphobject,g4$graphobject)
+<<<<<<< HEAD
             
+=======
+            #meta_cor_matrix<-cbind(g1$cormatrix,g2$cormatrix,g3$cormatrix)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
             rownames_vec<-g1$rownames_vec
             colnames_vec<-c(g1$colnames_vec,g2$colnames_vec,g4$colnames_vec)
             
         }else{
         df_matrix<-rbind(g1$graphobject,g2$graphobject,g3$graphobject,g4$graphobject,g5$graphobject,g6$graphobject)
+<<<<<<< HEAD
         
+=======
+        #meta_cor_matrix<-cbind(g1$cormatrix,g2$cormatrix,g3$cormatrix)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         rownames_vec<-g1$rownames_vec
         colnames_vec<-c(g1$colnames_vec,g2$colnames_vec,g3$colnames_vec,g4$colnames_vec,g5$colnames_vec,g6$colnames_vec)
         
@@ -358,14 +533,22 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
         if(use.X.reference==TRUE){
             
             df_matrix<-rbind(g1$graphobject,g2$graphobject)
+<<<<<<< HEAD
             
+=======
+            #meta_cor_matrix<-cbind(g1$cormatrix,g2$cormatrix)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
             rownames_vec<-g1$rownames_vec
             colnames_vec<-c(g1$colnames_vec,g2$colnames_vec)
             Wname=NA
             
         }else{
             df_matrix<-rbind(g1$graphobject,g2$graphobject,g3$graphobject)
+<<<<<<< HEAD
             
+=======
+            #meta_cor_matrix<-cbind(g1$cormatrix,g2$cormatrix)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
             rownames_vec<-g1$rownames_vec
             colnames_vec<-c(g1$colnames_vec,g2$colnames_vec,g3$colnames_vec)
             Wname=NA
@@ -376,7 +559,11 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
         #2-way
         if(is.na(Zome_data)==TRUE && is.na(Yome_data)==FALSE && is.na(Wome_data)==TRUE){
         df_matrix<-rbind(g1$graphobject)
+<<<<<<< HEAD
         
+=======
+        #meta_cor_matrix<-cbind(g1$cormatrix)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         rownames_vec<-g1$rownames_vec
         colnames_vec<-c(g1$colnames_vec)
         Zname=NA
@@ -393,6 +580,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     
      colnames(id_mapping_mat)<-c("Name","Node")
      #colnames(id_mapping_mat)<-c("Name","Node")
+<<<<<<< HEAD
      
      
     
@@ -402,12 +590,24 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     
     print(paste("Total number of connections: ",nrow(df_matrix),sep=""))
     
+=======
+    
+    write.table(id_mapping_mat,file="NodeID_Name_mapping.txt",sep="\t",row.names=FALSE)
+    
+    corweight_temp<-abs(df_matrix[,3])
+    
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     if(is.na(max_connections)==FALSE){
         
     if(nrow(df_matrix)>max_connections){
         ind_top_2000<-order(corweight_temp,decreasing=TRUE)[1:max_connections]
+<<<<<<< HEAD
         print(paste("Only ",max_connections," connections ranked by strength of association will be plotted.",sep=""))
         df_matrix<-df_matrix[ind_top_2000,,drop=FALSE]
+=======
+        print(paste("Only ",max_connections," connections can be plotted.",sep=""))
+        df_matrix<-df_matrix[ind_top_2000,]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
     }
     
@@ -415,7 +615,11 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     
     if(is.na(corthresh)==FALSE){
         
+<<<<<<< HEAD
         df_matrix<-df_matrix[which(corweight_temp>corthresh),,drop=FALSE]
+=======
+        df_matrix<-df_matrix[which(corweight_temp>corthresh),]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
         if(nrow(df_matrix)<1){
             stop("Please lower the correlation threshold.")
@@ -431,11 +635,24 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        check_file<-try(load(fname),silent=TRUE))
        
        
+<<<<<<< HEAD
      
+=======
+       if(FALSE){
+       fname<-paste("Multidata_Network_corthresh",corthresh,"top",maxnodesperclass,".png",sep="")
+       
+       pdf(fname)
+       plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("Multidata_Network_corthresh",corthresh,sep=""),maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=FALSE)
+       
+       dev.off()
+       
+       }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 
         
        if(is(check_file,"try-error")){
+<<<<<<< HEAD
            
            if(is.na(classname)==TRUE){
            
@@ -459,6 +676,14 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        
        #pdf(fname)
        res1<-plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=fname,maxnodesperclass=NA,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=interactive,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,classname=classname)
+=======
+       fname<-paste("Multidata_Network_threshold",corthresh,".png",sep="")
+       
+       png(fname,width=8,height=8,res=600,type="cairo",units="in")
+       
+       #pdf(fname)
+       res1<-plot_graph(df=df_matrix,net_node_colors=net_node_colors,graphmethod="radial",filename=paste("Multidata_Network_corthresh",corthresh,sep=""),maxnodesperclass=NA,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,interactive=interactive,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
        dev.off()
        
        save(res1,file="res1.Rda")
@@ -468,7 +693,18 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        
        clust_id_mapping_mat=NA
        
+<<<<<<< HEAD
   
+=======
+       if(FALSE){
+        rnames<-rownames(Xome_data)
+       clust_id_mapping_mat<-cbind(rnames,-1)
+       
+       clust_id_mapping_mat<-as.data.frame(clust_id_mapping_mat)
+       
+       clust_id_mapping_mat<-colnames("Name","Centrality")
+       }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
        
        graphclustering=TRUE
        
@@ -480,10 +716,17 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                print("Performing community detection analysis")
                
                sg<-res1$sg
+<<<<<<< HEAD
                wc1 <- multilevel.community(sg,weights=NA) #multilevel community detection
                mc_modularity_measure<-round(modularity(wc1),2)
                
                wc2 <- walktrap.community(sg,weights=NA) #walktrap community detection
+=======
+               wc1 <- multilevel.community(sg,weights=NA) #walktrap.community(sg)
+               mc_modularity_measure<-round(modularity(wc1),2)
+               
+               wc2 <- walktrap.community(sg,weights=NA) #walktrap.community(sg)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                walktrap_modularity_measure<-round(modularity(wc2),2)
                
                if(is.na(mc_modularity_measure)==TRUE){
@@ -507,7 +750,27 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                    modularity_method<-"walktrap.community"
                }
                
+<<<<<<< HEAD
             
+=======
+               #mc<-cbind(wc$names,wc$membership)
+               #mc<-as.data.frame(mc)
+               #df_matrix_temp<-df_matrix[-which(df_matrix$from==mc$V1[1]),]
+               #df_matrix_temp<-df_matrix[-which(df_matrix$from==mc$V1[1]),]
+               if(FALSE){
+              l1<-lapply(1:dim(mc)[1],function(k){
+                   
+                   ext_index<-c(which(df_matrix$from%in%mc$V1[k]),which(df_matrix$to%in%mc$V1[k]))
+                   
+                   df_matrix_temp<-df_matrix[-ext_index,]
+                   df_matrix_temp<-df_matrix[which(df_matrix$from==mc$V1[k]),]
+                   
+                   k_ext<-nrow(df_matrix_temp)
+                   
+                   
+                },df_matrix=df_matrix)
+               }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                
                print(paste(modularity_method," modularity measure: ",modularity_measure,sep=""))
                
@@ -516,6 +779,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                network_stats<-cbind(cc, modularity_measure)
                colnames(network_stats)<-c("Clustering coefficient (graph level)",paste("Modularity measure (based on community membership) using ",modularity_method,sep=""))
                
+<<<<<<< HEAD
                if(is.na(classname)==TRUE){
                mod_measure_fname<-paste("Network_stats.csv",sep="")
                
@@ -530,13 +794,21 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                    community_membership_fname<-paste("cluster_membership_centrality_",classname,"_table.txt",sep="")
                }
                
+=======
+               mod_measure_fname<-paste("Network_stats.csv",sep="")
+               
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                write.csv(network_stats,file=mod_measure_fname,row.names=FALSE)
                
                clust_membership<-membership(wc)
                clust_membership<-ldply(clust_membership,rbind)
                clust_membership<-as.data.frame(clust_membership)
                
+<<<<<<< HEAD
                #fname<-paste("Multidata_Network_threshold",corthresh,"_communities.png",sep="")
+=======
+               fname<-paste("Multidata_Network_threshold",corthresh,"_communities.png",sep="")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                
                
                save(wc,file="wc.Rda")
@@ -595,6 +867,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                plot.igraph(sg,vertex.color=membership(wc),layout=l,vertex.size=vertex.size)
                
                # mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",side=0,line=0,cex=0.8,adj=(-0.2))
+<<<<<<< HEAD
                
                if(is.na(classname)==TRUE){
                mtext("Using all samples",side=3,line=1,cex=0.6,adj=NA)
@@ -604,6 +877,8 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                }
                
                
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",side=3,line=3,cex=0.6,adj=NA)
                
                mtext_community<-paste("(Nodes) Rectangle: ",Xname,"; Circle: ",Yname,sep="")
@@ -658,7 +933,10 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                eigenvector_centrality<-eigen_centrality(sg,directed=FALSE,weights=E(sg)$weight)
                centrality_vec<-eigenvector_centrality$vector
                
+<<<<<<< HEAD
                save(centrality_vec,file="centrality_vec.Rda")
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                
                cent_vec_mat<-cbind(names(centrality_vec),centrality_vec)
                
@@ -677,12 +955,24 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                }else{
                     if(centrality_method=="betweenness"){
                         centrality_vec<-betweenness(sg,directed=FALSE,weights=abs(E(sg)$weight),normalized=TRUE)
+<<<<<<< HEAD
                         save(centrality_vec,file="centrality_vec.Rda")
                         
                         #normalize to 0 to 1 scale
                         centrality_vec<-(centrality_vec-min(centrality_vec,na.rm=TRUE))/(max(centrality_vec,na.rm=TRUE)-min(centrality_vec,na.rm=TRUE))
                         
                         #centrality_vec/max(centrality_vec,na.rm=TRUE)
+=======
+                        #save(centrality_vec,file="centrality_vec.Rda")
+                        #centrality_vec1<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+                        
+                        #centrality_vec<-as.numeric(as.character(cent_vec_mat$centrality_vec))
+                        
+                        #centrality_vec<-scale(centrality_vec)
+                        
+                        #normalize to 0 to 1 scale
+                        centrality_vec<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                         
                         cent_vec_mat<-cbind(names(centrality_vec),centrality_vec)
                         
@@ -696,6 +986,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                     }else{
                         if(centrality_method=="degree.count"){
                             
+<<<<<<< HEAD
                             centrality_vec<-igraph::degree(sg,normalized=TRUE)
                             
                             save(centrality_vec,file="centrality_vec.Rda")
@@ -704,6 +995,21 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                             
                             
                             #centrality_vec<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+=======
+                            #degree(graph, v = V(graph), mode = c("all", "out", "in", "total"),
+                            #loops = TRUE, normalized = FALSE)
+                            
+                            centrality_vec<-igraph::degree(sg,normalized=TRUE)
+                            #save(centrality_vec,file="centrality_vec.Rda")
+                            #centrality_vec1<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+                            
+                            #centrality_vec<-as.numeric(as.character(cent_vec_mat$centrality_vec))
+                            
+                            #centrality_vec<-scale(centrality_vec)
+                            
+                            #normalize to 0 to 1 scale
+                            centrality_vec<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                             
                             cent_vec_mat<-cbind(names(centrality_vec),centrality_vec)
                             
@@ -736,6 +1042,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                                                 return(res)
                                     })
                                     centrality_vec<-unlist(centrality_vec)
+<<<<<<< HEAD
                                     save(centrality_vec,file="centrality_vec.Rda")
                                     
                                     #normalize to 0 to 1 scale
@@ -743,6 +1050,11 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                                     
                                     
                                     #centrality_vec<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+=======
+                                    
+                                    #normalize to 0 to 1 scale
+                                    centrality_vec<-centrality_vec/max(centrality_vec,na.rm=TRUE)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                                     
                                     cent_vec_mat<-cbind(node_names,centrality_vec)
                                     cent_vec_mat<-as.data.frame(cent_vec_mat)
@@ -753,6 +1065,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                                     
                                     centrality_vec<-round(cent_vec_mat$centrality_vec,3)
                                     
+<<<<<<< HEAD
                                 }else{
                                     
                                     if(centrality_method=="closeness"){
@@ -777,6 +1090,8 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                                         centrality_vec<-round(cent_vec_mat$centrality_vec,3)
                                     }
                                     
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                                 }
                             
                         }
@@ -797,8 +1112,12 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                
                clust_id_mapping_mat<-as.data.frame(clust_id_mapping_mat)
                
+<<<<<<< HEAD
                
                write.table(clust_id_mapping_mat,file=community_membership_fname,sep="\t",row.names=FALSE)
+=======
+               write.table(clust_id_mapping_mat,file="cluster_membership_centrality_table.txt",sep="\t",row.names=FALSE)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
                
                
            }
@@ -812,6 +1131,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
 #write.table(clust_id_mapping_mat,file="cluster_membership_mapped.txt",sep="\t",row.names=FALSE)
 
 
+<<<<<<< HEAD
 #save(list=ls(),file="debug.Rda")
 
 
@@ -866,11 +1186,31 @@ if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
     }
     
     }
+=======
+
+if(is.na(classname)==TRUE){
+rnames<-rownames(Xome_data)
+if(length(which(rnames%in%clust_id_mapping_mat$Name))>0){
+        Xome_data<-Xome_data[which(rnames%in%clust_id_mapping_mat$Name),]
+}
+
+rnames<-rownames(Yome_data)
+if(length(which(rnames%in%clust_id_mapping_mat$Name))>0){
+    Yome_data<-Yome_data[which(rnames%in%clust_id_mapping_mat$Name),]
+}
+suppressWarnings(
+if(is.na(Zome_data)==FALSE){
+rnames<-rownames(Zome_data)
+if(length(which(rnames%in%clust_id_mapping_mat$Name))>0){
+    Zome_data<-Zome_data[which(rnames%in%clust_id_mapping_mat$Name),]
+}
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 })
 suppressWarnings(
 if(is.na(Wome_data)==FALSE){
     rnames<-rownames(Wome_data)
+<<<<<<< HEAD
     if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
         Wome_data<-Wome_data[which(rnames%in%clust_id_mapping_mat$Name),,drop=FALSE]
     }else{
@@ -883,14 +1223,21 @@ if(is.na(Wome_data)==FALSE){
             Wome_data<-NA
         }
         
+=======
+    if(length(which(rnames%in%clust_id_mapping_mat$Name))>0){
+        Wome_data<-Wome_data[which(rnames%in%clust_id_mapping_mat$Name),]
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     }
     
 })
 
 }
+<<<<<<< HEAD
 
 
 }
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 #return(sg)
 
 if(removeRda==TRUE){

@@ -1,10 +1,17 @@
 run_xmwas <-
+<<<<<<< HEAD
 function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=0.1,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,...){
     
     
     #defaults
     classname=NA
     maxnodesperclass=10000000
+=======
+function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=0.5,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,max_connections=100000,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,...){
+    
+    classname=NA
+    maxnodesperclass=100
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     graphclustering=TRUE
     interactive=FALSE
     suppressWarnings(dir.create(outloc))
@@ -13,7 +20,11 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     
     sink(file="InputParameters.txt")
     
+<<<<<<< HEAD
     print("######xMWAS v0.53 Parameters##########")
+=======
+    print("######xMWAS v0.52 Parameters##########")
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
     print(paste("max_xvar: ",max_xvar,sep=""))
@@ -37,8 +48,11 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     print(paste("max_connections: ",max_connections,sep=""))
     print(paste("centrality_method: ",centrality_method,sep=""))
     print(paste("use.X.reference: ",use.X.reference,sep=""))
+<<<<<<< HEAD
     print(paste("compare.classes: ",compare.classes,sep=""))
     print(paste("class.comparison.allvar: ",class.comparison.allvar,sep=""))
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
     print("################")
     print("######Loaded packages in the current session##########")
@@ -62,7 +76,21 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         
     }
     
+<<<<<<< HEAD
    
+=======
+    if(nrow(Xome_data)<2){
+        Xome_data<-rbind(Xome_data,Xome_data)
+        
+        rnames<-rownames(Xome_data)
+        
+        rnames<-paste(rnames,c(1,2),sep="_")
+        
+        rownames(Xome_data)<-rnames
+        
+        
+    }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
    
     
     rnames<-rownames(Xome_data) #Xome_data[,c(1)]
@@ -81,14 +109,27 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         Xome_data<-apply(Xome_data,2,as.numeric)
         rownames(Xome_data)<-rnames
     }else{
+<<<<<<< HEAD
         #  Xome_data<-as.numeric(Xome_data)
         #Xome_data<-as.data.frame(Xome_data)
+=======
+        Xome_data<-as.numeric(Xome_data)
+        Xome_data<-as.data.frame(Xome_data)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     }
     
     
     rownames(Xome_data)<-rnames
+<<<<<<< HEAD
     
    
+=======
+    Xome_data<-filter.by.missing.values(Xome_data,missing.val=missing.val,all.missing.thresh=all.missing.thresh)
+    
+    num_samps<-dim(Xome_data)[2]
+    print(paste("Number of samples: ",num_samps),sep="")
+    print(dim(Xome_data))
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     num_replicates<-1
     
     
@@ -101,7 +142,23 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     }
     
    
+<<<<<<< HEAD
    
+=======
+    
+    if(nrow(Yome_data)<2){
+        Yome_data<-rbind(Yome_data,Yome_data)
+        
+        rnames<-rownames(Yome_data)
+        
+        rnames<-paste(rnames,c(1,2),sep="_")
+        
+        rownames(Yome_data)<-rnames
+        
+        #print(Yome_data[,1:4])
+        
+    }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
     
     rnames<-rownames(Yome_data) #Yome_data[,c(1)]
@@ -118,12 +175,21 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     if(nrow(Yome_data)>1){
         Yome_data<-apply(Yome_data,2,as.numeric)
     }else{
+<<<<<<< HEAD
         #Yome_data<-as.numeric(Yome_data)
         #Yome_data<-as.data.frame(Yome_data)
     }
     rownames(Yome_data)<-rnames
     
    
+=======
+        Yome_data<-as.numeric(Yome_data)
+        Yome_data<-as.data.frame(Yome_data)
+    }
+    rownames(Yome_data)<-rnames
+    Yome_data<-filter.by.missing.values(Yome_data,missing.val=missing.val,all.missing.thresh=all.missing.thresh)
+    
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
     if(is.na(zome_fname)==FALSE){
         
@@ -137,7 +203,19 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     suppressWarnings(
     if(is.na(Zome_data)==FALSE){
         
+<<<<<<< HEAD
        
+=======
+        if(nrow(Zome_data)<2){
+            Zome_data<-rbind(Zome_data,Zome_data)
+            
+            rnames<-rownames(Zome_data)
+            
+            rnames<-paste(rnames,c(1,2),sep="_")
+            
+            rownames(Zome_data)<-rnames
+        }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
         rnames<-rownames(Zome_data) #Zome_data[,c(1)]
         if(length(which(duplicated(rnames)==TRUE))>0){
@@ -151,12 +229,20 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         if(nrow(Zome_data)>1){
             Zome_data<-apply(Zome_data,2,as.numeric)
         }else{
+<<<<<<< HEAD
             # Zome_data<-as.numeric(Zome_data)
             #Zome_data<-as.data.frame(Zome_data)
         }
         rownames(Zome_data)<-rnames
         
        
+=======
+            Zome_data<-as.numeric(Zome_data)
+            Zome_data<-as.data.frame(Zome_data)
+        }
+        rownames(Zome_data)<-rnames
+        Zome_data<-filter.by.missing.values(Zome_data,missing.val=missing.val,all.missing.thresh=all.missing.thresh)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
     })
     
@@ -172,7 +258,18 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
     suppressWarnings(
     if(is.na(Wome_data)==FALSE){
         
+<<<<<<< HEAD
        
+=======
+        if(nrow(Wome_data)<2){
+            Wome_data<-rbind(Wome_data,Wome_data)
+            
+            rnames<-rownames(Wome_data)
+            
+            rnames<-paste(rnames,c(1,2),sep="_")
+            rownames(Wome_data)<-rnames
+        }
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
         rnames<-rownames(Wome_data) #Wome_data[,c(1)]
         if(length(which(duplicated(rnames)==TRUE))>0){
@@ -188,12 +285,20 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         if(nrow(Wome_data)>1){
             Wome_data<-apply(Wome_data,2,as.numeric)
         }else{
+<<<<<<< HEAD
             #   Wome_data<-as.numeric(Wome_data)
             #Wome_data<-as.data.frame(Wome_data)
         }
         rownames(Wome_data)<-rnames
         
       
+=======
+            Wome_data<-as.numeric(Wome_data)
+            Wome_data<-as.data.frame(Wome_data)
+        }
+        rownames(Wome_data)<-rnames
+        Wome_data<-filter.by.missing.values(Wome_data,missing.val=missing.val,all.missing.thresh=all.missing.thresh)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
     })
     
@@ -292,6 +397,7 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         classlabels_temp<-classlabels[,-c(2)] #[,c(class_check)]
         classlabels_temp<-as.data.frame(classlabels_temp)
         
+<<<<<<< HEAD
         
         design<-classlabels[,-c(1)]
         
@@ -304,18 +410,39 @@ function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class
         
     suppressWarnings(
     res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val)
+=======
+        # print(head(classlabels_temp))
+        design<-classlabels[,-c(1)]
+        
+        # print(design)
+        
+        suppressWarnings(
+        res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=TRUE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design)
+        )
+    }else{
+        #print(head(classlabels))
+    suppressWarnings(
+    res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 )
 
     }
     
+<<<<<<< HEAD
     if(class.comparison.allvar==FALSE){
         
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     Xome_data<-res[[1]]$Xome_data
     Yome_data<-res[[1]]$Yome_data
     Zome_data<-res[[1]]$Zome_data
     Wome_data<-res[[1]]$Wome_data
+<<<<<<< HEAD
     
     }
+=======
+
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 #save(res[[1]],file="allclasses.Rda")
     
@@ -338,7 +465,11 @@ for(i in 1:length(class_levels)){
         print(head(classlabels_temp))
         
         suppressWarnings(
+<<<<<<< HEAD
         res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=FALSE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design,missing.val=missing.val)
+=======
+        res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=FALSE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         )
     }else{
         
@@ -347,7 +478,11 @@ for(i in 1:length(class_levels)){
             stop("More than two columns detected in the class labels file. Please set paired analysis=TRUE for repeated measures.")
         }
         suppressWarnings(
+<<<<<<< HEAD
     res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val)
+=======
+    res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     )
     }
 
@@ -381,6 +516,7 @@ write.table(sm,file="README.txt",sep="\t",row.names=FALSE)
 graphclustering=TRUE
 
 
+<<<<<<< HEAD
 if(graphclustering==TRUE){
 
 #if multiple classes
@@ -406,12 +542,37 @@ matrix_centrality<-matrix(NA,nrow=length(node_names_vec),ncol=length(res))
 
 
     for(i in 1:length(res)){
+=======
+#return(res)
+if(graphclustering==TRUE){
+
+a1<-res[[1]]$network_analysis[order(res[[1]]$network_analysis$Name),]
+
+a1<-as.data.frame(a1)
+
+matrix_centrality<-matrix(0,nrow=dim(a1)[1],ncol=length(res))
+
+matrix_centrality[,1]<-a1$centrality_vec
+
+rownames(matrix_centrality)<-as.character(a1$Name)
+
+if(length(res)>1){
+colnames(matrix_centrality)<-c("allClasses",class_levels)
+
+
+    for(i in 2:length(res)){
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
     atemp<-res[[i]]$network_analysis[order(res[[i]]$network_analysis$Name),]
     
     
+<<<<<<< HEAD
     for(rownum in 1:dim(atemp)[1]){
         index_1<-which(node_names_vec%in%(atemp$Name[rownum]))
+=======
+    for(rownum in 1:dim(a1)[1]){
+        index_1<-which(a1$Name%in%(atemp$Name[rownum]))
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
         matrix_centrality[index_1,i]<-atemp$centrality_vec[rownum]
         
@@ -419,6 +580,7 @@ matrix_centrality<-matrix(NA,nrow=length(node_names_vec),ncol=length(res))
     }
 
 }else{
+<<<<<<< HEAD
     
     a1<-res[[1]]$network_analysis[order(res[[1]]$network_analysis$Name),]
     
@@ -430,6 +592,8 @@ matrix_centrality<-matrix(NA,nrow=length(node_names_vec),ncol=length(res))
     
     rownames(matrix_centrality)<-as.character(a1$Name)
 
+=======
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     colnames(matrix_centrality)<-c("allClasses")
 
     
@@ -439,7 +603,11 @@ if(length(res)>1){
     name_vec<-{}
     for(i in 3:length(res)){
         delta_centrality<-cbind(delta_centrality,abs(matrix_centrality[,i]-matrix_centrality[,2]))
+<<<<<<< HEAD
         name_vec<-c(name_vec,paste(class_levels[(i-1)],"_vs_",class_levels[(1)],sep=""))
+=======
+        name_vec<-c(name_vec,paste(class_levels[(i-1)],"vs",class_levels[(1)],sep=""))
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
         
         
 

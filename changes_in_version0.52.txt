@@ -1,0 +1,9 @@
+#Changes in version 0.52
+
+1) fixed legend labels for 4-way analysis
+2) changed all.missing.thresh to a user-defined option (previously it was set to 0.1)
+3) removed redundant calls to network that was generating network first at corthresh=0 and then at the user-defined threshold. Only one network at the defined threshold is generated in the new version.
+4) added degree.count and degree.weight options for centrality analysis (see Manual)
+5) community detection: the software now compares walktrap and multilevel community and selects the option that gives higher modularity measure
+6) fixed max_var option for 3-way and 4-way analysis. No changes to 2-way analysis.
+

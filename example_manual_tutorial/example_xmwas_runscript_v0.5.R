@@ -28,7 +28,11 @@ if(FALSE)
 }
 ###################
 
+<<<<<<< HEAD
 output<-"/Users/karanuppal/Downloads/xMWASv0.53output/" #change for your computer
+=======
+output<-"/Users/karanuppal/Downloads/OneDrive_1_11-3-2017/xMWASv0.52output/" #change for your computer
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 #Please see user manual for description of arguments:
 #https://github.com/kuppal2/xMWAS/blob/master/example_manual_tutorial/xMWAS-manual.pdf
@@ -41,6 +45,10 @@ pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=
 net_node_colors=c("orange", "green","cyan","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",
 net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.1,missing.val=0,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=100000,
+<<<<<<< HEAD
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE)
+=======
+centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE)
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 suppressWarnings(try(sink(file=NULL),silent=TRUE))
 

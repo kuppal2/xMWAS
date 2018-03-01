@@ -1,5 +1,9 @@
 plot_graph <-
+<<<<<<< HEAD
 function(df,net_node_colors=c("orange", "green","blue","pink"),graphmethod="radial",label.cex=0.3,filename="",net_node_shape=c("rectangle","circle","triangle","star"),maxnodesperclass=100,seednum=100,vertex.size=6,interactive=TRUE,Xname=NA,Yname=NA,Zname=NA,Wname=NA,classname=NA){
+=======
+function(df,net_node_colors=c("orange", "green","blue","pink"),graphmethod="radial",label.cex=0.3,filename="",net_node_shape=c("rectangle","circle","triangle","star"),maxnodesperclass=100,seednum=100,vertex.size=6,interactive=TRUE,Xname=NA,Yname=NA,Zname=NA,Wname=NA){
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
 
 	df<-as.data.frame(df)
     
@@ -153,12 +157,16 @@ if(length(node_index)>0){
 	}
     #mtext("Red: +ve correlation; Blue: -ve correlation",side=1)
     
+<<<<<<< HEAD
     if(is.na(classname)==TRUE){
         mtext("Using all samples",side=3,line=3,cex=0.6,adj=NA)
     }else{
         
         mtext(paste("Using samples in class ",classname,sep=""),side=3,line=3,cex=0.6,adj=NA)
     }
+=======
+    
+>>>>>>> 8718699d6a3f396a337058138bd9b1983a87fd85
     
     mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",line=0,side=1,cex=0.8,adj=0)
     
