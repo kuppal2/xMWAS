@@ -1,0 +1,12 @@
+#Changes in version 0.53
+
+1) the package now works when only one variable is provided in Y, Z, or W matrices
+2) fixed legend labels for 4-way analysis
+3) changed all.missing.thresh to a user-defined option (previously it was set to 0.1). The 4) filtering is performed after RSD filtering in pairwise analyses.
+5) fixed max_var settings for 3-way and 4-way analysis. No changes to 2-way analysis.
+6) removed redundant calls to network to generate network at corthresh=0 and then at the defined threshold
+7) added degree.count, degree.weight, and closeness centrality options for centrality analysis (see Manual)
+8) community detection: the software now compares walktrap and multilevel community and selects the option that gives higher modularity measure
+9) fixed error for the repeated measures analysis
+10) removed the restriction for only using the nodes selected in all samples analysis for class-wise comparisons
+11) changed the default settings for max_connections to NA; can be changed to any numeric value
