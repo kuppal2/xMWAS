@@ -1,4 +1,4 @@
-#Changes in version 0.53
+#Changes in version 0.54
 
 1) the package now works when only one variable is provided in Y, Z, or W matrices
 2) fixed legend labels for 4-way analysis
