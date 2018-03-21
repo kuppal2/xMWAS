@@ -36,7 +36,7 @@ output<-"/Users/karanuppal/Downloads/xMWASv0.53output/" #change for your compute
 #call the run_xmwas() function:
 xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=output,
 classlabels=classlabels,class_fname=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=1000,max_yvar=1000,
-max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,
+max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.7,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",
 net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.7,missing.val=0,
