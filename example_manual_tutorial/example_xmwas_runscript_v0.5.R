@@ -41,6 +41,6 @@ pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=
 net_node_colors=c("orange", "green","cyan","pink"),Xname="X",Yname="Y",Zname="Z",Wname="W",
 net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.7,missing.val=0,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=100000,
-centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE)
+centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE,class.comparison.allvar=TRUE)
 suppressWarnings(try(sink(file=NULL),silent=TRUE))
 
