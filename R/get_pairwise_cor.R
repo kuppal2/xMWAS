@@ -1,9 +1,5 @@
 get_pairwise_cor <-
-<<<<<<< HEAD
 function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle","circle","triangle","star","square","csquare","crectangle","vrectangle"),seednum=100,tempXname="X",tempYname="Y",all.missing.thresh=0.1,missing.val=0,plot.pairwise=TRUE){
-=======
-function(Xome_data,Yome_data,max_xvar=100,max_yvar=100,rsd.filt.thresh=3,corthresh=0.4,keepX=100,keepY=100,pairedanalysis=FALSE,optselect=TRUE,classlabels=NA,rawPthresh=0.05,plsmode="regression",xmwasmethod="pls",numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green"),outloc=NA,Xname="X",Yname="Y",num_nodes=2,net_node_shape=c("rectangle", "circle"),seednum=100,tempXname="X",tempYname="Y",all.missing.thresh=0.1,missing.val=0){
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 
 filename<-paste(Xname,Yname,sep="_x_")
@@ -11,12 +7,8 @@ filename<-paste(Xname,Yname,sep="_x_")
 print(paste("Performing ",filename," integrative analysis",sep=""))
 
 
-<<<<<<< HEAD
 Xome_data<-as.data.frame(Xome_data)
 Yome_data<-as.data.frame(Yome_data)
-=======
-
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 numsampX<-dim(Xome_data)[2]
 
 cor_thresh_check=seq(corthresh,1,0.01)
@@ -41,18 +33,12 @@ if(corthresh<min_cor_thresh){
     corthresh=min_cor_thresh
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 cl<-makeSOCKcluster(num_nodes)
 clusterExport(cl,"do_rsd")
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 feat_rsds<-parApply(cl,Xome_data,1,do_rsd)
 			
 stopCluster(cl)
@@ -114,12 +100,9 @@ good_metabs<-which(abs_feat_rsds>rsd.filt.thresh)
 					
 Yome_data<-Yome_data[good_metabs,]
 
-<<<<<<< HEAD
 print("here")
 print(dim(Yome_data))
 print(nrow(Yome_data))
-=======
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 if(nrow(Yome_data)<1){
     
@@ -212,7 +195,6 @@ save(X,file="X.Rda")
 save(Y,file="Y.Rda")
 }
 
-<<<<<<< HEAD
 
 numcomps_parent=numcomps
 
@@ -335,43 +317,6 @@ save(numcomps,file="numcomps.Rda")
 
 save(linn.pls,file="linn.pls.Rda")
 
-=======
-#numcomps<-pls.regression.cv(Xtrain=X,Ytrain=Y,ncomp=numcomps,alpha=2/3)
-
-colnames(X)<-metabname
-colnames(Y)<-microbname
-save(X,file="X1.Rda")
-save(Y,file="Y2.Rda")
-#save(keepX,file="keepX2.Rda")
-#save(keepY,file="keepY2.Rda")
-
-if(xmwasmethod=="spls"){
-linn.pls<-do_plsda(X=X,Y=Y,oscmode="spls",numcomp=numcomps,keepX=keepX,keepY=keepY,sparseselect=TRUE,analysismode=plsmode,pairedanalysis=pairedanalysis,optselect=optselect,design=classlabels)
-
-}else{
-    
-    if(xmwasmethod=="pls"){
-        linn.pls<-do_plsda(X=X,Y=Y,oscmode="pls",numcomp=numcomps,keepX=keepX,keepY=keepY,sparseselect=FALSE,analysismode=plsmode,pairedanalysis=pairedanalysis,optselect=optselect,design=classlabels)
-    }else{
-        
-        
-        if(xmwasmethod=="o1pls"){
-            linn.pls<-do_plsda(X=X,Y=Y,oscmode="o1pls",numcomp=numcomps,keepX=keepX,keepY=keepY,sparseselect=FALSE,analysismode=plsmode,pairedanalysis=pairedanalysis,optselect=optselect,design=classlabels)
-        }else{
-            
-            
-            if(xmwasmethod=="o1spls"){
-                linn.pls<-do_plsda(X=X,Y=Y,oscmode="o1pls",numcomp=numcomps,keepX=keepX,keepY=keepY,sparseselect=TRUE,analysismode=plsmode,pairedanalysis=pairedanalysis,optselect=optselect,design=classlabels)
-            }
-        }
-    }
-}
-
-
-#save(linn.pls,file="linn.pls.Rda")
-numcomps<-linn.pls$opt_comp
-linn.pls<-linn.pls$model
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 print(paste("Number of optimal (s)PLS components: ",numcomps,sep=""))
 
@@ -385,7 +330,6 @@ set.seed(seednum)
 
 p1=corPvalueStudent(cor=corthresh,n=numsampX)
 
-<<<<<<< HEAD
 
 
 #calculate the association score
@@ -393,19 +337,6 @@ net_result<-network_custom(mat=linn.pls, analysismode=plsmode,comp=numcomps)
 
 #cutoff=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
 #color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE) #,silent=TRUE)
-=======
-fname<-paste(filename,"_association_network_threshold",corthresh,".png",sep="")
-
-png(fname,width=8,height=8,res=600,type="cairo",units="in")
-
-
-#pdf("network_all.png")
-par_rows=1
-par(mfrow=c(par_rows,1))
-
-net_result<-try(network(linn.pls, cutoff=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 
 #print(paste("1. Network analysis could not be performed: ",net_result,sep=""))
@@ -435,22 +366,9 @@ if(is(net_result,"try-error")){
 fname<-paste(filename,"netresult",".Rda",sep="")
 
 save(net_result,file=fname)
-<<<<<<< HEAD
 
 fname<-paste(filename,"pls",".Rda",sep="")
 save(linn.pls,file=fname)
-=======
-mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",line=1,side=1,cex=0.8,adj=0)
-
-mtext_community<-paste("(Nodes) Rectangle: ",Xname,"; Circle: ",Yname,sep="")
-
-mtext(mtext_community,side=1,cex=0.8,line=2,adj=0)
-
-
-try(mtext(fname,line=3,cex=0.6,col="brown",side=1,adj=0),silent=TRUE)
-
-dev.off()
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 #save(n1,file="res1.Rda")
 #unlink("network_all.png")
@@ -460,7 +378,6 @@ x<-net_result$M
 nrow_sim_mat<-dim(x)[1]
 ncol_sim_mat<-dim(x)[2]
 
-<<<<<<< HEAD
 if(FALSE){
 if(ncol_sim_mat<2){
     
@@ -471,22 +388,6 @@ if(ncol_sim_mat<2){
 
     }
 
-=======
-#if(FALSE)
-{
-if(ncol_sim_mat<2){
-    
-    # print("changing row names")
-    
-    if(ncol(Y)<2){
-    colnames(net_result$M)<-colnames(linn.pls$Y)
-    colnames(x)<-colnames(linn.pls$Y)
-
-    }
-    # print(colnames(linn.pls$Y))
-    #print(colnames(net_result$M))
-    
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     
 }
 if(nrow_sim_mat<2){
@@ -497,15 +398,9 @@ if(nrow_sim_mat<2){
 
      }
 }
-<<<<<<< HEAD
 
 }
 
-=======
-}
-
-
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 #write.table(x,file="Int_allassociationscoresA.txt",sep="\t")
 
 
@@ -544,22 +439,6 @@ colnames(x)<-as.character(cnames)
 rownames(x)<-as.character(rnames)
 
 
-<<<<<<< HEAD
-=======
-#microbname_1: original col names
-#rnames_ind2: original row names
-#simmat_colnames: Y labels
-#rnames1: X labels
-
-
-
-#highcorsimMat<-x #[which(maxcor>=mincor),]
-
-
-
-#highcorsimMat[which(highcorsimMat>1)]<-1
-#highcorsimMat[which(highcorsimMat<(-1))]<-(-1)
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 if(length(which(x>1))>0){
     
@@ -599,7 +478,6 @@ colnames(x)<-as.character(microbname_1_simmat)
 
 x<-round(x,4)
 
-<<<<<<< HEAD
 fname<-paste(filename,"_association_matrix_all.txt",sep="")
 write.table(x,file=fname,sep="\t")
 
@@ -612,12 +490,6 @@ xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE]
 xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
 
 
-=======
-xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE]
-
-xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
-
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 xtemp1<-rbind(c("xName",simmat_colnames[which(maxcor1>=corthresh)]),xtemp)
 
 
@@ -659,7 +531,6 @@ write.table(xtemp1,file=fname,sep="\t")
 #fname<-paste(filename,"association_matrix_corthresh",corthresh,"rowcollabels.txt",sep="")
 #write.table(xtempA,file=fname,sep="\t")
 
-<<<<<<< HEAD
 print(length(which(maxcor>=corthresh)))
 
 
@@ -687,36 +558,21 @@ if(length(which(maxcor>=corthresh))==1){
 
 
 nrow_mat<-nrow(net_res_temp)
-=======
-nrow_mat<-nrow(net_result$M[which(maxcor>=corthresh),])
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 
 
 if(ncol_sim_mat>1){
-<<<<<<< HEAD
 	if(nrow(net_res_temp)<0){
 		break
 	}
 
 	edge_matrix<-apply(net_res_temp,1,function(x){which(abs(x)>corthresh)})
-=======
-if(nrow(net_result$M[which(maxcor>=corthresh),])<0){
-	break
-}
-
-edge_matrix<-apply(net_result$M[which(maxcor>=corthresh),],1,function(x){which(abs(x)>corthresh)})
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 
 }else{
     
     
-<<<<<<< HEAD
     if(length(net_res_temp)<0){
-=======
-    if(length(net_result$M[which(maxcor>=corthresh)])<0){
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
         break
     }
     
@@ -734,7 +590,6 @@ mat_cnames<-colnames(net_result$M)
 
 #print(is.matrix(edge_matrix))
 
-<<<<<<< HEAD
 df={}
 
 
@@ -881,104 +736,6 @@ if(length(edge_matrix)>0){
 
     
     
-=======
-if(ncol_sim_mat>1){
-    
-if(is.matrix(edge_matrix)==FALSE){
-col_A<-names(edge_matrix)
-
-edge_matrix_1<-{}
-for(r in 1:length(col_A)){
-#for(r in 1:nrow(edge_matrix)){
-    
-    #col_B<-names(edge_matrix[[r]])
-    col_B<-mat_cnames[edge_matrix[[r]]]
-    
-   
-    for(s in 1:length(col_B)){
-    
-    
-    edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B[s]))
-    }
-}
-
-}else{
-    
-    col_A<-colnames(edge_matrix)
-    
-    edge_matrix_1<-{}
-    for(r in 1:length(col_A)){
-        #for(r in 1:nrow(edge_matrix)){
-        
-        #col_B<-names(edge_matrix[[r]])
-        
-        
-        
-        for(s in 1:nrow(edge_matrix)){
-            
-            col_B<-mat_cnames[edge_matrix[s,r]]
-            edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B))
-        }
-    }
-    
-}
-
-}else{
-    
-    col_A<-rownames(net_result$M)[edge_matrix]
-    
-    edge_matrix_1<-{}
-    for(r in 1:length(col_A)){
-        #for(r in 1:nrow(edge_matrix)){
-        
-        #col_B<-names(edge_matrix[[r]])
-        
-        
-        
-       
-            
-            col_B<-colnames(net_result$M)
-            edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B))
-        
-    }
-    
-}
-
-
-if(nrow(edge_matrix_1)<1){
-
-	stop("No connections found.")
-}
-
-#save(edge_matrix_1,file="edge_matrix_1.Rda")
-    g1<-graph.data.frame(edge_matrix_1,directed=FALSE) #net_result$gR
-    g2<-get.edgelist(g1)
-    
-    weight_vec<-{}
-    for(rnum in 1:dim(g2)[1]){
-        
-        X_name<-which(rnames1==g2[rnum,1]) #as.numeric(as.character(gsub(g2[rnum,1],pattern=Xname,replacement="")))
-        Y_name<-which(simmat_colnames==g2[rnum,2]) #as.numeric(as.character(gsub(g2[rnum,2],pattern=Yname,replacement="")))
-        weight_vec<-c(weight_vec,net_result$M[X_name,Y_name])
-        #weight_vec<-abs(weight_vec)
-    }
-    
-
-    
-    df<-data.frame(from=g2[,1],to=g2[,2],weight=weight_vec)
-    
-    rownames(x)<-as.character(rnames_ind2)
-    colnames(x)<-as.character(microbname_1_simmat)
-    
-    
-
-    }
-
-    rm(xtemp)
-    rm(xtemp1)
-    rm(g1)
-    rm(g2)
->>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 	return(list(graphobject=df,rownames_vec=rnames1,colnames_vec=simmat_colnames,cormatrix=x,corthresh=corthresh,id_mapping_mat=id_mapping_mat,numcomps=numcomps))
 
 }
