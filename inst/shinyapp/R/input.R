@@ -45,7 +45,7 @@ input<-fluidRow(
                  column(width=6,textInput("outloc", "Output folder name:","",placeholder="Default: xwasresults")),
                  column(6,radioButtons("pairedanalysis", "Are there repeated measurements?", inline=FALSE,c("True - Paired (repeated measures)" = "TRUE","False - Unpaired (case-control & multiclass)" = "FALSE"),selected = "FALSE")),
                  column(6,radioButtons("compare.classes","Compare classes?",inline=FALSE,c("True"="TRUE","False"="FALSE"),selected = "FALSE")),
-                 column(6,radioButtons("exampledata","Use example data?",inline=FALSE,c("True"="TRUE","False"="FALSE"),selected = "FALSE"))
+column(6,radioButtons("exampledata","Use example data (NCI60: mRNA, miRNA, and protein)?",inline=FALSE,c("True"="TRUE","False"="FALSE"),selected = "FALSE"))
           )
   )
           #column(width=6,textInput("outloc", "Output folder name:","",placeholder="Default: xwasresults"))

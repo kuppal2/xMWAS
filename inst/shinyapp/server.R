@@ -265,7 +265,7 @@ server <- function(input, output) {
                      }else{
                        if(input$exampledata=="TRUE" & is.null(input$datasetA$name) & is.null(input$datasetB$name) & 
                           is.null(input$datasetC$name) & is.null(input$datasetD$name) & is.null(input$class_labels_file$name)){
-                         showNotification("You're using example data and it is processing now. Your results will be available for download shortly.", duration=600)
+                         showNotification("You're using example (NCI60) data and it is processing now. Your results will be available for download shortly (approx. 10 minutes).", duration=600)
                        }else{
                          showNotification("You selected TRUE for 'use example data'. You're not allowed to process both the example data and your datasets in the same time. Please select FALSE for 'use example data' if you want to analyze your datasets.", duration=15)
                        }

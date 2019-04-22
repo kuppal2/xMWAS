@@ -100,9 +100,7 @@ good_metabs<-which(abs_feat_rsds>rsd.filt.thresh)
 					
 Yome_data<-Yome_data[good_metabs,]
 
-print("here")
-print(dim(Yome_data))
-print(nrow(Yome_data))
+
 
 if(nrow(Yome_data)<1){
     
@@ -325,8 +323,6 @@ print(print_message)
 
 set.seed(seednum)
 
-#print(corthresh)
-#print(numsampX)
 
 p1=corPvalueStudent(cor=corthresh,n=numsampX)
 
@@ -334,9 +330,6 @@ p1=corPvalueStudent(cor=corthresh,n=numsampX)
 
 #calculate the association score
 net_result<-network_custom(mat=linn.pls, analysismode=plsmode,comp=numcomps)
-
-#cutoff=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-#color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE) #,silent=TRUE)
 
 
 #print(paste("1. Network analysis could not be performed: ",net_result,sep=""))
@@ -347,8 +340,6 @@ if(is(net_result,"try-error")){
     #print(paste("2. Network analysis could not be performed: ",net_result,sep=""))
     if(is(net_result,"try-error")){
         
-        #   net_result<-try(network(linn.pls, threshold=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-        #color.edge = net_edge_colors,lty.edge = c("solid", "solid"), lwd.edge = c(1, 1),show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
         net_result<-try(network(linn.pls, cutoff=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
         color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
 
@@ -370,38 +361,18 @@ save(net_result,file=fname)
 fname<-paste(filename,"pls",".Rda",sep="")
 save(linn.pls,file=fname)
 
-#save(n1,file="res1.Rda")
-#unlink("network_all.png")
 
 x<-net_result$M
 
 nrow_sim_mat<-dim(x)[1]
 ncol_sim_mat<-dim(x)[2]
 
-if(FALSE){
-if(ncol_sim_mat<2){
+if(length(x==0)){
     
-      
-    if(ncol(Y)<2){
-    colnames(net_result$M)<-colnames(linn.pls$Y)
-   colnames(x)<-colnames(linn.pls$Y)
-
-    }
-
-    
-}
-if(nrow_sim_mat<2){
-    
-     if(ncol(X)<2){
-    rownames(net_result$M)<-colnames(linn.pls$X)
-    rownames(x)<-colnames(linn.pls$X)
-
-     }
+    stop("Network analysis could not be performed.")
 }
 
-}
 
-#write.table(x,file="Int_allassociationscoresA.txt",sep="\t")
 
 
 simmat_colnames<-colnames(x)
@@ -421,10 +392,6 @@ rnames_ind<-as.numeric(as.character(rnames_ind))
 rnames_ind2<-metabname_1[rnames_ind]
 
 rownames(x)<-as.character(rnames_ind2)
-
-#fname1<-paste(Xname,"_x_",Yname,"_all_association_matrix.txt",sep="")
-
-#write.table(x,file=fname1,sep="\t")
 
 
 maxcor<-apply(abs(x),1,max)

@@ -3,8 +3,9 @@ library(xMWAS)
 
 #example dataset that includes metabolome, transcriptome, and cytokine data from the H1N1 mice study (Chandler 2016)
 data(exh1n1)
-data(classlabels_casecontrol) #example classlabels file for case vs control design
-data(classlabels_repeatmeasures) #example classlabels file for repeat measures design
+#data(classlabels) #example classlabels file for case vs control design
+#data(classlabels_repeatmeasures) #example classlabels file for repeat measures design
+
 xMat<-exh1n1$metabolome
 yMat<-exh1n1$transcriptome
 zMat<-exh1n1$cytokine
@@ -52,7 +53,7 @@ keepW=0.1*nrow(wMat), #select top 10% of the variables in the sPLS model; change
 pairedanalysis=FALSE, #set to TRUE if repeated measures study design
 optselect=TRUE, #perform optimal PLS componenet selection; TRUE or FALSE; set to FALSE for exact Pearson correlation calculation using PLS regression
 rawPthresh=0.05, #p-value threshold for correlation based on Student's t-test
-numcomps=10, #max number of PLS components to use; set to N-1 (N: number of samples) for exact Pearson correlation calculation using PLS regression
+numcomps=5, #max number of PLS components to use; set to N-1 (N: number of samples) for exact Pearson correlation calculation using PLS regression
 net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","pink"),
 Xname="Metab", #change the name of dataset X

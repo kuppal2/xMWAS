@@ -14,8 +14,8 @@ analysis<-fluidRow(
           conditionalPanel(
             condition = "input.xmwasmethod=='sPLS'",
             column(12,tags$div(
-column(6,numericInput(width="380px","keepX", "Maximum #datasetA variables to select in sPLS (e.g. 1000 out of 10000; top 10%):", 1000, min = 1, max = 100000)),
-              column(6,numericInput(width="380px","keepY", "Maximum #datasetB variables to select in sPLS (e.g. 1000 out of 10000; top 10%):", 1000, min = 1, max = 100000))
+column(6,numericInput(width="380px","keepX", "Maximum #datasetA variables to select in sPLS:", 1000, min = 1, max = 100000)),
+              column(6,numericInput(width="380px","keepY", "Maximum #datasetB variables to select in sPLS:", 1000, min = 1, max = 100000))
             )),
             column(12,tags$div(
               column(6,uiOutput("spls_dataC")),
