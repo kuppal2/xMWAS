@@ -3,9 +3,9 @@ function (mat, comp = NULL, blocks = c(1, 2), analysismode="regression")
 {
     
     save(mat,file="mat.Rda")
-    object.pls = c("pls", "spls", "mlspls")
-    object.rcc = "mixOmics::rcc"
-    object.blocks = c("sgcca", "rgcca")
+    object.pls = c("pls", "spls", "mlspls", "mlpls","mixo_mlpls","mixo_pls","mixo_spls")
+    object.rcc = c("rcc","mixOmics::rcc","mixo_rcc")
+    object.blocks = c("sgcca", "rgcca","mixo_sgcca")
     class.object = class(mat)
 
    
