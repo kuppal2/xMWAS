@@ -37,7 +37,7 @@ output<-"/Users/karanuppal/Downloads/xMWASv0.55output/" #change for your compute
 
 
 #call the run_xmwas() function:
-xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=outloc,
+xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=output,
 classlabels=NA,class_fname=NA,xmwasmethod="pls",plsmode="regression",
 max_xvar=nrow(xMat)*0.3, #select top 30% of the variabels in X dataset based on relative standard deviation; change according to your dataset
 max_yvar=nrow(yMat)*0.3, #select top 30% of the variabels in Y dataset based on relative standard deviation;  change according to your dataset
