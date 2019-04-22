@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 export(run_xmwas,do_rsd,plot_graph,get_sub_clusters,get_pairwise_cor,run_xmwas_child,launchShinyApp,network_custom,plot_visnet)
 import(mixOmics, WGCNA, snow, igraph, graph, RBGL, plyr, plsgenomics, shiny, shinyBS,visNetwork)
+=======
+export(run_xmwas,do_rsd,plot_graph,get_sub_clusters,get_pairwise_cor,run_xmwas_child)
+import(mixOmics, WGCNA, snow, igraph, graph, RBGL, plyr,plsgenomics)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 exportClasses(info)

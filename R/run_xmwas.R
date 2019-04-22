@@ -1,10 +1,14 @@
 run_xmwas <-
+<<<<<<< HEAD
 function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",
 plsmode="regression",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=NA,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,
 keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),
 Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("rectangle","circle","triangle","star","square","csquare","crectangle","vrectangle"),seednum=100,label.cex=0.3,
 vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,modularity.weighted=FALSE,
 html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.class.comparison=TRUE,layout.type="fr1",...){
+=======
+function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="spls",plsmode="canonical",max_xvar=5000,max_yvar=5000,max_zvar=5000,max_wvar=5000,rsd.filt.thresh=1,all.missing.thresh=NA,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("circle","rectangle","triangle","star"),seednum=100,label.cex=0.3,vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,...){
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     
     
     #defaults
@@ -12,14 +16,21 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     maxnodesperclass=10000000
     graphclustering=TRUE
     interactive=FALSE
+<<<<<<< HEAD
     max.connections.interactive=100
+=======
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     suppressWarnings(dir.create(outloc))
     setwd(outloc)
     print("#########################Starting processing now######################")
     
     sink(file="InputParameters.txt")
     
+<<<<<<< HEAD
     print("######xMWAS v0.55 Parameters##########")
+=======
+    print("######xMWAS v0.54 Parameters##########")
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
     print(paste("max_xvar: ",max_xvar,sep=""))
@@ -45,7 +56,11 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     print(paste("use.X.reference: ",use.X.reference,sep=""))
     print(paste("compare.classes: ",compare.classes,sep=""))
     print(paste("class.comparison.allvar: ",class.comparison.allvar,sep=""))
+<<<<<<< HEAD
     print(paste("layout.type: ",layout.type,sep=""))
+=======
+    
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     print("################")
     print("######Loaded packages in the current session##########")
     print(sessionInfo())
@@ -54,7 +69,10 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     d1<-date()
     d2<-gsub(d1,pattern=":| ",replacement="_")
     d3<-gsub(d2,pattern="__",replacement="_")
+<<<<<<< HEAD
     d3<-format(Sys.time(), "%b%d_%H_%M")
+=======
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     log_fname<-paste("Log",d3,".txt",sep="")
     
     print(paste("Program is running. Please check the logfile for runtime status: ",log_fname,sep=""))
@@ -70,6 +88,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     }
     
    
+<<<<<<< HEAD
    if(net_node_colors[1]=="default"){
        net_node_colors<-c("orange", "green","cyan","brown")
        
@@ -91,6 +110,9 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
        }
    }
     
+=======
+   
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     
     rnames<-rownames(Xome_data) #Xome_data[,c(1)]
     
@@ -144,6 +166,12 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     Yome_data<-as.data.frame(Yome_data)
     if(nrow(Yome_data)>1){
         Yome_data<-apply(Yome_data,2,as.numeric)
+<<<<<<< HEAD
+=======
+    }else{
+        #Yome_data<-as.numeric(Yome_data)
+        #Yome_data<-as.data.frame(Yome_data)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     }
     rownames(Yome_data)<-rnames
     
@@ -205,7 +233,12 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
             rnames<-rnames[-which(duplicated(rnames)==TRUE)]
         }
         rownames(Wome_data)<-rnames
+<<<<<<< HEAD
         
+=======
+        #rownames(Wome_data)<-Wome_data[,c(1)]
+        #Wome_data<-Wome_data[,-c(1)]
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
         Wome_data<-as.data.frame(Wome_data)
         
         if(nrow(Wome_data)>1){
@@ -263,12 +296,20 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     classlabels<-as.data.frame(classlabels)
     
     
+<<<<<<< HEAD
+=======
+    
+    
+    
+    
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     colors_sel_vec<-net_node_colors
     
     res<-new("list")
     
     suppressWarnings(
     if(is.na(classlabels)==FALSE){
+<<<<<<< HEAD
                 cnames<-colnames(classlabels)
                 cnames<-tolower(cnames)
 
@@ -297,10 +338,41 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
                 
                 print("Class levels:")
                 print(class_levels)
+=======
+    cnames<-colnames(classlabels)
+    cnames<-tolower(cnames)
+
+    colnames(classlabels)<-cnames
+        
+        
+    
+    class_check<-which(cnames=="class") || which(cnames=="factor1")
+    if(length(class_check)<1){
+        
+        
+        stop("No Class column found in the class labels file. Please label the class column as \"Class\" or \"Factor1\".")
+    }
+    
+    class_check1<-which(cnames=="class")
+    
+    if(length(class_check1)<1){
+        
+        class_levels<-levels(classlabels$factor1)
+    }else{
+        class_levels<-levels(classlabels$class)
+    }
+
+
+    classlabels<-as.data.frame(classlabels)
+    
+    print("Class levels:")
+    print(class_levels)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
     
     }else{
         
+<<<<<<< HEAD
             class_levels<-c("A")
             compare.classes=FALSE
          
@@ -323,10 +395,30 @@ if(globalcomparison==TRUE){
 	label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,
 	use.X.reference=use.X.reference,removeRda=removeRda,design=design,missing.val=missing.val,modularity.weighted=modularity.weighted,html.selfcontained=html.selfcontained,
 	plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
+=======
+        class_levels<-{}
+    }
+    )
+    
+    if(pairedanalysis==TRUE){
+        
+        
+        classlabels_temp<-classlabels[,-c(2)] #[,c(class_check)]
+        classlabels_temp<-as.data.frame(classlabels_temp)
+        
+        
+        design<-classlabels[,-c(1)]
+        
+        
+        
+        suppressWarnings(
+        res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=TRUE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design,missing.val=missing.val)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
         )
     }else{
         
     suppressWarnings(
+<<<<<<< HEAD
     res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels,
     xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,
     corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,
@@ -335,6 +427,9 @@ if(globalcomparison==TRUE){
     vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,
     use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val,modularity.weighted=modularity.weighted,
     html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
+=======
+    res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=NA,centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 )
 
     }
@@ -347,6 +442,7 @@ if(globalcomparison==TRUE){
     Wome_data<-res[[1]]$Wome_data
     
     }
+<<<<<<< HEAD
 }
 #save(res[[1]],file="allclasses.Rda")
     
@@ -355,11 +451,22 @@ if(compare.classes==TRUE){
         if(length(class_levels)>1){
 
         for(i in 1:length(class_levels)){
+=======
+
+#save(res[[1]],file="allclasses.Rda")
+    
+    # rm(list=ls())
+    if(compare.classes==TRUE){
+if(length(class_levels)>1){
+
+for(i in 1:length(class_levels)){
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     
     outloctemp<-paste(outloc,"/",class_levels[i],sep="")
     
     if(pairedanalysis==TRUE){
         
+<<<<<<< HEAD
         if(dim(classlabels)[2]==3){
             
                 classlabels_temp<-classlabels[,-c(2)]  #[,c(class_check)]
@@ -472,6 +579,28 @@ if(compare.classes==TRUE){
                     
                     
                 }
+=======
+       
+        classlabels_temp<-classlabels[,-c(2)]  #[,c(class_check)]
+        classlabels_temp<-as.data.frame(classlabels_temp)
+        
+        design<-classlabels[,-c(1)]
+        
+        print(head(classlabels_temp))
+        
+        suppressWarnings(
+        res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=FALSE,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=design,missing.val=missing.val)
+        )
+    }else{
+        
+        if(dim(classlabels)[2]>2){
+            
+            stop("More than two columns detected in the class labels file. Please set paired analysis=TRUE for repeated measures.")
+        }
+        suppressWarnings(
+    res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,numcomps=numcomps,net_edge_colors=net_edge_colors,net_node_colors=net_node_colors,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=net_node_shape,all.missing.thresh=all.missing.thresh,maxnodesperclass=maxnodesperclass,seednum=seednum,label.cex=label.cex,vertex.size=vertex.size,graphclustering=graphclustering,interactive=interactive,max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val)
+    )
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     }
 
 
@@ -503,12 +632,16 @@ write.table(sm,file="README.txt",sep="\t",row.names=FALSE)
 
 graphclustering=TRUE
 
+<<<<<<< HEAD
 #save(res,file="resall.Rda")
+=======
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 if(graphclustering==TRUE){
 
 #if multiple classes
 if(length(res)>1){
+<<<<<<< HEAD
     
                 if(globalcomparison==TRUE){
                         res_start_index<-1
@@ -608,6 +741,75 @@ if(length(res)>1){
     }else{
         matrix_centrality={}
     }
+=======
+
+node_names_vec<-{}
+for(r1 in 1:length(res)){
+    temp1<-res[[r1]]$network_analysis[order(res[[r1]]$network_analysis$Name),]
+   
+    if(nrow(temp1)>0){
+        
+        node_names_vec<-c(node_names_vec,as.character(res[[r1]]$network_analysis$Name))
+    }
+}
+node_names_vec<-unique(node_names_vec)
+
+
+matrix_centrality<-matrix(NA,nrow=length(node_names_vec),ncol=length(res))
+
+  rownames(matrix_centrality)<-as.character(node_names_vec)
+
+  colnames(matrix_centrality)<-c("allClasses",class_levels)
+
+
+    for(i in 1:length(res)){
+    
+    atemp<-res[[i]]$network_analysis[order(res[[i]]$network_analysis$Name),]
+    
+    
+    for(rownum in 1:dim(atemp)[1]){
+        index_1<-which(node_names_vec%in%(atemp$Name[rownum]))
+        
+        matrix_centrality[index_1,i]<-atemp$centrality_vec[rownum]
+        
+        }
+    }
+
+}else{
+    
+    a1<-res[[1]]$network_analysis[order(res[[1]]$network_analysis$Name),]
+    
+    a1<-as.data.frame(a1)
+    
+    matrix_centrality<-matrix(NA,nrow=dim(a1)[1],ncol=length(res))
+    
+    matrix_centrality[,1]<-a1$centrality_vec
+    
+    rownames(matrix_centrality)<-as.character(a1$Name)
+
+    colnames(matrix_centrality)<-c("allClasses")
+
+    
+}
+if(length(res)>1){
+    delta_centrality<-{}
+    name_vec<-{}
+    for(i in 3:length(res)){
+        delta_centrality<-cbind(delta_centrality,abs(matrix_centrality[,i]-matrix_centrality[,2]))
+        name_vec<-c(name_vec,paste(class_levels[(i-1)],"_vs_",class_levels[(1)],sep=""))
+        
+        
+
+    }
+    colnames(delta_centrality)<-name_vec
+    
+    matrix_centrality<-cbind(matrix_centrality,delta_centrality)
+    
+    
+}
+setwd(outloctemp)
+write.table(matrix_centrality,file="class-wise_centrality_matrix.txt",sep="\t")
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 }else{
     matrix_centrality=NA
 }

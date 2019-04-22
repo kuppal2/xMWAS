@@ -1,5 +1,9 @@
 get_sub_clusters <-
+<<<<<<< HEAD
 function(df=NA,net_node_colors=c("orange", "green","blue"),rownames_vec=NA,colnames_vec=NA,sat=0.00001,Xname="X",Yname="Y",Zname=NA,Wname=NA,cormatrix=NA,corthresh=0.4,seednum=100,layout.type="fr1"){
+=======
+function(df=NA,net_node_colors=c("orange", "green","blue"),rownames_vec=NA,colnames_vec=NA,sat=0.00001,Xname="X",Yname="Y",Zname=NA,Wname=NA,cormatrix=NA,corthresh=0.4,seednum=100){
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     
    # df[,3]<-abs(df[,3])
 
@@ -88,7 +92,11 @@ function(df=NA,net_node_colors=c("orange", "green","blue"),rownames_vec=NA,colna
     
     
 	#png("plot1.png", height=6, width=12, units="in", res=200)
+<<<<<<< HEAD
 	graph_res<-plot_graph(df=dfsub,net_node_colors=net_node_colors,net_node_shape=net_node_shape,graphmethod="radial",label.cex=0.3,filename=fname1,seednum=seednum,layout.type=layout.type)
+=======
+	plot_graph(df=dfsub,net_node_colors=net_node_colors,graphmethod="radial",label.cex=0.3,filename=fname1,seednum=seednum)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 	
 
 	#pdf(fname)

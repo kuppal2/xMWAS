@@ -1,8 +1,13 @@
 plot_graph <-
+<<<<<<< HEAD
 function(df,net_node_colors=c("orange", "green","blue","pink"),graphmethod="radial",label.cex=0.3,filename="",
 net_node_shape=c("rectangle","circle","triangle","star","square","csquare","crectangle","vrectangle"),maxnodesperclass=100,
 seednum=100,vertex.size=6,interactive=TRUE,Xname=NA,Yname=NA,Zname=NA,Wname=NA,classname=NA,layout.type="fr1"){
  
+=======
+function(df,net_node_colors=c("orange", "green","blue","pink"),graphmethod="radial",label.cex=0.3,filename="",net_node_shape=c("rectangle","circle","triangle","star"),maxnodesperclass=100,seednum=100,vertex.size=6,interactive=TRUE,Xname=NA,Yname=NA,Zname=NA,Wname=NA,classname=NA){
+
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 	df<-as.data.frame(df)
     
     df$from<-as.character(df$from)
@@ -12,6 +17,13 @@ seednum=100,vertex.size=6,interactive=TRUE,Xname=NA,Yname=NA,Zname=NA,Wname=NA,c
     
 	df<-df[order(df$weight,df$to),] #decreasing=FALSE),]
 	
+<<<<<<< HEAD
+=======
+    #dftemp<-cbind(df[,2],df[,1],df[,3])
+    #colnames(dftemp)<-colnames(df)
+    #df<-rbind(df,dftemp)
+    
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     nodes_vec_class<-gsub(df$to,pattern="[0-9]*",replacement="") #c("X","Y","Z","W") #
 	
 	dfall<-df
@@ -90,6 +102,7 @@ if(length(node_index)>0){
         names(nAttrs$shape)<-nodes_vec #(sg)
         #nAttrs$size<-nodes_size_vec
         #names(nAttrs$size)<-nodes_vec #(sg)
+<<<<<<< HEAD
         # clips as a circle
         add_shape("triangle",plot=mytriangle) #, clip=shapes("circle")$clip,plot=mytriangle)
         # no clipping, edges will be below the vertices anyway
@@ -100,15 +113,35 @@ if(length(node_index)>0){
 	edge_colors<-rep("blue",length(E(sg)$weight))
 	edge_colors[which(E(sg)$weight>0)]<-"red"
    
+=======
+
+	if(graphmethod=="radial"){
+	edge_colors<-rep("blue",length(E(sg)$weight))
+	edge_colors[which(E(sg)$weight>0)]<-"red"
+
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 	V(sg)$color<-nodes_col_vec
 	V(sg)$shape<-nodes_shape_vec
 	V(sg)$label.cex<-label.cex
 
+<<<<<<< HEAD
         V(sg)$vertex.size<-vertex.size
 	E(sg)$color=edge_colors
 
 	set.seed(seednum)
 
+=======
+    V(sg)$vertex.size<-vertex.size
+	E(sg)$color=edge_colors
+
+	set.seed(seednum)
+	#plot(sg, vertex.label = V(sg)$name)
+	#plot(sg, vertex.label = V(sg)$name,edge.color=edge_colors,layout = layout.fruchterman.reingold,vertex.size = 10,main="Integrative network")
+
+
+        #mtext("Blue: -ve correlation",side=1,col="blue")
+        #mtext("layout.fruchterman.reingold, area = vcount^2", side=1)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 	if(is.na(maxnodesperclass)==TRUE){
 		cytoscape_fname<-paste(filename,"cytoscapeall.gml",sep="")
@@ -124,12 +157,21 @@ if(length(node_index)>0){
 	
     fname1<-paste(filename,"_linkmatrix.txt",sep="")
     write.table(df,file=fname1,sep="\t",row.names=FALSE)
+<<<<<<< HEAD
    
+=======
+    #  vertex.size=7
+    #V(sg)$label.cex<-0.25
+    
+    
+    #if(is.na(maxnodesperclass)==FALSE)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
     {
         
         set.seed(seednum)
         #check_plot<-try(plot.igraph(sg,vertex.size=vertex.size,vertex.label=V(sg)$name,layout=layout.fruchterman.reingold(sg, niter=10000),edge.color=edge_colors),silent=TRUE)
         
+<<<<<<< HEAD
         l = get_layout(sg,layout.type=layout.type) #layout.fruchterman.reingold(sg, weights = (1 -abs(E(sg)$weight)))
 	
 	#l = layout.lgl(sg) #layout.fruchterman.reingold(sg, weights = (abs(E(sg)$weight)))
@@ -139,6 +181,11 @@ if(length(node_index)>0){
 	
 	 check_plot<-plot.igraph(sg,layout=l,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors)
 	
+=======
+        l = layout.fruchterman.reingold(sg, weights = (1 -abs(E(sg)$weight)))
+        set.seed(seednum)
+        check_plot<-try(plot.igraph(sg,layout=l,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors),silent=TRUE)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
         
 	if(is(check_plot,"try-error")){
         
@@ -147,7 +194,11 @@ if(length(node_index)>0){
         set.seed(seednum)
         # plot.igraph(sg,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors)
         
+<<<<<<< HEAD
         plot.igraph(sg,layout=l,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors) #,silent=TRUE)
+=======
+        try(plot.igraph(sg,layout=l,vertex.size=vertex.size,vertex.label=V(sg)$name,edge.color=edge_colors),silent=TRUE)
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 
 
 	}
@@ -162,6 +213,7 @@ if(length(node_index)>0){
     
     mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",line=0,side=1,cex=0.8,adj=0)
     
+<<<<<<< HEAD
     mtext_community<-paste("(Nodes) ",net_node_shape[1],": ",Xname,"; ",net_node_shape[2],": ",Yname,sep="")
     if(is.na(Zname)==FALSE){
         mtext_community<-paste(mtext_community,"; ",net_node_shape[3],": ",Zname,sep="")
@@ -169,6 +221,15 @@ if(length(node_index)>0){
     }
     if(is.na(Wname)==FALSE){
         mtext_community<-paste(mtext_community,"; ",net_node_shape[4],": ",Wname,sep="")
+=======
+    mtext_community<-paste("(Nodes) Rectangle: ",Xname,"; Circle: ",Yname,sep="")
+    if(is.na(Zname)==FALSE){
+        mtext_community<-paste(mtext_community,"; Triangle: ",Zname,sep="")
+        
+    }
+    if(is.na(Wname)==FALSE){
+        mtext_community<-paste(mtext_community,"; Star: ",Wname,sep="")
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
         
     }
     
@@ -229,5 +290,9 @@ links$color <- edge_colors
             set.seed(seednum)
             plot(sg,nodeAttrs=nAttrs)
         }
+<<<<<<< HEAD
 	return(list(nodes=nodes,links=links,sg=sg,link_matrix=df,layout_matrix=l))
+=======
+	return(list(nodes=nodes,links=links,sg=sg))
+>>>>>>> 7d77755391041ddde01723e0f0155346233a0ed4
 }
