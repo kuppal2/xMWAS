@@ -40,8 +40,8 @@ output<-"/Users/karanuppal/Downloads/xMWASv0.55output/" #change for your compute
 #call the run_xmwas() function:
 xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=output,
 classlabels=NA,class_fname=NA,xmwasmethod="pls",plsmode="regression",
-max_xvar=nrow(xMat)*0.05, #select top 5% of the variabels in X dataset based on relative standard deviation; change according to your dataset
-max_yvar=nrow(yMat)*0.05, #select top 5% of the variabels in Y dataset based on relative standard deviation;  change according to your dataset
+max_xvar=nrow(xMat)*0.1, #select top 5% of the variabels in X dataset based on relative standard deviation; change according to your dataset
+max_yvar=nrow(yMat)*0.1, #select top 5% of the variabels in Y dataset based on relative standard deviation;  change according to your dataset
 max_zvar=nrow(zMat)*1, #select all variabels in Z dataset based on relative standard deviation;  change according to your dataset
 max_wvar=nrow(wMat)*1, #select all variabels in W dataset based on relative standard deviation;  change according to your dataset
 rsd.filt.thresh=1,

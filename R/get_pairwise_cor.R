@@ -367,7 +367,7 @@ x<-net_result$M
 nrow_sim_mat<-dim(x)[1]
 ncol_sim_mat<-dim(x)[2]
 
-if(length(x==0)){
+if(length(x)==0){
     
     stop("Network analysis could not be performed.")
 }
