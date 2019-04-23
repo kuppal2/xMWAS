@@ -8,7 +8,7 @@ analysis<-fluidRow(
                    )),
           column(12,tags$div(
                         column(6,numericInput(width="300px","numcomps", "Number of components to use in PLS model:", 5, min = 1, max = 100)),
-                        column(6,radioButtons("optselect", "Find optimal number of PLS components?", inline=TRUE,c(True (may increase run time) = "TRUE",False = "FALSE"),selected = "FALSE"))
+column(6,radioButtons("optselect", "Find optimal number of PLS components?", inline=TRUE,c(True; may increase run time = "TRUE",False = "FALSE"),selected = "FALSE"))
                     )
           ),
           conditionalPanel(
