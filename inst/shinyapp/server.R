@@ -498,7 +498,7 @@ server <- function(input, output) {
                            max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                            keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                            numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                           Xname=Xname,Yname=Yname,Zname=NA,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+                           Xname=Xname,Yname=Yname,Zname=NA,Wname=NA,net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),
                            all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                            interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                            modularity.weighted=TRUE,
@@ -683,7 +683,7 @@ server <- function(input, output) {
                              max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                              keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                              numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                             Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+                             Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),
                              all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                              interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                              modularity.weighted=TRUE,
@@ -696,7 +696,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
@@ -894,7 +894,7 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
                                max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                                keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                                numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                               Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=c("square","circle","triangle","star"),
+                               Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),
                                all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                                interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                                modularity.weighted=TRUE,
@@ -907,7 +907,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
@@ -1012,7 +1012,7 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
             #                     max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=NA,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
             #                     keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=NA,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
             #                     numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-            #                     Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+            #                     Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),
             #                     all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
             #                     interactive=input$interactive,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=input$removeRda)      
 
@@ -1020,8 +1020,8 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
 				classlabels=class_labels_file,xmwasmethod=xmwasmethod,plsmode=input$plsmode,
 				max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
 				keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
-				numcomps=numcomps,net_edge_colors=c("blue","red"), net_node_colors=c("orange", "green","cyan","gold"),
-				Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA, net_node_shape=c("square","circle","triangle","star"),
+				numcomps=numcomps,net_edge_colors=c("blue","red"), net_node_colors=c("orange","green","cyan","gold"),
+				Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA, net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),
 				all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,
 				vertex.size=input$vertex_size,graphclustering=TRUE,interactive=FALSE,max_connections=max_connections,
                 centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,modularity.weighted=TRUE,
@@ -1034,7 +1034,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c(input$net_node_shapeA,input$net_node_shapeB,input$net_node_shapeC,input$net_node_shapeD),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
