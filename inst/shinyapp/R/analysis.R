@@ -4,7 +4,7 @@ analysis<-fluidRow(
           column(12,tags$h4('Pairwise integrative analysis')),
           column(12,tags$div(
 column(6,selectInput(width="250px","xmwasmethod","Choose a data integration method:",c("PLS: Partial least squares regression","sPLS: sparse PLS","OPLS: orthogonal PLS","RCC: regularized canonical correlation"))),
-                   column(6,selectInput(width="150px","plsmode","Choose PLS mode (not applicable to RCC):",c("regression","canonical")))
+                   column(10,selectInput(width="150px","plsmode","Choose PLS mode (not applicable to RCC option):",c("regression","canonical")))
                    )),
           column(12,tags$div(
                         column(6,numericInput(width="300px","numcomps", "Number of components to use in PLS model:", 5, min = 1, max = 100)),
