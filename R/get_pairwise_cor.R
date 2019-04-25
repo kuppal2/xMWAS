@@ -139,18 +139,15 @@ if(numsampX!=numsampY){
 
 
 
-metabname_1<-rownames(Xome_data) #paste(Xome_data[,1],sep="_")
-microbname_1<-rownames(Yome_data) #Yome_data[,1]
-
-#save(metabname_1,file="metabname_1.Rda")
-#save(microbname_1,file="microbname_1.Rda")
+matrixA_1<-rownames(Xome_data) 
+matrixB_1<-rownames(Yome_data) 
 
 
-metabname<-paste(tempXname,seq(1,dim(Xome_data)[1]),sep="")
-microbname<-paste(tempYname,seq(1,dim(Yome_data)[1]),sep="")
+matrixA<-paste(tempXname,seq(1,dim(Xome_data)[1]),sep="")
+matrixB<-paste(tempYname,seq(1,dim(Yome_data)[1]),sep="")
 
-id_mapping_mat1<-cbind(metabname_1,metabname)
-id_mapping_mat2<-cbind(microbname_1,microbname)
+id_mapping_mat1<-cbind(matrixA_1,matrixA)
+id_mapping_mat2<-cbind(matrixB_1,matrixB)
 
 id_mapping_mat<-rbind(id_mapping_mat1,id_mapping_mat2)
 
@@ -158,8 +155,7 @@ id_mapping_mat<-as.data.frame(id_mapping_mat)
 
 colnames(id_mapping_mat)<-c("Name","Node")
 
-#save(keepX,file="keepX1.Rda")
-#save(keepY,file="keepY1.Rda")
+
 
 if(is.na(keepX)==TRUE){
     
@@ -184,16 +180,6 @@ X<-t(X)
 Y<-t(Y)
 
 
-if(FALSE)
-{
-save(id_mapping_mat1,file="id_mapping_mat1.Rda")
-save(id_mapping_mat2,file="id_mapping_mat2.Rda")
-save(id_mapping_mat,file="id_mapping_mat.Rda")
-save(X,file="X.Rda")
-save(Y,file="Y.Rda")
-}
-
-
 numcomps_parent=numcomps
 
 numdims_min=min(c(dim(X)[2],dim(Y)[2]))
@@ -203,20 +189,16 @@ if(is.na(numcomps)==TRUE){
 	numcomps=numdims_min
 }
 
-if(optselect==TRUE){
-	numcomps<-pls.regression.cv(Xtrain=X,Ytrain=Y,ncomp=numcomps,alpha=2/3)
-	optselect=FALSE
-}
 
-colnames(X)<-metabname
-colnames(Y)<-microbname
-#save(X,file="X1.Rda")
-#save(Y,file="Y2.Rda")
-#save(keepX,file="keepX2.Rda")
-#save(keepY,file="keepY2.Rda")
+colnames(X)<-matrixA
+colnames(Y)<-matrixB
+
 save(numcomps,file="numcomps.Rda")
 
-
+if(xmwasmethod=="o1pls" || xmwasmethod=="opls"){
+    
+    xmwasmethod="o1pls"
+}
 
 {
 
@@ -241,12 +223,7 @@ save(numcomps,file="numcomps.Rda")
 				linn.pls<-try(do_plsda(X=X,Y=Y,oscmode="o1pls",numcomp=numcomps,keepX=keepX[1],keepY=keepY[1],sparseselect=TRUE,analysismode=plsmode,pairedanalysis=pairedanalysis,optselect=optselect,design=classlabels),silent=TRUE)
 			    }else{
 			    
-                    #  if(xmwasmethod=="plsr"){
-                        #linn.pls<-pls::plsr(Y~X,ncomp=numcomps)
-			    
-					
-                    #}else
-                    {
+                
 					
 							if(xmwasmethod=="splsopt"){
 							
@@ -272,21 +249,24 @@ save(numcomps,file="numcomps.Rda")
 
 							}else{
 								if(xmwasmethod=="rcc"){
+								
+									if(numcomps>numdims_min){
 										
-                                        #using shrinkage method;
+										numcomps=numdims_min
+									}
+										
+									#using shrinkage method;
+									linn.pls<-mixOmics::rcc((X),(Y),ncomp=numcomps,method="shrinkage")
+									#save(linn.pls,file="linn.pls1.Rda")
                                     
-                                        
-                                        linn.pls<-mixOmics::rcc((X),(Y),ncomp=numcomps,method="shrinkage")
-                                        save(linn.pls,file="linn.pls1.Rda")
+								}else{
                                     
-                                }else{
+												print(paste("Invalid option for argument xmwasmethod: ",xmwasmethod,sep=""))
                                     
-                                    print(paste("Invalid option for argument xmwasmethod: ",xmwasmethod,sep=""))
-                                    
-                                }
+									}
 								
 							}
-					}
+					
 			    }
 			}
 		    }
@@ -374,14 +354,17 @@ if(length(x)==0){
 
 
 
-
+if(ncol(x)>1){
 simmat_colnames<-colnames(x)
-
+}else{
+	
+	simmat_colnames<-colnames(linn.pls$Y)
+}
 simmat_col_ind<-gsub(simmat_colnames,pattern=tempYname,replacement="")
 
-microbname_1_simmat<-microbname_1[as.numeric(as.character(simmat_col_ind))]
+matrixB_1_simmat<-matrixB_1[as.numeric(as.character(simmat_col_ind))]
 
-colnames(x)<-as.character(microbname_1_simmat)
+colnames(x)<-as.character(matrixB_1_simmat)
 
 rnames1<-rownames(x)
 
@@ -389,7 +372,7 @@ rnames_ind<-gsub(rnames1,pattern=tempXname,replacement="")
 
 rnames_ind<-as.numeric(as.character(rnames_ind))
 
-rnames_ind2<-metabname_1[rnames_ind]
+rnames_ind2<-matrixA_1[rnames_ind]
 
 rownames(x)<-as.character(rnames_ind2)
 
@@ -431,17 +414,11 @@ rownames(x)<-as.character(rnames1)
 colnames(x)<-as.character(simmat_colnames)
 #highcorsimMat=x
 
-#if(corthresh>max(x)){
-#   print(paste("Max correlation is: ",max(x),sep=""))
-#   stop(paste("Please lower the correlation threshold.",sep=""))
-    #break;
-    #}
+
 rownames(x)<-as.character(rnames_ind2)
-colnames(x)<-as.character(microbname_1_simmat)
+colnames(x)<-as.character(matrixB_1_simmat)
 
 
-#cytoscape_fname<-paste(filename,"all_mzclusternetworkthreshold",corthresh,"_",numcomps,"pcs_cytoscape.gml",sep="")
-#write.graph(net_result$gR, file =cytoscape_fname, format = "gml")
 
 x<-round(x,4)
 
@@ -450,8 +427,6 @@ write.table(x,file=fname,sep="\t")
 
 xtemp<-x[which(maxcor>=corthresh),which(maxcor1>=corthresh),drop=FALSE]
 
-
-#xtemp[which(abs(xtemp)<corthresh)]<-0
 
 
 xtemp<-cbind(rnames1[which(maxcor>=corthresh)],xtemp)
@@ -550,8 +525,9 @@ if(ncol_sim_mat>1){
 #edge_matrix<-apply(netsub,1,function(x){which(abs(x)>corthresh)})
 
 #save(net_result,file="net_result.Rda")
-#save(edge_matrix,file="edge_matrix.Rda")
-#if(length(ncol(edge_matrix))>0)
+save(edge_matrix,file="edge_matrix.Rda")
+save(ncol_sim_mat,file="ncol_sim_mat.Rda")
+
 
 mat_cnames<-colnames(net_result$M)
 
@@ -564,62 +540,71 @@ if(length(edge_matrix)>0){
 
 	if(ncol_sim_mat>1){
 		    
-		if(is.matrix(edge_matrix)==FALSE){
-		col_A<-names(edge_matrix)
+			if(is.matrix(edge_matrix)==FALSE){
+				col_A<-names(edge_matrix)
 
-		edge_matrix_1<-{}
-
-
-		edge_matrix_1<-ldply(1:length(edge_matrix),function(r){
-		   
-		    col_B<-mat_cnames[edge_matrix[[r]]]
-		    temp_edge_matrix<-{}
-		    if(length(col_B)>0){
-		       
-			
-			
-			temp_edge_matrix<-rbind(temp_edge_matrix,cbind(col_A[r],col_B))
-			
-			
-			temp_edge_matrix<-as.data.frame(temp_edge_matrix)
-		       
-			return(temp_edge_matrix)
-		    }
-		})
+				edge_matrix_1<-{}
 
 
-		}else{
-		    
-		    col_A<-colnames(edge_matrix)
-		    
-		    edge_matrix_1<-{}
-		    for(r in 1:length(col_A)){
-			#for(r in 1:nrow(edge_matrix)){
-			
-			#col_B<-names(edge_matrix[[r]])
-			
-			
-			
-			for(s in 1:nrow(edge_matrix)){
+				edge_matrix_1<-ldply(1:length(edge_matrix),function(r){
+				   
+				    col_B<-mat_cnames[edge_matrix[[r]]]
+				    temp_edge_matrix<-{}
+				    if(length(col_B)>0){
+				       
+					
+					
+					temp_edge_matrix<-rbind(temp_edge_matrix,cbind(col_A[r],col_B))
+					
+					
+					temp_edge_matrix<-as.data.frame(temp_edge_matrix)
+				       
+					return(temp_edge_matrix)
+				    }
+				})
+
+
+			}else{
 			    
-			    col_B<-mat_cnames[edge_matrix[s,r]]
-			    edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B))
+			    col_A<-colnames(edge_matrix)
+			    
+			    edge_matrix_1<-{}
+			    for(r in 1:length(col_A)){
+							
+				for(s in 1:nrow(edge_matrix)){
+				    
+				    col_B<-mat_cnames[edge_matrix[s,r]]
+				    edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B))
+				}
+			    }
+			    
 			}
-		    }
-		    
-		}
 
 		}else{
 		    
-		    col_A<-rownames(net_result$M)[edge_matrix]
+		    col_A<-rownames(net_result$M)
+		    col_A<-col_A[edge_matrix]
+			col_B<-colnames(linn.pls$Y)
 		    
 		    edge_matrix_1<-{}
-		    for(r in 1:length(col_A)){
-
-			    col_B<-colnames(net_result$M)
-			    edge_matrix_1<-rbind(edge_matrix_1,cbind(col_A[r],col_B))
-			
-		    }
+	
+		    
+			edge_matrix_1<-ldply(1:length(edge_matrix),function(r){
+			   
+			  
+			    temp_edge_matrix<-{}
+			    if(length(col_B)>0){
+			       
+				
+				
+				temp_edge_matrix<-rbind(temp_edge_matrix,cbind(col_A[r],col_B))
+				
+				
+				temp_edge_matrix<-as.data.frame(temp_edge_matrix)
+			       
+				return(temp_edge_matrix)
+			    }
+			})
 		    
 		}
 
@@ -632,10 +617,10 @@ if(length(edge_matrix)>0){
 	
 			
 				
-		    #save(edge_matrix_1,file="edge_matrix_1.Rda")
-		    #save(rnames1,file="rnames1.Rda")
-		    #save(simmat_colnames,file="simmat_colnames.Rda")
-		    #save(net_result,file="net_result.Rda")
+		   # save(edge_matrix_1,file="edge_matrix_1.Rda")
+		  #  save(rnames1,file="rnames1.Rda")
+		   # save(simmat_colnames,file="simmat_colnames.Rda")
+		  #  save(net_result,file="net_result.Rda")
 		    
 		 
 		    g1<-graph.data.frame(edge_matrix_1,directed=FALSE) #net_result$gR
@@ -644,21 +629,34 @@ if(length(edge_matrix)>0){
 		    g2<-get.edgelist(g1)
 		    
 		    weight_vec<-{}
-		    #for(rnum in 1:dim(g2)[1]){
-		    weight_vec<-lapply(1:dim(g2)[1],function(rnum){
+		  
+		    
+		    if(ncol_sim_mat>1){
+			    weight_vec<-lapply(1:dim(g2)[1],function(rnum){
+				
+				X_name<-which(rnames1==g2[rnum,1]) #as.numeric(as.character(gsub(g2[rnum,1],pattern=Xname,replacement="")))
+				Y_name<-which(simmat_colnames==g2[rnum,2]) #as.numeric(as.character(gsub(g2[rnum,2],pattern=Yname,replacement="")))
+				
+				
+				return(net_result$M[X_name,Y_name])
+			    })
+		    }else{
 			
-			X_name<-which(rnames1==g2[rnum,1]) #as.numeric(as.character(gsub(g2[rnum,1],pattern=Xname,replacement="")))
-			Y_name<-which(simmat_colnames==g2[rnum,2]) #as.numeric(as.character(gsub(g2[rnum,2],pattern=Yname,replacement="")))
-			
-			
-			return(net_result$M[X_name,Y_name])
-		    })
+				  weight_vec<-lapply(1:dim(g2)[1],function(rnum){
+				
+				X_name<-which(rnames1==g2[rnum,1]) #as.numeric(as.character(gsub(g2[rnum,1],pattern=Xname,replacement="")))
+				Y_name<-which(simmat_colnames==g2[rnum,2]) #as.numeric(as.character(gsub(g2[rnum,2],pattern=Yname,replacement="")))
+				
+				
+				return(net_result$M[X_name,Y_name])
+			    })
+		    }
 		    weight_vec<-unlist(weight_vec)
 		    
 		    df<-data.frame(from=g2[,1],to=g2[,2],weight=weight_vec)
 		    
 		    rownames(x)<-as.character(rnames_ind2)
-		    colnames(x)<-as.character(microbname_1_simmat)
+		    colnames(x)<-as.character(matrixB_1_simmat)
 		    
     
 

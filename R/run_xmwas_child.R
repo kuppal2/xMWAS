@@ -11,10 +11,9 @@ html.selfcontained = TRUE,plot.pairwise=TRUE,max.connections.interactive=100,lay
 suppressWarnings(dir.create(outloc))
 setwd(outloc)
 
-save(plot.pairwise,file="plot.pairwise.Rda")
+
 if(is.na(classname)==TRUE){
     print(paste("Analyzing all samples",sep=""))
-    #print(classname)
     
     fname_id_mapping<-paste("NodeID_Name_mapping.txt",sep="")
     
@@ -484,7 +483,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
            
        }
        
-       #pdf(fname)
+       
        res1<-plot_graph(df=df_matrix,net_node_colors=net_node_colors,net_node_shape=net_node_shape,graphmethod="radial",filename=fname,maxnodesperclass=NA,seednum=seednum,
        label.cex=label.cex,vertex.size=vertex.size,interactive=interactive,Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,classname=classname,layout.type=layout.type)
        dev.off()
@@ -711,7 +710,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
               
               
               #plot_visnet(sg,df_matrix,main_text="Integrative network",Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,id_mapping_mat=id_mapping_mat,html.selfcontained = html.selfcontained,max.connections.interactive=max.connections.interactive)
-               if(nrow(df_matrix)<=1000){
+               if(nrow(df_matrix)<=10000){
                temp_sg<-sg
                V(temp_sg)$color<-sg$palette[membership(wc)]
                
@@ -751,7 +750,6 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                         #normalize to 0 to 1 scale
                         centrality_vec<-(centrality_vec-min(centrality_vec,na.rm=TRUE))/(max(centrality_vec,na.rm=TRUE)-min(centrality_vec,na.rm=TRUE))
                         
-                        #centrality_vec/max(centrality_vec,na.rm=TRUE)
                         
                         cent_vec_mat<-cbind(names(centrality_vec),centrality_vec)
                         

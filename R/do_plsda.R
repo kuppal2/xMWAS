@@ -24,7 +24,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
   #keepX<-min(keepX,nrow(X))
   #keepY<-min(keepY,nrow(Y))
   
-  opt_comp=1
+  opt_comp=numcomp
   
    if(is.na(numcomp)==TRUE){
    
@@ -35,18 +35,19 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
        
        min_num_var=min(c(dim(X)[2],dim(Y)[2]))
        
-       if(numcomp>min_num_var){
+       if(numcomp>=min_num_var){
            numcomp=min_num_var
            
+	  
        }
-       
+        optselect=FALSE
    }
    
   
     if(dim(X)[2]>1){
         if(optselect==TRUE){
            
-           #find optimal number of components
+		    #find optimal number of components
                     set.seed(123)
                     opt_comp<-pls.regression.cv(Xtrain=X, Ytrain=Y,  ncomp=c(1:numcomp), nruncv=10, alpha=2/3)
                 
@@ -68,7 +69,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
                 #numcomp=min(c(dim(X),dim(Y)))-1
                 opt_comp=numcomp
                 
-                print(opt_comp)
+                
             }else{
                 opt_comp<-numcomp
             }

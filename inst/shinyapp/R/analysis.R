@@ -3,8 +3,8 @@ library(shiny)
 analysis<-fluidRow(
           column(12,tags$h4('Pairwise integrative analysis')),
           column(12,tags$div(
-                   column(6,selectInput(width="250px","xmwasmethod","Choose a data integration method:",c("sPLS","PLS","OPLS"))),
-                   column(6,selectInput(width="150px","plsmode","Choose PLS mode:",c("regression","canonical")))
+column(6,selectInput(width="250px","xmwasmethod","Choose a data integration method:",c("PLS: Partial least squares regression","sPLS: sparse PLS","OPLS: orthogonal PLS","RCC: regularized canonical correlation"))),
+                   column(6,selectInput(width="150px","plsmode","Choose PLS mode (not applicable to RCC):",c("regression","canonical")))
                    )),
           column(12,tags$div(
                         column(6,numericInput(width="300px","numcomps", "Number of components to use in PLS model:", 5, min = 1, max = 100)),
@@ -12,10 +12,10 @@ column(6,radioButtons("optselect", "Find optimal number of PLS components? (Note
                     )
           ),
           conditionalPanel(
-            condition = "input.xmwasmethod=='sPLS'",
+            condition = "input.xmwasmethod=='sPLS: sparse PLS'",
             column(12,tags$div(
-column(6,numericInput(width="380px","keepX", "Maximum #datasetA variables to select in sPLS:", 1000, min = 1, max = 100000)),
-              column(6,numericInput(width="380px","keepY", "Maximum #datasetB variables to select in sPLS:", 1000, min = 1, max = 100000))
+column(6,numericInput(width="380px","keepX", "Maximum #datasetA variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000)),
+              column(6,numericInput(width="380px","keepY", "Maximum #datasetB variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000))
             )),
             column(12,tags$div(
               column(6,uiOutput("spls_dataC")),

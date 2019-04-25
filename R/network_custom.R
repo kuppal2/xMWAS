@@ -53,11 +53,12 @@ function (mat, comp = NULL, blocks = c(1, 2), analysismode="regression")
         return(list(M=cor_mat))
     }else{
 	   if (any(class.object %in% c("mvr"))) {
-		
+           
+           
 			
 			   #for regression: 
-			    cord.X = cor(mat$model$X, mat$scores[,comp], use = "pairwise") #calculate P loading matrix for X
-			    cord.Y = cor(mat$model$Y, mat$scores[,comp], use = "pairwise") #calculate Q loading matrix for Y
+               cord.X = cor(mat$model$X, mat$scores[,1:comp], use = "pairwise") #calculate P loading matrix for X
+               cord.Y = cor(mat$model$Y, mat$scores[,1:comp], use = "pairwise") #calculate Q loading matrix for Y
 			    
 			    #cord.X = cor(X, mat$T[,comp], use = "pairwise") #calculate P loading matrix for X
 			  #  cord.Y = cor(Y, mat$T[,comp], use = "pairwise") #calculate Q loading matrix for Y
@@ -78,7 +79,7 @@ function (mat, comp = NULL, blocks = c(1, 2), analysismode="regression")
 	
 		  if (any(class.object %in% c("mixOmics::rcc", "rcc"))) {
 			
-			 bisect = mat$variates$X[, comp] + mat$variates$Y[, comp]
+            bisect = mat$variates$X[, 1:comp] + mat$variates$Y[, 1:comp]
 			cord.X = cor(mat$X, bisect, use = "pairwise")
 			cord.Y = cor(mat$Y, bisect, use = "pairwise")
 			cor_mat = cord.X %*% t(cord.Y)

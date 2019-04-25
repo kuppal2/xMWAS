@@ -42,10 +42,10 @@ server <- function(input, output) {
                      )))
                    })
                    output$spls_dataC<-renderUI({
-                     numericInput(width="380px","keepZ", "Maximum #datasetC variables to select in sPLS:", 1000, min = 1, max = 100000)
+                     numericInput(width="380px","keepZ", "Maximum #datasetC variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000)
                    })
                    output$rsd_dataC<-renderUI({
-                     numericInput(width="380px","max_zvar", "Maximum #datasetC variables to select based on RSD:", 1000, min = 1, max = 1000000)
+                     numericInput(width="380px","max_zvar", "Maximum #datasetC variables to select based on RSD (change according to your dataset):", 10000, min = 1, max = 1000000)
                    })
                    if(vals$count==1){
                        output$siderbar<-renderUI({sidebarPanel(sliderInput("obs", "Slide to go to next figure:", min = 0, max = 5,  value = 0))})
@@ -81,10 +81,10 @@ server <- function(input, output) {
                      )))
                    })
                    output$spls_dataD<-renderUI({
-                     numericInput(width="380px","keepW", "Maximum #datasetD variables to select in sPLS:", 1000, min = 1, max = 100000)
+                     numericInput(width="380px","keepW", "Maximum #datasetD variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000)
                    })
                    output$rsd_dataD<-renderUI({
-                     numericInput(width="380px","max_wvar", "Maximum #datasetD variables to select based on RSD:", 1000, min = 1, max = 1000000)
+                     numericInput(width="380px","max_wvar", "Maximum #datasetD variables to select based on RSD (change according to your dataset):", 10000, min = 1, max = 1000000)
                    })
                    if(input$exampledata=="FALSE"){
                      output$siderbar<-renderUI({sidebarPanel(sliderInput("obs", "Slide to go to next figure:", min = 0, max = 8,  value = 0))})
@@ -123,10 +123,10 @@ server <- function(input, output) {
                      )))
                    })
                    output$spls_dataC<-renderUI({
-                     numericInput(width="380px","keepZ", "Maximum #datasetC variables to select in sPLS:", 1000, min = 1, max = 100000)
+                     numericInput(width="380px","keepZ", "Maximum #datasetC variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000)
                    })
                    output$rsd_dataC<-renderUI({
-                     numericInput(width="380px","max_zvar", "Maximum #datasetC variables to select based on RSD:", 1000, min = 1, max = 1000000)
+                     numericInput(width="380px","max_zvar", "Maximum #datasetC variables to select based on RSD (change according to your dataset):", 10000, min = 1, max = 1000000)
                    })
                    if(vals$count==1){
                        output$siderbar<-renderUI({sidebarPanel(sliderInput("obs", "Slide to go to next figure:", min = 0, max = 5,  value = 0))})  
@@ -162,10 +162,10 @@ server <- function(input, output) {
                      )))
                    })
                    output$spls_dataD<-renderUI({
-                     numericInput(width="380px","keepW", "Maximum #datasetD variables to select in sPLS:", 1000, min = 1, max = 100000)
+                     numericInput(width="380px","keepW", "Maximum #datasetD variables to select in sPLS (change according to your dataset):", 1000, min = 1, max = 100000)
                    })
                    output$rsd_dataD<-renderUI({
-                     numericInput(width="380px","max_wvar", "Maximum #datasetD variables to select based on RSD:", 1000, min = 1, max = 1000000)
+                     numericInput(width="380px","max_wvar", "Maximum #datasetD variables to select based on RSD (change according to your dataset):", 10000, min = 1, max = 1000000)
                    })
                    if(input$exampledata=="FALSE"){
                      output$siderbar<-renderUI({sidebarPanel(sliderInput("obs", "Slide to go to next figure:", min = 0, max = 8,  value = 0))})
@@ -416,14 +416,14 @@ server <- function(input, output) {
       
       req(input$xmwasmethod)
       
-   if(input$xmwasmethod=="PLS"){
+   if(input$xmwasmethod=="PLS: Partial least squares regression"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000
               KeepZ=1000
 	            KeepW=1000
             }else{
-              if(input$xmwasmethod=="sPLS"){
+              if(input$xmwasmethod=="sPLS: sparse PLS"){
                 xmwasmethod="spls"
                 KeepX=round(input$keepX)
                 KeepY=round(input$keepY)
@@ -440,11 +440,19 @@ server <- function(input, output) {
                   KeepW=1000
                 }
               }else{
-                xmwasmethod="o1pls"
-                KeepX=1000
-                KeepY=1000
-                KeepZ=1000
-		            KeepW=1000
+                  if(input$xmwasmethod=="OPLS: orthogonal PLS"){
+                      
+                      xmwasmethod="o1pls"
+                  }
+                  else{
+                      if(input$xmwasmethod=="RCC: regularized canonical correlation"){
+                          xmwasmethod="rcc"
+                      }
+                  }
+                  KeepX=1000
+                  KeepY=1000
+                  KeepZ=1000
+                  KeepW=1000
               }
             }
             
@@ -490,8 +498,8 @@ server <- function(input, output) {
                            max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                            keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                            numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                           Xname=Xname,Yname=Yname,Zname=NA,Wname=NA,net_node_shape=c("rectangle","circle","triangle","star"),
-                           all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=input$graphclustering,
+                           Xname=Xname,Yname=Yname,Zname=NA,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+                           all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                            interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                            modularity.weighted=TRUE,
                            globalcomparison=TRUE,
@@ -590,35 +598,44 @@ server <- function(input, output) {
         
         req(input$xmwasmethod)
         
-           if(input$xmwasmethod=="PLS"){
+           if(input$xmwasmethod=="PLS: Partial least squares regression"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000
               KeepZ=1000
 	            KeepW=1000
             }else{
-              if(input$xmwasmethod=="sPLS"){
-                xmwasmethod="spls"
-                KeepX=round(input$keepX)
-                KeepY=round(input$keepY)
-                check_keepZ<-reactive({need(input$keepZ,"error")})
-                if(is.null(check_keepZ())){
-                  KeepZ=round(input$keepZ)
-                }else{
-                  KeepZ=1000
-                }
-		check_KeepW<-reactive({need(input$keepW,"error")})
-              	if(is.null(check_KeepW())){
-                  KeepW=round(input$keepW)
-              	}else{
-                  KeepW=1000
-                }
+              if(input$xmwasmethod=="sPLS: sparse PLS"){
+                    xmwasmethod="spls"
+                    KeepX=round(input$keepX)
+                    KeepY=round(input$keepY)
+                    check_keepZ<-reactive({need(input$keepZ,"error")})
+                    if(is.null(check_keepZ())){
+                      KeepZ=round(input$keepZ)
+                    }else{
+                      KeepZ=1000
+                    }
+                    check_KeepW<-reactive({need(input$keepW,"error")})
+                    if(is.null(check_KeepW())){
+                      KeepW=round(input$keepW)
+                    }else{
+                      KeepW=1000
+                    }
               }else{
-                xmwasmethod="o1pls"
+                
+                if(input$xmwasmethod=="OPLS: orthogonal PLS"){
+                
+                    xmwasmethod="o1pls"
+                }
+                else{
+                    if(input$xmwasmethod=="RCC: regularized canonical correlation"){
+                        xmwasmethod="rcc"
+                    }
+                }
                 KeepX=1000
                 KeepY=1000
                 KeepZ=1000
-	     	        KeepW=1000
+                KeepW=1000
               }
             }
             
@@ -628,13 +645,13 @@ server <- function(input, output) {
             if(is.null(check_max_zvar())){
               max_zvar=round(input$max_zvar)
             }else{
-              max_zvar=1000
+              max_zvar=10000
             }
 	    check_max_wvar<-reactive({need(input$max_wvar,"error")})
             if(is.null(check_max_wvar())){
               max_wvar=round(input$max_wvar)
             }else{
-              max_wvar=1000
+              max_wvar=10000
             }
 
 #maxnodesperclass=round(input$maxnodesperclass)
@@ -666,8 +683,8 @@ server <- function(input, output) {
                              max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                              keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                              numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                             Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("rectangle","circle","triangle","star"),
-                             all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=input$graphclustering,
+                             Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+                             all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                              interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                              modularity.weighted=TRUE,
                              globalcomparison=TRUE,
@@ -679,7 +696,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
@@ -795,14 +812,14 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
           
           req(input$xmwasmethod)
           
-          if(input$xmwasmethod=="PLS"){
+          if(input$xmwasmethod=="PLS: Partial least squares regression"){
             xmwasmethod="pls"
             KeepX=1000
             KeepY=1000
             KeepZ=1000
             KeepW=1000
           }else{
-            if(input$xmwasmethod=="sPLS"){
+            if(input$xmwasmethod=="sPLS: sparse PLS"){
               xmwasmethod="spls"
               KeepX=round(input$keepX)
               KeepY=round(input$keepY)
@@ -819,11 +836,19 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
                 KeepW=1000
               }
             }else{
-              xmwasmethod="o1pls"
-              KeepX=1000
-              KeepY=1000
-              KeepZ=1000
-              KeepW=1000
+                if(input$xmwasmethod=="OPLS: orthogonal PLS"){
+                    
+                    xmwasmethod="o1pls"
+                }
+                else{
+                    if(input$xmwasmethod=="RCC: regularized canonical correlation"){
+                        xmwasmethod="rcc"
+                    }
+                }
+                KeepX=1000
+                KeepY=1000
+                KeepZ=1000
+                KeepW=1000
             }
           }
           
@@ -869,8 +894,8 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
                                max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
                                keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
                                numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-                               Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=c("rectangle","circle","triangle","star"),
-                               all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=input$graphclustering,
+                               Xname=Xname,Yname=Yname,Zname=Zname,Wname=Wname,net_node_shape=c("square","circle","triangle","star"),
+                               all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
                                interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                                modularity.weighted=TRUE,
                                globalcomparison=TRUE,
@@ -882,7 +907,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
@@ -910,14 +935,14 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
             
             req(input$xmwasmethod)
             
-            if(input$xmwasmethod=="PLS"){
+            if(input$xmwasmethod=="PLS: Partial least squares regression"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000
               KeepZ=1000
 	      KeepW=1000
             }else{
-              if(input$xmwasmethod=="sPLS"){
+              if(input$xmwasmethod=="sPLS: sparse PLS"){
                 xmwasmethod="spls"
                 KeepX=round(input$keepX)
                 KeepY=round(input$keepY)
@@ -934,11 +959,19 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
                   KeepW=1000
                 }
               }else{
-                xmwasmethod="o1pls"
-                KeepX=1000
-                KeepY=1000
-                KeepZ=1000
-		KeepW=1000
+                  if(input$xmwasmethod=="OPLS: orthogonal PLS"){
+                      
+                      xmwasmethod="o1pls"
+                  }
+                  else{
+                      if(input$xmwasmethod=="RCC: regularized canonical correlation"){
+                          xmwasmethod="rcc"
+                      }
+                  }
+                  KeepX=1000
+                  KeepY=1000
+                  KeepZ=1000
+                  KeepW=1000
               }
             }
             
@@ -979,8 +1012,8 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
             #                     max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=NA,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
             #                     keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=NA,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
             #                     numcomps=numcomps,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","cyan","gold"),
-            #                     Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("rectangle","circle","triangle","star"),
-            #                     all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=input$graphclustering,
+            #                     Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA,net_node_shape=c("square","circle","triangle","star"),
+            #                     all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,vertex.size=input$vertex_size,graphclustering=TRUE,
             #                     interactive=input$interactive,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=input$removeRda)      
 
            xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=session_outloc(),
@@ -988,9 +1021,9 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
 				max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
 				keepX=KeepX,keepY=KeepY,keepZ=KeepZ,keepW=KeepW,pairedanalysis=input$pairedanalysis,optselect=input$optselect,rawPthresh=input$rawPthresh,
 				numcomps=numcomps,net_edge_colors=c("blue","red"), net_node_colors=c("orange", "green","cyan","gold"),
-				Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA, net_node_shape=c("rectangle","circle","triangle","star"),
+				Xname=Xname,Yname=Yname,Zname=Zname,Wname=NA, net_node_shape=c("square","circle","triangle","star"),
 				all.missing.thresh=input$all_missing_thresh,maxnodesperclass=maxnodesperclass,seednum=input$seednum,label.cex=input$label_cex,
-				vertex.size=input$vertex_size,graphclustering=input$graphclustering,interactive=FALSE,max_connections=max_connections,
+				vertex.size=input$vertex_size,graphclustering=TRUE,interactive=FALSE,max_connections=max_connections,
                 centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,modularity.weighted=TRUE,
                 globalcomparison=TRUE,
                 plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE,layout.type="fr1")
@@ -1001,7 +1034,7 @@ classlabels=class_labels_file,class_fname=NA,xmwasmethod="spls",plsmode="canonic
 max_zvar=1000,max_wvar=1000,rsd.filt.thresh=1,corthresh=0.8,keepX=100,keepY=100,keepZ=100,keepW=100,
 pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),
 net_node_colors=c("orange", "green","cyan","gold"),Xname="X",Yname="Y",Zname="Z",Wname="W",
-net_node_shape=c("rectangle","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
+net_node_shape=c("square","circle","triangle","star"),all.missing.thresh=0.3,maxnodesperclass=100,
 seednum=100,label.cex=0.2,vertex.size=6,graphclustering=TRUE,interactive=FALSE,max_connections=2000,
 centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=FALSE)
 }
