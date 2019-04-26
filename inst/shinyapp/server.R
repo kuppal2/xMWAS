@@ -416,7 +416,7 @@ server <- function(input, output) {
       
       req(input$xmwasmethod)
       
-   if(input$xmwasmethod=="PLS: Partial least squares regression"){
+   if(input$xmwasmethod=="PLS: Partial least squares"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000
@@ -598,7 +598,7 @@ server <- function(input, output) {
         
         req(input$xmwasmethod)
         
-           if(input$xmwasmethod=="PLS: Partial least squares regression"){
+           if(input$xmwasmethod=="PLS: Partial least squares"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000
@@ -812,7 +812,7 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
           
           req(input$xmwasmethod)
           
-          if(input$xmwasmethod=="PLS: Partial least squares regression"){
+          if(input$xmwasmethod=="PLS: Partial least squares"){
             xmwasmethod="pls"
             KeepX=1000
             KeepY=1000
@@ -935,7 +935,7 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
             
             req(input$xmwasmethod)
             
-            if(input$xmwasmethod=="PLS: Partial least squares regression"){
+            if(input$xmwasmethod=="PLS: Partial least squares"){
               xmwasmethod="pls"
               KeepX=1000
               KeepY=1000

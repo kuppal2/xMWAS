@@ -13,8 +13,10 @@ graphopt<-fluidRow(
   )),
   column(12,tags$div(column(6,radioButtons("use_X_reference", "Use dataset A as reference?", inline=TRUE,c(True = "TRUE",False = "FALSE"),selected = "FALSE"))  
   )),
-column(12,selectInput(width="300px","net_node_shapeA","Node shape for dataset A:",c("square","circle","triangle","star","rectangle","csquare","crectangle","vrectangle"))),
-column(12,selectInput(width="300px","net_node_shapeB","Node shape for dataset B:",c("circle","square","triangle","star","rectangle","csquare","crectangle","vrectangle"))),
-column(12,selectInput(width="300px","net_node_shapeC","Node shape for dataset C:",c("triangle","square","circle","star","rectangle","csquare","crectangle","vrectangle"))),
-column(12,selectInput(width="300px","net_node_shapeD","Node shape for dataset D:",c("star","square","circle","triangle","rectangle","csquare","crectangle","vrectangle")))
+column(12,tags$div(
+    column(6,selectInput(width="300px","net_node_shapeA","Node shape for dataset A:",c("square","circle","triangle","star","rectangle","csquare","crectangle","vrectangle"))),
+    column(6,selectInput(width="300px","net_node_shapeB","Node shape for dataset B:",c("circle","square","triangle","star","rectangle","csquare","crectangle","vrectangle"))))),
+column(12,tags$div(
+column(6,selectInput(width="300px","net_node_shapeC","Node shape for dataset C:",c("triangle","square","circle","star","rectangle","csquare","crectangle","vrectangle"))),
+column(6,selectInput(width="300px","net_node_shapeD","Node shape for dataset D:",c("star","square","circle","triangle","rectangle","csquare","crectangle","vrectangle")))))
 )

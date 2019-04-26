@@ -3,7 +3,7 @@ library(shiny)
 analysis<-fluidRow(
           column(12,tags$h4('Pairwise integrative analysis')),
           column(12,tags$div(
-column(6,selectInput(width="300px","xmwasmethod","Choose a data integration method:",c("PLS: Partial least squares regression","sPLS: sparse PLS","OPLS: orthogonal PLS","RCC: regularized canonical correlation"))),
+column(6,selectInput(width="300px","xmwasmethod","Choose a data integration method:",c("PLS: Partial least squares","sPLS: sparse PLS","OPLS: orthogonal PLS","RCC: regularized canonical correlation"))),
                    column(6,selectInput(width="250px","plsmode","Choose PLS mode (not applicable to RCC option):",c("regression","canonical")))
                    )),
           column(12,tags$div(
