@@ -11,7 +11,7 @@ ui<-fluidPage(
       tags$title("xMWAS - v0.552"),
       tags$link(rel = "stylesheet", type = "text/css", href = "mystyle.css")
     ),
-    column(12,tags$div(headerPanel(h3("xMWAS - a data-driven integration and network analysis tool (v0.552)")))),
+    column(12,tags$div(headerPanel(h3("xMWAS - a data-driven integration and network analysis tool (v0.553)")))),
     column(12,tabsetPanel(
         tabPanel("Introduction", introduction_page), 
         tabPanel("Analysis", analysis_page), 
