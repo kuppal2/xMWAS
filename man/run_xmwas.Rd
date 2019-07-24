@@ -269,7 +269,9 @@ weights=1-absolute(edge weights)
 Other options as implemented in igraph: "drl", "tree", "sphere",
  "nicely","graph opt", "randomly","kk"
 }
+}
 \author{
 Karan Uppal
 kuppal2@emory.edu
+
 }
