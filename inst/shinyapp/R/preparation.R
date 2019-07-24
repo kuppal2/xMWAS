@@ -2,7 +2,7 @@ library(shiny)
 
 preparation<-fluidRow(
   column(12,
-         column(6,numericInput(width="380px","rsd_filt_thresh", "Relative Standard Deviation (RSD) Threshold (rows):", 1, min = 0, max = 1000))
+         column(6,numericInput(width="380px","rsd_filt_thresh", "Relative Standard Deviation (RSD) Threshold (rows):", -1, min = -1, max = 1000))
   ),
   column(12,tags$div(
     column(6,numericInput(width="380px","max_xvar", "Maximum #datasetA variables to select based on RSD (change according to your dataset):", 10000, min = 1, max = 1000000)),
