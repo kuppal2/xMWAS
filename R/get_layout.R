@@ -2,16 +2,27 @@ get_layout <-
 function(sg,layout.type="fr1"){
 
 	layout_type=layout.type
+<<<<<<< HEAD
 	if(layout_type=="fr1"){
 		sg$layout = layout.fruchterman.reingold(sg, weights = (abs(E(sg)$weight)))
 	}else{
 		if(layout_type=="fr2"){
+=======
+	if(layout_type=="fr2"){
+		sg$layout = layout.fruchterman.reingold(sg, weights = (abs(E(sg)$weight)))
+	}else{
+		if(layout_type=="fr1"){
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 			sg$layout = layout.fruchterman.reingold(sg, weights = (1-abs(E(sg)$weight)))
 		}else{
 			if(layout_type=="fr"){
 				
+<<<<<<< HEAD
                 sg$layout = layout_with_fr(sg)
                
+=======
+				sg$layout = layout_with_fr(sg)
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 			}else{
 				if(layout_type=="lgl"){
 					

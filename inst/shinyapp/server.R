@@ -503,7 +503,11 @@ server <- function(input, output) {
                            interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                            modularity.weighted=TRUE,
                            globalcomparison=TRUE,
+<<<<<<< HEAD
                            plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE)
+=======
+                           plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE,layout.type="fr1")
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
                            
                            
 
@@ -688,7 +692,11 @@ server <- function(input, output) {
                              interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                              modularity.weighted=TRUE,
                              globalcomparison=TRUE,
+<<<<<<< HEAD
                              plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE)
+=======
+                             plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE,layout.type="fr1")
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 
 if(FALSE){
 		xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=session_outloc(),
@@ -899,7 +907,11 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
                                interactive=FALSE,max_connections=max_connections,centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,
                                modularity.weighted=TRUE,
                                globalcomparison=TRUE,
+<<<<<<< HEAD
                                plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE)
+=======
+                               plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE,layout.type="fr1")
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 
 if(FALSE){
 xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=session_outloc(),
@@ -1026,7 +1038,11 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
 				vertex.size=input$vertex_size,graphclustering=TRUE,interactive=FALSE,max_connections=max_connections,
                 centrality_method=input$centrality_method,use.X.reference=input$use_X_reference,removeRda=TRUE,compare.classes=input$compare.classes,missing.val=missing.val,modularity.weighted=TRUE,
                 globalcomparison=TRUE,
+<<<<<<< HEAD
                 plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE)
+=======
+                plot.pairwise=TRUE,apply.sparse.class.comparison=FALSE,layout.type="fr1")
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
   
 if(FALSE){ 
 xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=zMat,Wome_data=NA,outloc=session_outloc(),

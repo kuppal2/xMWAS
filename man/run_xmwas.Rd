@@ -10,13 +10,20 @@ Association networks can be visualized in R or using Cytoscape.
 run_xmwas(xome_fname = NA, yome_fname = NA, zome_fname = NA, wome_fname = NA,
  outloc = NA,
  class_fname = NA, Xome_data = NA, Yome_data = NA, Zome_data = NA, Wome_data = NA, 
+<<<<<<< HEAD
  classlabels = NA, xmwasmethod = "pls", plsmode = "regression", max_xvar = 10000,
   max_yvar = 10000, max_zvar = 10000, max_wvar = 10000, rsd.filt.thresh = -1,
    all.missing.thresh = 0, missing.val = 0, corthresh = 0.4, keepX = 1000,
+=======
+ classlabels = NA, xmwasmethod = "spls", plsmode = "canonical", max_xvar = 5000,
+  max_yvar = 5000, max_zvar = 5000, max_wvar = 5000, rsd.filt.thresh = 1,
+   all.missing.thresh = 0.1, missing.val = 0, corthresh = 0.4, keepX = 1000,
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
     keepY = 1000, keepZ = 1000, keepW = 1000, pairedanalysis = FALSE,
      optselect = TRUE, rawPthresh = 0.05, numcomps = 10,
       net_edge_colors = c("blue", "red"), net_node_colors = c("orange", "green", "blue", "gold"),
        Xname = "X", Yname = "Y", Zname = "Z", Wname = "W", 
+<<<<<<< HEAD
        net_node_shape = c("square", "circle", "triangle", "star", "rectangle", "csquare", 
           "crectangle", "vrectangle"), seednum = 100,
         label.cex = 0.3, vertex.size = 6, max_connections = NA, 
@@ -24,6 +31,12 @@ run_xmwas(xome_fname = NA, yome_fname = NA, zome_fname = NA, wome_fname = NA,
          removeRda = TRUE, compare.classes = TRUE, class.comparison.allvar = TRUE, 
 	modularity.weighted =FALSE, html.selfcontained = TRUE, globalcomparison = TRUE, 
 	plot.pairwise = TRUE, apply.sparse.class.comparison = TRUE, layout.type ="fr1",...)
+=======
+       net_node_shape = c("circle", "rectangle", "triangle", "star"), seednum = 100,
+        label.cex = 0.3, vertex.size = 6, max_connections = NA, 
+        centrality_method = "eigenvector", use.X.reference = FALSE,
+         removeRda = TRUE, compare.classes = TRUE, class.comparison.allvar = TRUE, ...)
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 }
 \arguments{
 \item{xome_fname}{
@@ -254,6 +267,7 @@ individual classes as provided in class labels file.
 TRUE or FALSE; set to TRUE if all nodes shown
 	
 }
+<<<<<<< HEAD
 \item{modularity.weighted}{
 Use edge weights during modularity analysis.
 TRUE or FALSE. Default: FALSE
@@ -272,4 +286,12 @@ Other options as implemented in igraph: "drl", "tree", "sphere",
 \author{
 Karan Uppal
 kuppal2@emory.edu
+=======
+
+}
+\author{
+Karan Uppal
+kuppal2@emory.edu
+
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 }

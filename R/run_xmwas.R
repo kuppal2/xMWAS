@@ -1,6 +1,10 @@
 run_xmwas <-
 function(xome_fname=NA,yome_fname=NA,zome_fname=NA,wome_fname=NA,outloc=NA,class_fname=NA,Xome_data=NA,Yome_data=NA,Zome_data=NA,Wome_data=NA,classlabels=NA,xmwasmethod="pls",
+<<<<<<< HEAD
 plsmode="regression",max_xvar=10000,max_yvar=10000,max_zvar=10000,max_wvar=10000,rsd.filt.thresh=-1,all.missing.thresh=0,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,
+=======
+plsmode="regression",max_xvar=10000,max_yvar=10000,max_zvar=10000,max_wvar=10000,rsd.filt.thresh=1,all.missing.thresh=0,missing.val=0,corthresh=0.4,keepX=1000,keepY=1000,
+>>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
 keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcomps=10,net_edge_colors=c("blue","red"),net_node_colors=c("orange", "green","blue","gold"),
 Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("square","circle","triangle","star","rectangle","csquare","crectangle","vrectangle"),seednum=100,label.cex=0.3,
 vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,modularity.weighted=FALSE,
