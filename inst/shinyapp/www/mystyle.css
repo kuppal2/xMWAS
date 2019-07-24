@@ -1,0 +1,53 @@
+h3 {
+  font-family: 'Lobster';
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+  color: #85144b;
+}
+
+#introduction_paragraph {
+  padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	border-style: solid;
+	border-width: 2px;
+  border-radius: 15px;
+	opacity: 0.9;
+
+  
+}
+#introduction_paragraph2 {
+   color: brown;
+   background-color: white;
+
+}
+#datasetA_progress { 
+    padding-bottom:0;
+    margin-bottom:0;
+    height:0;
+}
+#datasetB_progress { 
+    padding-bottom:0;
+    margin-bottom:0;
+    height:0;
+}
+#datasetC_progress { 
+    padding-bottom:0;
+    margin-bottom:0;
+    height:0;
+}
+#datasetD_progress { 
+    padding-bottom:0;
+    margin-bottom:0;
+    height:0;
+}
+#class_labels_file_progress { 
+    padding-bottom:0;
+    margin-bottom:0;
+    height:0;
+}
+.underline {
+    text-decoration: underline;
+}
