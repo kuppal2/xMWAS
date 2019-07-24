@@ -314,8 +314,8 @@ net_result<-network_custom(mat=linn.pls, analysismode=plsmode,comp=numcomps)
 
 #print(paste("1. Network analysis could not be performed: ",net_result,sep=""))
 if(is(net_result,"try-error")){
-    net_result<-try(network(linn.pls, threshold=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
-    color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
+    # net_result<-try(network(linn.pls, threshold=corthresh,row.names = TRUE, col.names = TRUE, block.var.names = TRUE,color.node = net_node_colors,shape.node = net_node_shape,
+    #  color.edge = net_edge_colors,lty.edge = "solid", lwd.edge = 1,show.edge.labels = FALSE, interactive = FALSE,cex.node.name=0.7,show.color.key = FALSE),silent=TRUE)
     
     #print(paste("2. Network analysis could not be performed: ",net_result,sep=""))
     if(is(net_result,"try-error")){
