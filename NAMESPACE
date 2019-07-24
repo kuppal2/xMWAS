@@ -1,7 +1,0 @@
-export(run_xmwas,do_rsd,plot_graph,get_sub_clusters,get_pairwise_cor,run_xmwas_child,launchShinyApp,network_custom,plot_visnet)
-<<<<<<< HEAD
-import(WGCNA, snow, igraph, plyr, mixOmics, shiny, shinyBS,visNetwork)
-=======
-import(mixOmics, WGCNA, snow, igraph, graph, plyr, RBGL, plsgenomics, shiny, shinyBS,visNetwork)
->>>>>>> 26f914bd644e88f4e9429a4ff8ec70a2f3e910f7
-exportClasses(info)
