@@ -1,13 +1,13 @@
 #load package
 library(xMWAS)
-
+#/home/data/ExposomeBootCamp2019
 #load TCE dataset that includes metabolome, TCE exposure, nephrotoxicity, and immune markers data (Walker 2016)
-xMat<-read.table("/home/data/ExposomeBootCamp2019/xMWAS_lab_TCEexposure_data.txt",sep="\t",header=TRUE,row.names=1)
-yMat<-read.table("/home/data/ExposomeBootCamp2019/xMWAS_lab_metab_data.txt",sep="\t",header=TRUE,row.names=1)
-zMat<-read.table("/home/data/ExposomeBootCamp2019/xMWAS_lab_immunemarkers_data.txt",sep="\t",header=TRUE,row.names=1)
-wMat<-read.table("/home/data/ExposomeBootCamp2019/xMWAS_lab_nephrotoxicity_data.txt",sep="\t",header=TRUE,row.names=1)
+xMat<-read.table("https://raw.githubusercontent.com/kuppal2/xMWAS/master/example_manual_tutorial/ExposomeBootcamp2019/xMWAS_lab_TCEexposure_data.txt",sep="\t",header=TRUE,row.names=1)
+yMat<-read.table("https://raw.githubusercontent.com/kuppal2/xMWAS/master/example_manual_tutorial/ExposomeBootcamp2019/xMWAS_lab_metab_data.txt",sep="\t",header=TRUE,row.names=1)
+zMat<-read.table("https://raw.githubusercontent.com/kuppal2/xMWAS/master/example_manual_tutorial/ExposomeBootcamp2019/xMWAS_lab_immunemarkers_data.txt",sep="\t",header=TRUE,row.names=1)
+wMat<-read.table("https://raw.githubusercontent.com/kuppal2/xMWAS/master/example_manual_tutorial/ExposomeBootcamp2019/xMWAS_lab_nephrotoxicity_data.txt",sep="\t",header=TRUE,row.names=1)
 
-classlabels<-read.table("/home/data/ExposomeBootCamp2019/xMWAS_lab_classlabels.txt",sep="\t",header=TRUE)
+classlabels<-read.table("https://raw.githubusercontent.com/kuppal2/xMWAS/master/example_manual_tutorial/ExposomeBootcamp2019/xMWAS_lab_classlabels.txt",sep="\t",header=TRUE)
 
 #assign output location
 output<-"~/xMWASv0.553output/"

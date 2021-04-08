@@ -1055,7 +1055,8 @@ centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.cla
   
   ##########################################
   
-  observeEvent({if(done$count==1) TRUE else return()},{
+  observeEvent(#{if(done$count==1) TRUE else return()}
+               req(done$count==1),{
     output$myImage <- renderImage({
       
       req(input$obs)
