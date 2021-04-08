@@ -209,7 +209,7 @@ server <- function(input, output) {
                      need(input$class_labels_file, "No class labels file provided. Please upload class labels file in 'Choose Files'."),
                      need(input$class_labels_file$type, "The format of class labels file is not correct. Please upload the file with correct format.")
                    )
-                   showNotification("Starting processing now. Your results will be available for download shortly. The processing time depends on the number of variables. Please use the data filtering options to reduce the run time.", duration=600)
+                   showNotification("Starting processing now. Your results will be available for download shortly. The processing time depends on the number of variables. Please use the data filtering options to reduce the run time.", duration=3600)
                    
                  }else{
                    if(vals$count==1 & input$exampledata=="FALSE"){
