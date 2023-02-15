@@ -1,8 +1,8 @@
 Package: xMWAS
 Type: Package
 Title: xMWAS: R package for data-integration and differential network analysis
-Version: 0.56
-Date: 2021-04-08
+Version: 0.57
+Date: 2023-02-15
 Author: Karan Uppal
 Maintainer: Karan Uppal <kuppal2@emory.edu>
 Description: xMWAS allows integration of omics data using multivariate methods such as PLS. The package performs community detection and network analysis to allow visualization of positive or negative associations between different datasets generated using samples from the same individuals.

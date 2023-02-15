@@ -5,8 +5,8 @@ keepZ=1000,keepW=1000,pairedanalysis=FALSE,optselect=TRUE,rawPthresh=0.05,numcom
 Xname="X",Yname="Y",Zname="Z",Wname="W",net_node_shape=c("square","circle","triangle","star","rectangle","csquare","crectangle","vrectangle"),seednum=100,label.cex=0.3,
 vertex.size=6,max_connections=NA,centrality_method="eigenvector",use.X.reference=FALSE,removeRda=TRUE,compare.classes=TRUE,class.comparison.allvar=TRUE,modularity.weighted=FALSE,
 html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.class.comparison=TRUE,layout.type="fr1",...){
-    
-    
+
+
     #defaults
     classname=NA
     maxnodesperclass=10000000
@@ -15,11 +15,13 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     max.connections.interactive=100
     xmwasmethod=tolower(xmwasmethod)
     suppressWarnings(dir.create(outloc))
+    oldwd <- getwd()
+    on.exit(setwd(oldwd)) # Make sure we do not break working directory
     setwd(outloc)
     print("#########################Starting processing now######################")
-    
+
     sink(file="InputParameters.txt")
-    
+
     print("######xMWAS v0.55 Parameters##########")
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
@@ -51,59 +53,60 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     print("######Loaded packages in the current session##########")
     print(sessionInfo())
     sink(file=NULL)
-    
+
     d1<-date()
     d2<-gsub(d1,pattern=":| ",replacement="_")
     d3<-gsub(d2,pattern="__",replacement="_")
     d3<-format(Sys.time(), "%b%d_%H_%M")
     log_fname<-paste("Log",d3,".txt",sep="")
-    
+
     print(paste("Program is running. Please check the logfile for runtime status: ",log_fname,sep=""))
-    
+
     sink(file=log_fname)
-     
+    on.exit(suppressWarnings(sink(file=NULL))) # Make sure that terminating does not leave sink open
+
      #all.missing.thresh=0.1
-    
+
     if(is.na(xome_fname)==FALSE){
         Xome_data<-read.table(xome_fname,sep="\t",header=TRUE)
-        
-        
+
+
     }
-    
-   
+
+
    if(net_node_colors[1]=="default"){
        net_node_colors<-c("orange", "green","cyan","brown")
-       
+
    }else{
-       
+
        if(net_node_colors[1]=="journal"){
-           
+
            net_node_colors<-c("#E69F00", "#0072B2", "#009E73", "gold1")
        }else{
-           
+
            if(net_node_colors[1]=="topo"){
                net_node_colors <- topo.colors(length(class_labels_levels), alpha=0.3)
            }else{
-               
+
                if(net_node_colors[1]=="heat"){
                    net_node_colors <- heat.colors(length(class_labels_levels), alpha=0.3)
                }
            }
        }
    }
-    
-    
+
+
     rnames<-rownames(Xome_data) #Xome_data[,c(1)]
-    
+
     if(length(which(duplicated(rnames)==TRUE))>0){
-        
+
         Xome_data<-Xome_data[-which(duplicated(rnames)==TRUE),]
         rnames<-rnames[-which(duplicated(rnames)==TRUE)]
     }
     rownames(Xome_data)<-rnames #Xome_data[,c(1)]
     #Xome_data<-Xome_data[,-c(1)]
-    
-    
+
+
     Xome_data<-as.data.frame(Xome_data)
     if(nrow(Xome_data)>1){
         Xome_data<-apply(Xome_data,2,as.numeric)
@@ -112,34 +115,34 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
         #  Xome_data<-as.numeric(Xome_data)
         #Xome_data<-as.data.frame(Xome_data)
     }
-    
-    
+
+
     rownames(Xome_data)<-rnames
-    
-   
+
+
     num_replicates<-1
-    
-    
+
+
     if(is.na(yome_fname)==FALSE){
         Yome_data<-read.table(yome_fname,sep="\t",header=TRUE)
-        
-       
-        
-       
+
+
+
+
     }
-    
-   
-   
-    
-    
+
+
+
+
+
     rnames<-rownames(Yome_data) #Yome_data[,c(1)]
     if(length(which(duplicated(rnames)==TRUE))>0){
-        
+
         Yome_data<-Yome_data[-which(duplicated(rnames)==TRUE),]
         rnames<-rnames[-which(duplicated(rnames)==TRUE)]
     }
-    
-   
+
+
     rownames(Yome_data)<-rnames
     #Yome_data<-Yome_data[,-c(1)]
     Yome_data<-as.data.frame(Yome_data)
@@ -147,23 +150,22 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
         Yome_data<-apply(Yome_data,2,as.numeric)
     }
     rownames(Yome_data)<-rnames
-    
-   
-    
+
+
+
     if(is.na(zome_fname)==FALSE){
-        
+
         Zome_data<-read.table(zome_fname,sep="\t",header=TRUE)
-        
-       
+
+
     }
-    
-   
-    
-    suppressWarnings(
-    if(is.na(Zome_data)==FALSE){
-        
-       
-        
+
+
+
+    if(!identical(Zome_data, NA)) {
+
+
+
         rnames<-rownames(Zome_data) #Zome_data[,c(1)]
         if(length(which(duplicated(rnames)==TRUE))>0){
             Zome_data<-Zome_data[-which(duplicated(rnames)==TRUE),]
@@ -172,7 +174,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
         rownames(Zome_data)<-rnames
         #Zome_data<-Zome_data[,-c(1)]
         Zome_data<-as.data.frame(Zome_data)
-        
+
         if(nrow(Zome_data)>1){
             Zome_data<-apply(Zome_data,2,as.numeric)
         }else{
@@ -180,35 +182,34 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
             #Zome_data<-as.data.frame(Zome_data)
         }
         rownames(Zome_data)<-rnames
-        
-       
-        
-    })
-    
-    if(is.na(wome_fname)==FALSE){
-        
-        Wome_data<-read.table(wome_fname,sep="\t",header=TRUE)
-        
-        
+
+
+
     }
-    
-    
-    
-    suppressWarnings(
-    if(is.na(Wome_data)==FALSE){
-        
-       
-        
+
+    if(is.na(wome_fname)==FALSE){
+
+        Wome_data<-read.table(wome_fname,sep="\t",header=TRUE)
+
+
+    }
+
+
+
+    if(!identical(Wome_data, NA)){
+
+
+
         rnames<-rownames(Wome_data) #Wome_data[,c(1)]
         if(length(which(duplicated(rnames)==TRUE))>0){
-            
+
             Wome_data<-Wome_data[-which(duplicated(rnames)==TRUE),]
             rnames<-rnames[-which(duplicated(rnames)==TRUE)]
         }
         rownames(Wome_data)<-rnames
-        
+
         Wome_data<-as.data.frame(Wome_data)
-        
+
         if(nrow(Wome_data)>1){
             Wome_data<-apply(Wome_data,2,as.numeric)
         }else{
@@ -216,78 +217,76 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
             #Wome_data<-as.data.frame(Wome_data)
         }
         rownames(Wome_data)<-rnames
-        
-      
-        
-    })
-    
-    
-    suppressWarnings(
-    if(is.na(Xome_data)==TRUE){
-        
-       
+
+
+
+    }
+
+
+    if(identical(Xome_data, NA)){
+
+
         stop("X data matrix is required.")
-    })
-    
+    }
+
     if(is.na(class_fname)==FALSE){
-        
+
         classlabels<-read.table(class_fname,sep="\t",header=TRUE)
         cnames_class<-colnames(classlabels)
         cnames_class<-tolower(cnames_class)
-        
+
         colnames(classlabels)<-cnames_class
-        
+
         # classlabels<-classlabels[,-c(1)]
-        
-        
+
+
     }
-    suppressWarnings(
-    if(is.na(classlabels)==TRUE){
-        
+
+    if(identical(classlabels, NA)){
+
         classlabels<-rep("A",dim(Xome_data)[2])
-        
+
         classlabels<-as.data.frame(classlabels)
-        
+
         colnames(classlabels)<-c("class")
-        
+
     }else{
-        
+
         cnames_class<-colnames(classlabels)
         cnames_class<-tolower(cnames_class)
-        
-        colnames(classlabels)<-cnames_class
-        
-        
 
-        
-    })
+        colnames(classlabels)<-cnames_class
+
+
+
+
+    }
     classlabels<-as.data.frame(classlabels)
-    
-    
+
+
     colors_sel_vec<-net_node_colors
-    
+
     res<-new("list")
-    
-    suppressWarnings(
-    if(is.na(classlabels)==FALSE){
+
+    if(!identical(classlabels, NA)){
                 cnames<-colnames(classlabels)
                 cnames<-tolower(cnames)
 
                 colnames(classlabels)<-cnames
-                
-                
-                
+
+
+
                 class_check<-which(cnames=="class") || which(cnames=="factor1")
                 if(is.na(class_check)==TRUE){
-                    
-                    
+
+
                     stop("No Class or Factor1 column found in the class labels file. Please label the main class column as \"Class\" or \"Factor1\" for simple group-wise comparison.\nPlease refer to data(exh1n1) object to see how to format the classlabels file: print(head(exh1n1$classlabels));print(head(exh1n1$classlabels_onewayrepeat));print(head(exh1n1$classlabels_twowayrepeat))")
                 }
-                
+
                 class_check1<-which(cnames=="class")
-                
+
                 if(length(class_check1)<1){
-                    
+
                     class_levels<-levels(factor(classlabels$factor1))
                 }else{
                     class_levels<-levels(factor(classlabels$class))
@@ -295,27 +294,27 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
 
 
                 classlabels<-as.data.frame(classlabels)
-                
+
                 print("Class levels:")
                 print(class_levels)
 
-    
+
     }else{
-        
+
             class_levels<-c("A")
             compare.classes=FALSE
-         
+
         }
-    )
+
 
 if(globalcomparison==TRUE){
     if(pairedanalysis==TRUE){
-        
+
         classlabels_temp<-classlabels[,-c(2)] #[,c(class_check)]
         classlabels_temp<-as.data.frame(classlabels_temp)
-        
+
         design<-classlabels[,-c(1)]
-        
+
          suppressWarnings(
         res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels_temp,xmwasmethod="spls",
 	plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,
@@ -326,7 +325,7 @@ if(globalcomparison==TRUE){
 	plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
         )
     }else{
-        
+
     suppressWarnings(
     res[[1]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloc,classlabels=classlabels,
     xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,
@@ -339,37 +338,37 @@ if(globalcomparison==TRUE){
 )
 
     }
-    
+
     if(class.comparison.allvar==FALSE){
-        
+
     Xome_data<-res[[1]]$Xome_data
     Yome_data<-res[[1]]$Yome_data
     Zome_data<-res[[1]]$Zome_data
     Wome_data<-res[[1]]$Wome_data
-    
+
     }
 }
 #save(res[[1]],file="allclasses.Rda")
-    
+
     # rm(list=ls())
 if(compare.classes==TRUE){
         if(length(class_levels)>1){
 
         for(i in 1:length(class_levels)){
-    
+
     outloctemp<-paste(outloc,"/",class_levels[i],sep="")
-    
+
     if(pairedanalysis==TRUE){
-        
+
         if(dim(classlabels)[2]==3){
-            
+
                 classlabels_temp<-classlabels[,-c(2)]  #[,c(class_check)]
                 classlabels_temp<-as.data.frame(classlabels_temp)
-                
+
                 design<-classlabels[,-c(1)]
-                
-                
-                
+
+
+
                 if(apply.sparse.class.comparison==TRUE){
                 suppressWarnings(
                         res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,
@@ -381,7 +380,7 @@ if(compare.classes==TRUE){
 			design=design,missing.val=missing.val,modularity.weighted=modularity.weighted,html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
                     )
                 }else{
-                    
+
                     suppressWarnings(
                     res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,
 		    xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,
@@ -391,22 +390,22 @@ if(compare.classes==TRUE){
 		    max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,
 		    design=design,missing.val=missing.val,modularity.weighted=modularity.weighted,html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
                     )
-                    
-                    
+
+
                 }
         }else{
-            
+
             if(dim(classlabels)[2]==4){
-                
+
                 #2-way repeated measures design
                 classlabels_temp<-factor(classlabels[,3]):factor(classlabels[,4]) #[,-c(2:3)]  #[,c(class_check)]
                 classlabels_temp<-as.data.frame(classlabels_temp)
-                
+
                 classlabels_temp<-cbind(classlabels[,1:2],classlabels_temp)
                 design<-classlabels[,-c(1)]
-                
-                
-                
+
+
+
                 if(apply.sparse.class.comparison==TRUE){
                 suppressWarnings(
                 res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,
@@ -418,7 +417,7 @@ if(compare.classes==TRUE){
 		design=design,missing.val=missing.val,modularity.weighted=modularity.weighted,html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
                 )
                 }else{
-                    
+
                     suppressWarnings(
                     res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels_temp,
 		    xmwasmethod="spls",plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,
@@ -428,26 +427,26 @@ if(compare.classes==TRUE){
 		    max_connections=max_connections,classname=class_levels[i],centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,
 		    design=design,missing.val=missing.val,modularity.weighted=modularity.weighted,html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
                     )
-                    
+
                 }
             }
-            
-            
-            
-            
+
+
+
+
         }
-            
-            
+
+
     }else{
-        
+
                 if(dim(classlabels)[2]>2){
-                    
+
                     stop("More than two columns detected in the class labels file. Please set paired analysis=TRUE for repeated measures.")
                 }
-                
+
                 if(apply.sparse.class.comparison==TRUE){
                     suppressWarnings(
-                    
+
                         res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,classlabels=classlabels,
 			xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=rsd.filt.thresh,
 			corthresh=corthresh,keepX=keepX,keepY=keepY,keepZ=keepZ,keepW=keepW,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,
@@ -460,7 +459,7 @@ if(compare.classes==TRUE){
                 }else{
                     #use all variables (default in version 0.54)
                     suppressWarnings(
-                    
+
                     res[[(i+1)]]<-run_xmwas_child(Xome_data=Xome_data,Yome_data=Yome_data,Zome_data=Zome_data,Wome_data=Wome_data,outloc=outloctemp,
 		    classlabels=classlabels,xmwasmethod=xmwasmethod,plsmode=plsmode,max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,
 		    rsd.filt.thresh=rsd.filt.thresh,corthresh=corthresh,keepX=NA,keepY=NA,keepZ=NA,keepW=NA,pairedanalysis=pairedanalysis,optselect=optselect,rawPthresh=rawPthresh,
@@ -470,8 +469,8 @@ if(compare.classes==TRUE){
 		    centrality_method=centrality_method,use.X.reference=use.X.reference,removeRda=removeRda,design=NA,missing.val=missing.val,modularity.weighted=modularity.weighted,
 		    html.selfcontained=html.selfcontained,plot.pairwise=plot.pairwise,max.connections.interactive=max.connections.interactive,layout.type=layout.type)
                     )
-                    
-                    
+
+
                 }
     }
 
@@ -510,20 +509,20 @@ if(graphclustering==TRUE){
 
 #if multiple classes
 if(length(res)>1){
-    
+
                 if(globalcomparison==TRUE){
                         res_start_index<-1
                 }else{
                     res_start_index<-2
-                    
+
                 }
 
                 node_names_vec<-{}
                 for(r1 in res_start_index:length(res)){
                     temp1<-res[[r1]]$network_analysis[order(res[[r1]]$network_analysis$Name),]
-                   
+
                     if(nrow(temp1)>0){
-                        
+
                         node_names_vec<-c(node_names_vec,as.character(res[[r1]]$network_analysis$Name))
                     }
                 }
@@ -541,47 +540,47 @@ if(length(res)>1){
                  #}
 
                     for(i in res_start_index:length(res)){
-                    
+
                         atemp<-res[[i]]$network_analysis[order(res[[i]]$network_analysis$Name),]
-                        
-                        
+
+
                         for(rownum in 1:dim(atemp)[1]){
                            index_1<-which(node_names_vec%in%(atemp$Name[rownum]))
-                            
+
                               matrix_centrality[index_1,i]<-atemp$centrality_vec[rownum]
-                            
+
                             }
-                            
-                           
-                            
+
+
+
                     }
-                    
+
                     if(globalcomparison==FALSE){
                         matrix_centrality<-matrix_centrality[,-c(1)]
-                     
+
                     }
 
 }else{
-    
+
     if(globalcomparison==TRUE){
         a1<-res[[1]]$network_analysis[order(res[[1]]$network_analysis$Name),]
-        
+
         a1<-as.data.frame(a1)
-        
+
         matrix_centrality<-matrix(NA,nrow=dim(a1)[1],ncol=length(res))
-        
+
         matrix_centrality[,1]<-a1$centrality_vec
-        
+
         rownames(matrix_centrality)<-as.character(a1$Name)
 
         colnames(matrix_centrality)<-c("allClasses")
     }
-    
+
 }
     if(length(res)>1){
         delta_centrality<-{}
         name_vec<-{}
-        
+
         if(globalcomparison==TRUE){
                 start_res_index=3
                 ref_res_index=2
@@ -589,23 +588,23 @@ if(length(res)>1){
                 start_res_index=2
                 ref_res_index=1
         }
-        
+
         for(i in start_res_index:ncol(matrix_centrality)){
             delta_centrality<-cbind(delta_centrality,abs(matrix_centrality[,i]-matrix_centrality[,ref_res_index]))
             name_vec<-c(name_vec,paste(class_levels[(i-1)],"_vs_",class_levels[(1)],sep=""))
-            
-            
+
+
 
         }
         colnames(delta_centrality)<-name_vec
-        
+
         matrix_centrality<-cbind(matrix_centrality,delta_centrality)
-        
-        
-    
+
+
+
     setwd(outloctemp)
     write.table(matrix_centrality,file="class-wise_centrality_matrix.txt",sep="\t")
-    
+
     }else{
         matrix_centrality={}
     }
@@ -614,9 +613,9 @@ if(length(res)>1){
 }
 
  sink(file=NULL)
- 
+
  print("Processing complete!")
- 
+
 return(list("xmwas.res"=res,"centrality_matrix"=matrix_centrality))
-    
+
 }
