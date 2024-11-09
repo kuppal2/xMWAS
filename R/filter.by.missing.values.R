@@ -7,17 +7,17 @@ function(data_m,missing.val=0,all.missing.thresh=0.5){
     data_clean<-{}
     clean_metabs<-{}
     
-    if(is.na(all.missing.thresh)==FALSE)
+    if(is.na(all.missing.thresh)[1]==FALSE)
     {
         
         total_sigs<-apply(data_m,1,function(x){
             
             #if missing.val=0 or a non NA value
-            if(is.na(missing.val)==FALSE){return(length(which(x>missing.val)))
+            if(is.na(missing.val)[1]==FALSE){return(length(which(x>missing.val)))
             }else{
                 
                 #if missing.val=NA
-                return(length(which(is.na(x)==FALSE)))
+                return(length(which(is.na(x)[1]==FALSE)))
             }})
         
         

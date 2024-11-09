@@ -45,7 +45,7 @@ stopCluster(cl)
 
 abs_feat_rsds<-abs(feat_rsds)
 
-if(is.na(max_xvar)==FALSE){
+if(is.na(max_xvar)[1]==FALSE){
 
 if(dim(Xome_data)[1]>max_xvar){
 
@@ -87,7 +87,7 @@ stopCluster(cl)
 
 abs_feat_rsds<-abs(feat_rsds)
 
-if(is.na(max_yvar)==FALSE){
+if(is.na(max_yvar)[1]==FALSE){
 if(dim(Yome_data)[1]>max_yvar){
 
 Yome_data<-Yome_data[order(abs_feat_rsds,decreasing=TRUE)[1:max_yvar],]
@@ -157,12 +157,12 @@ colnames(id_mapping_mat)<-c("Name","Node")
 
 
 
-if(is.na(keepX)==TRUE){
+if(is.na(keepX)[1]==TRUE){
     
     keepX<-dim(X)[1]
 }
 
-if(is.na(keepY)==TRUE){
+if(is.na(keepY)[1]==TRUE){
     
     keepY<-dim(Y)[1]
 }
@@ -184,7 +184,7 @@ numcomps_parent=numcomps
 
 numdims_min=min(c(dim(X)[2],dim(Y)[2]))
 
-if(is.na(numcomps)==TRUE){
+if(is.na(numcomps)[1]==TRUE){
 
 	numcomps=numdims_min
 }

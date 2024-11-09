@@ -11,12 +11,12 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
     
    
   
-  if(is.na(keepX)==TRUE){
+  if(is.na(keepX)[1]==TRUE){
       
       keepX=dim(X)[2]
   }
   
-  if(is.na(keepY)==TRUE){
+  if(is.na(keepY)[1]==TRUE){
       
       keepY=dim(Y)[2]
   }
@@ -26,7 +26,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
   
   opt_comp=numcomp
   
-   if(is.na(numcomp)==TRUE){
+   if(is.na(numcomp)[1]==TRUE){
    
 	numcomp=min(c(dim(X)[2],dim(Y)[2]))
    }
@@ -63,7 +63,7 @@ function(X,Y,oscmode="pls",numcomp=3,keepX=15,keepY=15,sparseselect=FALSE,analys
             
             #use user-defined number of components
             
-            if(is.na(numcomp)==TRUE){
+            if(is.na(numcomp)[1]==TRUE){
                 
                 numcomp=nrow(X)-1 
                 #numcomp=min(c(dim(X),dim(Y)))-1

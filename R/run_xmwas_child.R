@@ -12,7 +12,7 @@ suppressWarnings(dir.create(outloc))
 setwd(outloc)
 
 
-if(is.na(classname)==TRUE){
+if(is.na(classname)[1]==TRUE){
     print(paste("Analyzing all samples",sep=""))
     
     fname_id_mapping<-paste("NodeID_Name_mapping.txt",sep="")
@@ -23,7 +23,7 @@ if(is.na(classname)==TRUE){
 }
 
 
-if(is.na(xome_fname)==FALSE){
+if(is.na(xome_fname)[1]==FALSE){
     Xome_data<-read.table(xome_fname,sep="\t",header=TRUE)
 }
 
@@ -53,7 +53,7 @@ if(is.na(xome_fname)==FALSE){
 	 
         num_replicates<-1
 
-        if(is.na(yome_fname)==FALSE){
+        if(is.na(yome_fname)[1]==FALSE){
                 Yome_data<-read.table(yome_fname,sep="\t",header=TRUE)
         }
 
@@ -78,12 +78,12 @@ if(nrow(Yome_data)>1){
 
 
     
-if(is.na(zome_fname)==FALSE){
+if(is.na(zome_fname)[1]==FALSE){
     
     Zome_data<-read.table(zome_fname,sep="\t",header=TRUE)
 }
 suppressWarnings(
-   if(is.na(Zome_data)==FALSE){ 
+   if(is.na(Zome_data)[1]==FALSE){ 
     rnames<-rownames(Zome_data)
     if(length(which(duplicated(rnames)==TRUE))>0){
    	Zome_data<-Zome_data[-which(duplicated(rnames)==TRUE),,drop=FALSE]
@@ -101,13 +101,13 @@ suppressWarnings(
    
     })
 
-if(is.na(wome_fname)==FALSE){
+if(is.na(wome_fname)[1]==FALSE){
     
     Wome_data<-read.table(wome_fname,sep="\t",header=TRUE)
 }
 
 suppressWarnings(
-	if(is.na(Wome_data)==FALSE){    
+	if(is.na(Wome_data)[1]==FALSE){    
     rnames<-rownames(Wome_data)
     if(length(which(duplicated(rnames)==TRUE))>0){
    
@@ -128,12 +128,12 @@ suppressWarnings(
     })
 
 suppressWarnings(
-if(is.na(Xome_data)==TRUE){
+if(is.na(Xome_data)[1]==TRUE){
     
     stop("X data matrix is required.")
 })
 
-if(is.na(class_fname)==FALSE){
+if(is.na(class_fname)[1]==FALSE){
 
 classlabels<-read.table(class_fname,sep="\t",header=TRUE)
 cnames_class<-colnames(classlabels)
@@ -196,7 +196,7 @@ if(pairedanalysis==TRUE){
 }
 
 suppressWarnings(
-if(is.na(classname)==FALSE && is.na(classlabels)==FALSE){
+if(is.na(classname)[1]==FALSE && is.na(classlabels)[1]==FALSE){
     
     rnames_x<-rownames(Xome_data)
     Xome_data<-Xome_data[,which(classlabels_vec==classname),drop=FALSE]
@@ -208,12 +208,12 @@ if(is.na(classname)==FALSE && is.na(classlabels)==FALSE){
 
     
     suppressWarnings(
-    if(is.na(Zome_data)==FALSE){
+    if(is.na(Zome_data)[1]==FALSE){
     Zome_data<-Zome_data[,which(classlabels_vec==classname),drop=FALSE]
     })
     
     suppressWarnings(
-    if(is.na(Wome_data)==FALSE){
+    if(is.na(Wome_data)[1]==FALSE){
     Wome_data<-Wome_data[,which(classlabels_vec==classname),drop=FALSE]
     })
 })
@@ -251,7 +251,7 @@ save(g1,file="g1.Rda")
     id_mapping_mat<-g1$id_mapping_mat
     
     suppressWarnings(
-    if(is.na(Zome_data)==FALSE){
+    if(is.na(Zome_data)[1]==FALSE){
 
 suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
     if(is(check_file,"try-error")){
@@ -290,7 +290,7 @@ suppressWarnings(check_file<-try(load("g2.Rda"),silent=TRUE))
     })
 
 suppressWarnings(
-    if(is.na(Wome_data)==FALSE){
+    if(is.na(Wome_data)[1]==FALSE){
         
         suppressWarnings(
         check_file<-try(load("g4.Rda"),silent=TRUE)
@@ -352,7 +352,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     }
     suppressWarnings(
 	#4-way 
-    if(is.na(Zome_data)==FALSE && is.na(Wome_data)==FALSE && is.na(Yome_data)==FALSE)
+    if(is.na(Zome_data)[1]==FALSE && is.na(Wome_data)[1]==FALSE && is.na(Yome_data)[1]==FALSE)
     {
         
         if(use.X.reference==TRUE){
@@ -373,7 +373,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     }else{
     
     #3-way
-    if(is.na(Zome_data)==FALSE && is.na(Yome_data)==FALSE && is.na(Wome_data)==TRUE){
+    if(is.na(Zome_data)[1]==FALSE && is.na(Yome_data)[1]==FALSE && is.na(Wome_data)[1]==TRUE){
         
         if(use.X.reference==TRUE){
             
@@ -394,7 +394,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     }else{
         
         #2-way
-        if(is.na(Zome_data)==TRUE && is.na(Yome_data)==FALSE && is.na(Wome_data)==TRUE){
+        if(is.na(Zome_data)[1]==TRUE && is.na(Yome_data)[1]==FALSE && is.na(Wome_data)[1]==TRUE){
         df_matrix<-rbind(g1$graphobject)
         
         rownames_vec<-g1$rownames_vec
@@ -428,7 +428,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     
     print(paste("Total number of connections: ",nrow(df_matrix),sep=""))
     
-    if(is.na(max_connections)==FALSE){
+    if(is.na(max_connections)[1]==FALSE){
         
     if(nrow(df_matrix)>max_connections){
         ind_top_2000<-order(corweight_temp,decreasing=TRUE)[1:max_connections]
@@ -439,7 +439,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
     
     }
     
-    if(is.na(corthresh)==FALSE){
+    if(is.na(corthresh)[1]==FALSE){
         
         df_matrix<-df_matrix[which(corweight_temp>corthresh),,drop=FALSE]
         
@@ -463,7 +463,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
         
        if(is(check_file,"try-error")){
            
-           if(is.na(classname)==TRUE){
+           if(is.na(classname)[1]==TRUE){
            
                fname<-paste("Multidata_Network_threshold",corthresh,".png",sep="")
            }else{
@@ -475,7 +475,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
        png(fname,width=8,height=8,res=600,type="cairo",units="in")
        
        
-       if(is.na(classname)==TRUE){
+       if(is.na(classname)[1]==TRUE){
            
            fname<-paste("Multidata_Network_threshold",corthresh,sep="")
        }else{
@@ -526,12 +526,12 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                    }
                
                
-               if(is.na(mc_modularity_measure)==TRUE){
+               if(is.na(mc_modularity_measure)[1]==TRUE){
                    
                    mc_modularity_measure=0
                }
                
-               if(is.na(walktrap_modularity_measure)==TRUE){
+               if(is.na(walktrap_modularity_measure)[1]==TRUE){
                    
                    walktrap_modularity_measure=0
                }
@@ -556,7 +556,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                network_stats<-cbind(cc, modularity_measure)
                colnames(network_stats)<-c("Clustering coefficient (graph level)",paste("Modularity measure (based on community membership) using ",modularity_method,sep=""))
                
-               if(is.na(classname)==TRUE){
+               if(is.na(classname)[1]==TRUE){
                mod_measure_fname<-paste("Network_stats.csv",sep="")
                
                fname<-paste("Multidata_Network_threshold",corthresh,"_communities.png",sep="")
@@ -655,7 +655,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                
                # mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",side=0,line=0,cex=0.8,adj=(-0.2))
                
-               if(is.na(classname)==TRUE){
+               if(is.na(classname)[1]==TRUE){
                mtext("Using all samples",side=3,line=1,cex=0.6,adj=NA)
                }else{
                    
@@ -666,11 +666,11 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",side=3,line=3,cex=0.6,adj=NA)
                
                mtext_community<-paste("(Nodes) ",net_node_shape[1],": ",Xname,"; ",net_node_shape[2],": ",Yname,sep="")
-               if(is.na(Zname)==FALSE){
+               if(is.na(Zname)[1]==FALSE){
                    mtext_community<-paste(mtext_community,"; ",net_node_shape[3],": ",Zname,sep="")
                    
                }
-               if(is.na(Wname)==FALSE){
+               if(is.na(Wname)[1]==FALSE){
                    mtext_community<-paste(mtext_community,"; ",net_node_shape[4],": ",Wname,sep="")
                    
                }
@@ -882,7 +882,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
 #save(list=ls(),file="debug.Rda")
 
 
-if(is.na(classname)==TRUE){
+if(is.na(classname)[1]==TRUE){
     #if(FALSE)
     {
 rnames<-rownames(Xome_data)
@@ -916,7 +916,7 @@ if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
 }
 
 suppressWarnings(
-if(is.na(Zome_data)==FALSE){
+if(is.na(Zome_data)[1]==FALSE){
 rnames<-rownames(Zome_data)
 if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
     Zome_data<-Zome_data[which(rnames%in%clust_id_mapping_mat$Name),,drop=FALSE]
@@ -936,7 +936,7 @@ if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
 
 })
 suppressWarnings(
-if(is.na(Wome_data)==FALSE){
+if(is.na(Wome_data)[1]==FALSE){
     rnames<-rownames(Wome_data)
     if(length(which(rnames%in%clust_id_mapping_mat$Name))>1){
         Wome_data<-Wome_data[which(rnames%in%clust_id_mapping_mat$Name),,drop=FALSE]

@@ -20,7 +20,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     
     sink(file="InputParameters.txt")
     
-    print("######xMWAS v0.55 Parameters##########")
+    print("######xMWAS v0.6 Parameters##########")
     print(paste("xmwasmethod: ",xmwasmethod,sep=""))
     print(paste("plsmode: ",plsmode,sep=""))
     print(paste("max_xvar: ",max_xvar,sep=""))
@@ -64,7 +64,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
      
      #all.missing.thresh=0.1
     
-    if(is.na(xome_fname)==FALSE){
+    if(is.na(xome_fname)[1]==FALSE){
         Xome_data<-read.table(xome_fname,sep="\t",header=TRUE)
         
         
@@ -120,7 +120,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     num_replicates<-1
     
     
-    if(is.na(yome_fname)==FALSE){
+    if(is.na(yome_fname)[1]==FALSE){
         Yome_data<-read.table(yome_fname,sep="\t",header=TRUE)
         
        
@@ -150,7 +150,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     
    
     
-    if(is.na(zome_fname)==FALSE){
+    if(is.na(zome_fname)[1]==FALSE){
         
         Zome_data<-read.table(zome_fname,sep="\t",header=TRUE)
         
@@ -160,7 +160,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
    
     
     suppressWarnings(
-    if(is.na(Zome_data)==FALSE){
+    if(is.na(Zome_data)[1]==FALSE){
         
        
         
@@ -185,7 +185,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
         
     })
     
-    if(is.na(wome_fname)==FALSE){
+    if(is.na(wome_fname)[1]==FALSE){
         
         Wome_data<-read.table(wome_fname,sep="\t",header=TRUE)
         
@@ -195,7 +195,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     
     
     suppressWarnings(
-    if(is.na(Wome_data)==FALSE){
+    if(is.na(Wome_data)[1]==FALSE){
         
        
         
@@ -223,13 +223,13 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     
     
     suppressWarnings(
-    if(is.na(Xome_data)==TRUE){
+    if(is.na(Xome_data)[1]==TRUE){
         
        
         stop("X data matrix is required.")
     })
     
-    if(is.na(class_fname)==FALSE){
+    if(is.na(class_fname)[1]==FALSE){
         
         classlabels<-read.table(class_fname,sep="\t",header=TRUE)
         cnames_class<-colnames(classlabels)
@@ -242,7 +242,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
         
     }
     suppressWarnings(
-    if(is.na(classlabels)==TRUE){
+    if(is.na(classlabels)[1]==TRUE){
         
         classlabels<-rep("A",dim(Xome_data)[2])
         
@@ -269,7 +269,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
     res<-new("list")
     
     suppressWarnings(
-    if(is.na(classlabels)==FALSE){
+    if(is.na(classlabels)[1]==FALSE){
                 cnames<-colnames(classlabels)
                 cnames<-tolower(cnames)
 
@@ -278,7 +278,7 @@ html.selfcontained = TRUE,globalcomparison=TRUE,plot.pairwise=TRUE,apply.sparse.
                 
                 
                 class_check<-which(cnames=="class") || which(cnames=="factor1")
-                if(is.na(class_check)==TRUE){
+                if(is.na(class_check)[1]==TRUE){
                     
                     
                     stop("No Class or Factor1 column found in the class labels file. Please label the main class column as \"Class\" or \"Factor1\" for simple group-wise comparison.\nPlease refer to data(exh1n1) object to see how to format the classlabels file: print(head(exh1n1$classlabels));print(head(exh1n1$classlabels_onewayrepeat));print(head(exh1n1$classlabels_twowayrepeat))")

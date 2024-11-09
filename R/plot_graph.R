@@ -28,7 +28,7 @@ if(length(node_index)>0){
         	dftemp<-dfall[node_index,]
             #print(dim(dftemp))
 
-		if(is.na(maxnodesperclass)==FALSE){	
+		if(is.na(maxnodesperclass)[1]==FALSE){	
 		if(nrow(dftemp)>maxnodesperclass){
 			dftemp<-dftemp[order(abs(as.numeric(dftemp$weight)),decreasing=TRUE),]
             dftemp1<-dftemp #[-which(duplicated(dftemp$to)==TRUE),]
@@ -110,7 +110,7 @@ if(length(node_index)>0){
 	set.seed(seednum)
 
 
-	if(is.na(maxnodesperclass)==TRUE){
+	if(is.na(maxnodesperclass)[1]==TRUE){
 		cytoscape_fname<-paste(filename,"cytoscapeall.gml",sep="")
 		rda_fname<-paste(filename,"all.Rda",sep="")
 	}else{
@@ -153,7 +153,7 @@ if(length(node_index)>0){
 	}
     #mtext("Red: +ve correlation; Blue: -ve correlation",side=1)
     
-    if(is.na(classname)==TRUE){
+    if(is.na(classname)[1]==TRUE){
         mtext("Using all samples",side=3,line=3,cex=0.6,adj=NA)
     }else{
         
@@ -163,11 +163,11 @@ if(length(node_index)>0){
     mtext("(Edges) Red: +ve correlation; Blue: -ve correlation",line=0,side=1,cex=0.8,adj=0)
     
     mtext_community<-paste("(Nodes) ",net_node_shape[1],": ",Xname,"; ",net_node_shape[2],": ",Yname,sep="")
-    if(is.na(Zname)==FALSE){
+    if(is.na(Zname)[1]==FALSE){
         mtext_community<-paste(mtext_community,"; ",net_node_shape[3],": ",Zname,sep="")
         
     }
-    if(is.na(Wname)==FALSE){
+    if(is.na(Wname)[1]==FALSE){
         mtext_community<-paste(mtext_community,"; ",net_node_shape[4],": ",Wname,sep="")
         
     }
@@ -185,7 +185,7 @@ if(length(node_index)>0){
                 links<-df[,c(1:2)]
                 links<-as.data.frame(links)
 
-if(is.na(maxnodesperclass)==FALSE){
+if(is.na(maxnodesperclass)[1]==FALSE){
 	if(interactive==TRUE){
 		
 		tkid <- tkplot(sg,canvas.width=1050, canvas.height=750)
