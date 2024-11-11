@@ -2,9 +2,10 @@ plot_visnet <-
 function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=NA,Wname=NA,communitymembership=NA,footer=NA,id_mapping_mat=NA,html.selfcontained = TRUE,max.connections.interactive=100,seednum=100,layoutmatrix=NA){
     
     save(id_mapping_mat,file="id.Rda")
+ # print("DOing this file")
     
   
-    if(is.na(communitymembership)==TRUE){
+    if(is.na(communitymembership[1])==TRUE){
         #vis.nodes$color <- V(sg)$color
         
         node_attr_matrix<-cbind(V(sg)$name,V(sg)$shape,V(sg)$color,V(sg)$label.cex,V(sg)$vertex.size)
@@ -67,7 +68,7 @@ function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=
     
     node_type<-gsub(as.character(node_vec[,1]),pattern="[0-9]*",replacement="")
     
-    if(is.na(communitymembership)==FALSE){
+    if(is.na(communitymembership[1])==FALSE){
         node_vec<-cbind(node_vec,node_type)
         node_vec<-as.data.frame(node_vec)
         
@@ -87,18 +88,18 @@ function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=
     node_name[which(node_vec$type=="X")]<-Xname
     node_name[which(node_vec$type=="Y")]<-Yname
     
-    if(is.na(Zname)==FALSE){
+    if(is.na(Zname[1])==FALSE){
         
         node_name[which(node_vec$type=="Z")]<-Zname
     }
-    if(is.na(Wname)==FALSE){
+    if(is.na(Wname[1])==FALSE){
         node_name[which(node_vec$type=="W")]<-Wname
     }
     
    
     
     vis.nodes<-node_vec #[,c("id","type")]
-    if(is.na(communitymembership)==FALSE){
+    if(is.na(communitymembership[1])==FALSE){
         vis.nodes$title<-paste("Name: ",node_vec$Name, "<br> Community: ",node_vec$Community,sep="") #paste('<a target="_blank" href="" onclick="return false;" style="background-color:white">',paste("Name: ",node_vec$Name, "<br> Community: ",node_vec$Community,sep=""),'</a>',sep="")
     }else{
         vis.nodes$title<-paste("Name: ",node_vec$Name,sep="") #paste('<a target="_blank" href="" onclick="return false;" style="background-color:white">',paste("Name: ",node_vec$Name,sep=""),'</a>',sep="")
@@ -121,7 +122,7 @@ function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=
     
       
 	
-    if(is.na(communitymembership)==TRUE){
+    if(is.na(communitymembership[1])==TRUE){
         vis.nodes$color <- V(sg)$color
     
     }else{
@@ -156,7 +157,7 @@ function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=
        
     
     
-    if(is.na(communitymembership)==FALSE){
+    if(is.na(communitymembership[1])==FALSE){
         
         # passing custom nodes and/or edges
        
@@ -215,7 +216,7 @@ function(sg,df_matrix,main_text="Integrative network",Xname="X",Yname="Y",Zname=
     visnet<-visPhysics(visnet,stabilization = FALSE)
     visnet<-visEdges(visnet,smooth = FALSE)
     
-    if(is.na(communitymembership)==TRUE){
+    if(is.na(communitymembership[1])==TRUE){
     visSave(visnet, file = "interactive.network.html",selfcontained = html.selfcontained)
     }else{
         visSave(visnet, file = "interactive.network.communities.html",selfcontained = html.selfcontained)

@@ -1,6 +1,7 @@
 options(shiny.maxRequestSize=100*1024^2)
 options(shiny.sanitize.errors=FALSE)
 # Server logic
+
 server <- function(input, output) {
   
   ##################################  Introduction Page #################################################  
@@ -492,7 +493,7 @@ server <- function(input, output) {
       
       library('xMWAS')
       #source("xMWAS_Rcode/xMWAS_v0.0.22.R")
-      
+    	#source("xMWAS/R/plot_visnet.R")
       xmwas_res<-run_xmwas(Xome_data=xMat,Yome_data=yMat,Zome_data=NA,Wome_data=NA,outloc=session_outloc(),
                            classlabels=class_labels_file,xmwasmethod=xmwasmethod,plsmode=input$plsmode,
                            max_xvar=max_xvar,max_yvar=max_yvar,max_zvar=max_zvar,max_wvar=max_wvar,rsd.filt.thresh=input$rsd_filt_thresh,corthresh=input$corthresh,
