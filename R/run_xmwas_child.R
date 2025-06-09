@@ -723,7 +723,7 @@ id_mapping_mat<-rbind(id_mapping_mat,g6$id_mapping_mat)
                if(centrality_method=="eigenvector"){
                    
                   
-               eigenvector_centrality<-eigen_centrality(sg,directed=FALSE,weights=E(sg)$weight)
+               eigenvector_centrality<-eigen_centrality(sg,directed=FALSE,weights=abs(E(sg)$weight))
                centrality_vec<-eigenvector_centrality$vector
                
                save(centrality_vec,file="centrality_vec.Rda")
