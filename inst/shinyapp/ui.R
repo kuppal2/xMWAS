@@ -8,10 +8,10 @@ ui<-fluidPage(
     tags$head(
       tags$meta(charset="utf-8"),
       tags$meta(name="description",content="Free Web tutorials"),
-      tags$title("xMWAS - v1.0"),
+      tags$title("xMWAS - v1.1"),
       tags$link(rel = "stylesheet", type = "text/css", href = "mystyle.css")
     ),
-    column(12,tags$div(headerPanel(h3("xMWAS - a data-driven integration and network analysis tool (v1.0)")))),
+    column(12,tags$div(headerPanel(h3("xMWAS - a data-driven integration and network analysis tool (v1.1)")))),
     column(12,tabsetPanel(
         tabPanel("Introduction", introduction_page), 
         tabPanel("Analysis", analysis_page), 
